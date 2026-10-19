@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Góc sách nhỏ - Danh sách sách</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Phần đầu trang: tên cửa hàng và tiêu đề bài tập -->
+  <header class="page-header">
+    <p class="brand">GÓC SÁCH NHỎ</p>
+    <h1>Danh sách sách</h1>
+    <p>Đọc trọn tên sách, chọn cuốn sách phù hợp với bạn.</p>
+  </header>
+
+  <main class="container">
+    <section aria-labelledby="product-heading">
+      <h2 id="product-heading">Sách dành cho bạn</h2>
+      <p class="note">4 sản phẩm minh họa · Tên sách, bìa và giá là dữ liệu mẫu, không phải sản phẩm của FAHASA.</p>
+
+      <!-- Mỗi article là một thẻ sách. CSS Grid chia danh sách thành các cột. -->
+      <div class="product-list">
+        <article class="product-card">
+          <img src="images/book-1.svg" alt="Bìa sách mẫu Những ngày bình yên bên trang sách" width="240" height="300">
+          <h3>Những ngày bình yên bên trang sách</h3>
+          <p class="edition">Sách mẫu · Bìa mềm</p>
+          <div class="price-area">
+            <p class="sale-price">80.000 đ <span class="discount">-20%</span></p>
+            <p class="original-price"><span class="sr-only">Giá gốc: </span><del>100.000 đ</del></p>
+          </div>
+          <!-- details/summary mở và đóng mô tả bằng HTML, không cần JavaScript -->
+          <details>
+            <summary>Xem chi tiết</summary>
+            <p>Tập tản văn minh họa về những niềm vui nhỏ trong cuộc sống. Thông tin mẫu: 180 trang, bìa mềm.</p>
+          </details>
+        </article>
+
+        <article class="product-card">
+          <img src="images/book-2.svg" alt="Bìa sách mẫu Hành trình khám phá thế giới qua những câu chuyện nhỏ" width="240" height="300">
+          <h3>Hành trình khám phá thế giới qua những câu chuyện nhỏ</h3>
+          <p class="edition">Sách mẫu · Bìa cứng</p>
+          <div class="price-area">
+            <p class="sale-price">108.000 đ <span class="discount">-10%</span></p>
+            <p class="original-price"><span class="sr-only">Giá gốc: </span><del>120.000 đ</del></p>
+          </div>
+          <details>
+            <summary>Xem chi tiết</summary>
+            <p>Tuyển tập câu chuyện minh họa về thiên nhiên và cuộc sống. Thông tin mẫu: 220 trang, bìa cứng.</p>
+          </details>
+        </article>
+
+        <article class="product-card">
+          <img src="images/book-3.svg" alt="Bìa sách mẫu Học cách học - Xây dựng thói quen học tập mỗi ngày" width="240" height="300">
+          <h3>Học cách học - Xây dựng thói quen học tập mỗi ngày</h3>
+          <p class="edition">Sách mẫu · Bìa mềm</p>
+          <div class="price-area">
+            <p class="sale-price">90.000 đ <span class="discount">-25%</span></p>
+            <p class="original-price"><span class="sr-only">Giá gốc: </span><del>120.000 đ</del></p>
+          </div>
+          <details>
+            <summary>Xem chi tiết</summary>
+            <p>Sách minh họa về lập kế hoạch và duy trì việc học. Thông tin mẫu: 160 trang, bìa mềm.</p>
+          </details>
+        </article>
+
+        <article class="product-card">
+          <img src="images/book-4.svg" alt="Bìa sách mẫu Một chút xanh trong thành phố" width="240" height="300">
+          <h3>Một chút xanh trong thành phố</h3>
+          <p class="edition">Sách mẫu · Bìa mềm</p>
+          <div class="price-area">
+            <p class="sale-price">75.000 đ</p>
+            <p class="regular-note">Giá niêm yết</p>
+          </div>
+          <details>
+            <summary>Xem chi tiết</summary>
+            <p>Sách minh họa về chăm sóc cây xanh trong nhà. Thông tin mẫu: 140 trang, bìa mềm.</p>
+          </details>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>Bài tập HTML5/CSS3 · Tham khảo cách trình bày sản phẩm trên FAHASA.</footer>
+</body>
+</html>
