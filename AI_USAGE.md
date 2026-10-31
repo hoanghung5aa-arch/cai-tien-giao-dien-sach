@@ -22,14 +22,14 @@
 Prompt trên được dùng để nhờ AI phân tích vấn đề căn thẻ; phần đổi giá trị CSS và quan sát kết quả được em thực hiện trong VS Code.
 
 ## 4. Kết quả AI hỗ trợ
-- Tạo cấu trúc trang và định dạng thẻ sách trong `index.html` và `style.css`.
+- Tạo cấu trúc trang và định dạng thẻ sách trong `index.html` và `css/style.css`.
 - Thay ảnh minh họa bằng ảnh bìa của bốn sách tham khảo FAHASA: Nhà Giả Kim (Tái Bản 2025), Hoàng Tử Bé (Tái Bản 2025), Đắc Nhân Tâm và ấn bản bìa cứng Tuổi Trẻ Đáng Giá Bao Nhiêu.
 - Thêm nền màu ấm, bố cục Grid/Flexbox, cách hiển thị theo kích thước màn hình và hiệu ứng cho liên kết.
 - Hỗ trợ phân tích vì sao thẻ có tên dài cao hơn và giải thích cách thử `align-items` trong Grid. Phần gợi ý của AI là một phương án để em kiểm tra; em tự thay giá trị trong VS Code và quan sát giao diện.
 
 ## 5. Kiểm tra và điều chỉnh
 - Em đã tự mở trang trên trình duyệt và kiểm tra ảnh, mục “Xem chi tiết” cùng bố cục ở 1366 px, 768 px và 390 px; kết quả lần lượt là bốn cột, hai cột và một cột.
-- Em tự nhận ra thẻ sách thứ tư cao hơn vì tên sách dài. Trong `style.css`, em thử đổi `align-items` trong `.product-list` thành `start`, quan sát các thẻ không cao bằng nhau, rồi đổi thành `stretch` và lưu file. Sau khi tải lại trang, em thấy các thẻ trong cùng một hàng cao bằng nhau mà tên sách không bị cắt. `.product-item { display: flex; }` cùng `.product-card { flex: 1; }` giúp phần thẻ có nền và viền lấp đầy chiều cao hàng. Hai ảnh so sánh trước và sau lần điều chỉnh này được lưu trong `evidence/buoi2-self-adjust-before.png` và `evidence/buoi2-self-adjust-after.png`.
+- Em tự nhận ra thẻ sách thứ tư cao hơn vì tên sách dài. Trong `css/style.css`, em thử đổi `align-items` trong `.product-list` thành `start`, quan sát các thẻ không cao bằng nhau, rồi đổi thành `stretch` và lưu file. Sau khi tải lại trang, em thấy các thẻ trong cùng một hàng cao bằng nhau mà tên sách không bị cắt. `.product-item { display: flex; }` cùng `.product-card { flex: 1; }` giúp phần thẻ có nền và viền lấp đầy chiều cao hàng. Hai ảnh so sánh trước và sau lần điều chỉnh này được lưu trong `evidence/buoi2-self-adjust-before.png` và `evidence/buoi2-self-adjust-after.png`.
 - Các tên sách, bìa và giá được ghi theo thông tin tham khảo trên FAHASA ngày 31/10/2026; giá có thể thay đổi.
 - Em đã dùng chuột để kiểm tra hover, nhấn Tab để kiểm tra focus-visible và bấm liên kết sản phẩm; các thao tác hoạt động trong lần kiểm tra. Em sẽ mở lại website để trình bày trực tiếp nếu giảng viên yêu cầu.
 

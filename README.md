@@ -22,7 +22,7 @@
 - Không dùng JavaScript, backend, cơ sở dữ liệu hay thư viện giao diện bên ngoài.
 
 ## 5. Cách chạy
-Mở `index.html` bằng trình duyệt. Giữ nguyên `style.css` và thư mục `images` để trang tải đúng định dạng và ảnh bìa.
+Mở `index.html` bằng trình duyệt. Giữ nguyên `css/style.css` và thư mục `images` để trang tải đúng định dạng và ảnh bìa.
 
 ## 6. Cải tiến đã thực hiện
 - Thêm nền màu ấm cho phần đầu trang.
