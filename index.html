@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2VQE31W91E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2VQE31W91E');
-</script>
-  <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Góc sách nhỏ - Danh sách sách</title>
@@ -21,75 +12,92 @@
     <p class="brand">GÓC SÁCH NHỎ</p>
     <h1>Danh sách sách</h1>
     <p>Đọc trọn tên sách, chọn cuốn sách phù hợp với bạn.</p>
+    <nav class="page-nav" aria-label="Điều hướng trang">
+      <ul class="nav-list">
+        <li><a href="#product-list">Xem danh sách sách</a></li>
+        <li><a href="https://www.fahasa.com/" target="_blank" rel="noopener noreferrer">Website tham khảo FAHASA</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main class="container">
-    <section aria-labelledby="product-heading">
+    <section id="product-list" aria-labelledby="product-heading">
       <h2 id="product-heading">Sách dành cho bạn</h2>
-      <p class="note">4 sản phẩm minh họa · Tên sách, bìa và giá là dữ liệu mẫu, không phải sản phẩm của FAHASA.</p>
+      <p class="note">Ảnh bìa, tên sách và giá tham khảo từ FAHASA ngày 31/10/2026; giá có thể thay đổi.</p>
 
-      <!-- Mỗi article là một thẻ sách. CSS Grid chia danh sách thành các cột. -->
-      <div class="product-list">
-        <article class="product-card">
-          <img src="images/book-1.svg" alt="Bìa sách mẫu Những ngày bình yên bên trang sách" width="240" height="300">
-          <h3>Những ngày bình yên bên trang sách</h3>
-          <p class="edition">Sách mẫu · Bìa mềm</p>
-          <div class="price-area">
-            <p class="sale-price">80.000 đ <span class="discount">-20%</span></p>
-            <p class="original-price"><span class="sr-only">Giá gốc: </span><del>100.000 đ</del></p>
-          </div>
-          <!-- details/summary mở và đóng mô tả bằng HTML, không cần JavaScript -->
-          <details>
-            <summary>Xem chi tiết</summary>
-            <p>Tập tản văn minh họa về những niềm vui nhỏ trong cuộc sống. Thông tin mẫu: 180 trang, bìa mềm.</p>
-          </details>
-        </article>
+      <!-- ul/li thể hiện đây là danh sách; article là từng thẻ sách. -->
+      <ul class="product-list" aria-label="Danh sách sách tham khảo từ FAHASA">
+        <li class="product-item">
+          <article class="product-card">
+            <img src="images/nha-gia-kim-2025.webp" alt="Bìa sách Nhà Giả Kim (Tái Bản 2025)" width="240" height="300">
+            <h3 class="product-title">Nhà Giả Kim (Tái Bản 2025)</h3>
+            <p class="edition">Paulo Coelho · Nhã Nam · Bìa mềm</p>
+            <div class="price-area">
+              <div class="price-row"><span class="product-price">72.000 đ</span><span class="discount">-24%</span></div>
+              <p class="original-price"><span class="sr-only">Giá gốc: </span><del>95.000 đ</del></p>
+            </div>
+            <details>
+              <summary>Xem chi tiết</summary>
+              <p>Tiểu thuyết kể hành trình của Santiago theo đuổi giấc mơ tìm kho báu. Thông tin sách được đối chiếu trên trang FAHASA.</p>
+              <a class="product-link" href="https://www.fahasa.com/nha-gia-kim-tai-ban-2025.html" target="_blank" rel="noopener noreferrer">Xem sản phẩm tại FAHASA</a>
+            </details>
+          </article>
+        </li>
 
-        <article class="product-card">
-          <img src="images/book-2.svg" alt="Bìa sách mẫu Hành trình khám phá thế giới qua những câu chuyện nhỏ" width="240" height="300">
-          <h3>Hành trình khám phá thế giới qua những câu chuyện nhỏ</h3>
-          <p class="edition">Sách mẫu · Bìa cứng</p>
-          <div class="price-area">
-            <p class="sale-price">108.000 đ <span class="discount">-10%</span></p>
-            <p class="original-price"><span class="sr-only">Giá gốc: </span><del>120.000 đ</del></p>
-          </div>
-          <details>
-            <summary>Xem chi tiết</summary>
-            <p>Tuyển tập câu chuyện minh họa về thiên nhiên và cuộc sống. Thông tin mẫu: 220 trang, bìa cứng.</p>
-          </details>
-        </article>
+        <li class="product-item">
+          <article class="product-card">
+            <img src="images/hoang-tu-be-2025.jpg" alt="Bìa sách Hoàng Tử Bé (Tái Bản 2025)" width="240" height="300">
+            <h3 class="product-title">Hoàng Tử Bé (Tái Bản 2025)</h3>
+            <p class="edition">Antoine de Saint-Exupéry · Nhã Nam · Bìa mềm</p>
+            <div class="price-area">
+              <div class="price-row"><span class="product-price">65.000 đ</span><span class="discount">-24%</span></div>
+              <p class="original-price"><span class="sr-only">Giá gốc: </span><del>86.000 đ</del></p>
+            </div>
+            <details>
+              <summary>Xem chi tiết</summary>
+              <p>Tác phẩm văn học kể về chuyến đi của Hoàng Tử Bé qua các hành tinh và những cuộc gặp gỡ trên đường đi.</p>
+              <a class="product-link" href="https://www.fahasa.com/hoang-tu-be-tai-ban-2025.html" target="_blank" rel="noopener noreferrer">Xem sản phẩm tại FAHASA</a>
+            </details>
+          </article>
+        </li>
 
-        <article class="product-card">
-          <img src="images/book-3.svg" alt="Bìa sách mẫu Học cách học - Xây dựng thói quen học tập mỗi ngày" width="240" height="300">
-          <h3>Học cách học - Xây dựng thói quen học tập mỗi ngày</h3>
-          <p class="edition">Sách mẫu · Bìa mềm</p>
-          <div class="price-area">
-            <p class="sale-price">90.000 đ <span class="discount">-25%</span></p>
-            <p class="original-price"><span class="sr-only">Giá gốc: </span><del>120.000 đ</del></p>
-          </div>
-          <details>
-            <summary>Xem chi tiết</summary>
-            <p>Sách minh họa về lập kế hoạch và duy trì việc học. Thông tin mẫu: 160 trang, bìa mềm.</p>
-          </details>
-        </article>
+        <li class="product-item">
+          <article class="product-card">
+            <img src="images/dac-nhan-tam.webp" alt="Bìa sách Đắc Nhân Tâm" width="240" height="300">
+            <h3 class="product-title">Đắc Nhân Tâm</h3>
+            <p class="edition">Dale Carnegie · AZ Việt Nam · Bìa mềm</p>
+            <div class="price-area">
+              <div class="price-row"><span class="product-price">76.000 đ</span><span class="discount">-30%</span></div>
+              <p class="original-price"><span class="sr-only">Giá gốc: </span><del>109.000 đ</del></p>
+            </div>
+            <details>
+              <summary>Xem chi tiết</summary>
+              <p>Sách về giao tiếp và ứng xử giữa người với người. Tác giả là Dale Carnegie; thông tin phiên bản tham khảo trên FAHASA.</p>
+              <a class="product-link" href="https://www.fahasa.com/dac-nhan-tam-425244.html" target="_blank" rel="noopener noreferrer">Xem sản phẩm tại FAHASA</a>
+            </details>
+          </article>
+        </li>
 
-        <article class="product-card">
-          <img src="images/book-4.svg" alt="Bìa sách mẫu Một chút xanh trong thành phố" width="240" height="300">
-          <h3>Một chút xanh trong thành phố</h3>
-          <p class="edition">Sách mẫu · Bìa mềm</p>
-          <div class="price-area">
-            <p class="sale-price">75.000 đ</p>
-            <p class="regular-note">Giá niêm yết</p>
-          </div>
-          <details>
-            <summary>Xem chi tiết</summary>
-            <p>Sách minh họa về chăm sóc cây xanh trong nhà. Thông tin mẫu: 140 trang, bìa mềm.</p>
-          </details>
-        </article>
-      </div>
+        <li class="product-item">
+          <article class="product-card">
+            <img src="images/tuoi-tre-dac-biet.webp" alt="Bìa cứng Tuổi Trẻ Đáng Giá Bao Nhiêu - Ấn Bản Đặc Biệt 20 Năm Thành Lập Nhã Nam" width="240" height="300">
+            <h3 class="product-title">Tuổi Trẻ Đáng Giá Bao Nhiêu - Ấn Bản Đặc Biệt 20 Năm Thành Lập Nhã Nam - Bìa Cứng</h3>
+            <p class="edition">Rosie Nguyễn · Nhã Nam · Bìa cứng</p>
+            <div class="price-area">
+              <div class="price-row"><span class="product-price">240.000 đ</span><span class="discount">-19%</span></div>
+              <p class="original-price"><span class="sr-only">Giá gốc: </span><del>299.000 đ</del></p>
+            </div>
+            <details>
+              <summary>Xem chi tiết</summary>
+              <p>Sách chia sẻ góc nhìn về việc học tập, trải nghiệm và phát triển bản thân ở tuổi trẻ. Đây là ấn bản đặc biệt bìa cứng.</p>
+              <a class="product-link" href="https://www.fahasa.com/tuoi-tre-dang-gia-bao-nhieu-an-ban-dac-biet-20-nam-thanh-lap-bia-cung.html" target="_blank" rel="noopener noreferrer">Xem sản phẩm tại FAHASA</a>
+            </details>
+          </article>
+        </li>
+      </ul>
     </section>
   </main>
 
-  <footer>Bài tập HTML5/CSS3 · Tham khảo cách trình bày sản phẩm trên FAHASA.</footer>
+  <footer>Ảnh bìa và thông tin sách tham khảo từ FAHASA. Đây là giao diện bài tập HTML5/CSS3, không xử lý đặt hàng.</footer>
 </body>
 </html>

@@ -1,55 +1,44 @@
 # AI Usage Log
 
 ## 1. Công cụ AI
-- ChatGPT: hỗ trợ phân tích website.
-- Codex: hỗ trợ khảo sát, đề xuất thiết kế, tạo và chỉnh sửa mã nguồn.
+- ChatGPT và Codex.
 
 ## 2. Mục đích sử dụng
-- Phân tích giao diện FAHASA.
-- Đề xuất bố cục thẻ sách ở mức HTML/CSS cơ bản.
-- Tạo mã nguồn, ảnh bìa minh họa và hướng dẫn chạy trang.
-- Giải thích HTML/CSS và hỗ trợ điều chỉnh giao diện điện thoại.
+- Hỗ trợ phân tích giao diện tham khảo FAHASA và giải thích HTML/CSS.
+- Đề xuất, tạo và chỉnh sửa một số phần HTML/CSS cho giao diện danh sách sách.
+- Hỗ trợ tìm thông tin sách, ảnh bìa thật, và rà soát cách hiển thị trên nhiều kích thước.
 
-## 3. Prompt đã sử dụng
-Các prompt chính được chuẩn hóa cách trình bày từ nội dung trao đổi:
+## 3. Prompt chính đã sử dụng
+- Phân tích năm khu vực của website FAHASA: trang chủ, danh mục, chi tiết sản phẩm, tìm kiếm và giỏ hàng; phân biệt quan sát với đề xuất.
+- Đề xuất bố cục thẻ sản phẩm sách bằng HTML5/CSS3, ưu tiên cách trình bày tên và giá dễ đọc.
+- Tạo giao diện danh sách sách tĩnh có ít nhất bốn sản phẩm, CSS riêng và bố cục co giãn.
+- Yêu cầu thêm nền cho phần đầu trang, thay bìa minh họa bằng sách thật và ghi tiêu đề chính xác.
+- Sau khi em nhận thấy thẻ thứ tư cao hơn các thẻ cùng hàng, em yêu cầu chỉnh bố cục để các thẻ cân đối.
 
-### Prompt 1 - Phân tích website
-Bạn là chuyên gia phân tích nghiệp vụ và thiết kế trải nghiệm người dùng cho website thương mại điện tử. Tôi đang khảo sát website FAHASA: https://www.fahasa.com/.
-
-Hãy lập bảng phân tích năm khu vực: Trang chủ, Danh mục sản phẩm, Chi tiết sản phẩm, Tìm kiếm và Giỏ hàng. Với mỗi khu vực, nêu mục đích chức năng, thành phần giao diện cần có, điểm thuận tiện, một vấn đề có thể phát sinh và một đề xuất cải tiến. Không khẳng định tính năng chưa được kiểm chứng. Phân biệt nhận xét dựa trên quan sát và đề xuất của AI.
-
-### Prompt 2 - Đề xuất giao diện
-Tôi đang làm bài tập HTML5/CSS3 và muốn cải tiến thẻ sản phẩm sách, đặc biệt cách hiển thị tên sách dài. Đối tượng sử dụng là khách hàng mua sắm trực tuyến tại Việt Nam. Hãy đề xuất bố cục, thành phần HTML, tổ chức CSS, cách hiển thị trên máy tính và điện thoại, các điểm cần kiểm tra. Giải thích phương án trước, chưa tạo toàn bộ mã nguồn. Thiết kế ở mức sinh viên, dễ hiểu và tự sửa.
-
-### Prompt 3 - Tạo mã nguồn
-Dựa trên phương án đã chọn, tạo một trang HTML5/CSS3 có tiêu đề và ít nhất bốn sản phẩm, mỗi sản phẩm có hình ảnh, tên, giá và nút thao tác. Hỗ trợ máy tính và điện thoại, CSS tách riêng, không sử dụng backend, cơ sở dữ liệu hoặc thư viện không cần thiết. Giải thích cách chạy và kiểm tra. Thiết kế theo mức sinh viên.
-
-### Yêu cầu hỗ trợ tiếp theo
-Hướng dẫn mở trang, bật giả lập điện thoại, nhận xét ảnh và đoạn quay, giải thích và điều chỉnh khoảng cách trong CSS.
-
-## 4. Kết quả AI đề xuất
-- Một trang danh sách gồm bốn thẻ sách mẫu, tên sách không bị cắt bằng dấu ba chấm.
-- CSS Grid chia cột, Flexbox sắp xếp nội dung trong thẻ và media query đổi bố cục theo chiều rộng.
-- Ảnh bìa SVG minh họa lưu trong thư mục images.
-- Giá bán màu đỏ, giá gốc gạch ngang và nhãn giảm giá.
-- Dùng details/summary để mở mô tả trong thẻ, thay cho phương án ban đầu là liên kết sang FAHASA.
+## 4. Kết quả AI hỗ trợ
+- Tạo cấu trúc trang và định dạng thẻ sách trong `index.html` và `style.css`.
+- Thay ảnh minh họa bằng ảnh bìa của bốn sách tham khảo FAHASA: Nhà Giả Kim (Tái Bản 2025), Hoàng Tử Bé (Tái Bản 2025), Đắc Nhân Tâm và ấn bản bìa cứng Tuổi Trẻ Đáng Giá Bao Nhiêu.
+- Thêm nền màu ấm, bố cục Grid/Flexbox, cách hiển thị theo kích thước màn hình và hiệu ứng cho liên kết.
+- Đề xuất dùng `align-items: stretch` kết hợp Flexbox để thẻ trong cùng một hàng có chiều cao bằng nhau mà không cắt tên sách.
 
 ## 5. Kiểm tra và điều chỉnh
-- Tôi đã mở trang trên máy tính, bật chế độ giả lập điện thoại và gửi ảnh, đoạn quay để đối chiếu giao diện.
-- Tôi đã phản hồi nhận xét về quảng cáo lớn che trang vì ảnh khảo sát của tôi không có cửa sổ này; nhận xét đã được thay bằng nhận xét về diện tích banner.
-- AI hỗ trợ điều chỉnh CSS trên điện thoại: giảm margin-bottom của .edition từ 18px xuống 8px; đặt margin-top và padding-top của .price-area về 0.
-- Sau lần sửa cuối, còn cần tải lại trang, so sánh khoảng cách, thử mở/đóng mô tả cả bốn thẻ và kiểm tra tràn ngang. Nhật ký chưa ghi các thao tác này là đã hoàn thành.
+- Codex mở trang cục bộ, kiểm tra ảnh, mục “Xem chi tiết” và bố cục ở chiều rộng 1366 px, 768 px và 390 px; kết quả lần lượt là bốn cột, hai cột và một cột.
+- Em tự nhận ra thẻ sách thứ tư cao hơn do tên dài. Em đổi `align-items` từ `start` sang `stretch` trong VS Code, lưu và quan sát hai trạng thái trên trình duyệt. Hai ảnh so sánh được lưu trong `evidence/buoi2-self-adjust-before.png` và `evidence/buoi2-self-adjust-after.png`.
+- Các tên sách, bìa và giá được ghi theo thông tin tham khảo trên FAHASA ngày 31/10/2026; giá có thể thay đổi.
+- Trước khi nộp, em cần tự bấm kiểm tra các liên kết sản phẩm và xem lại trang trên thiết bị của mình.
 
-## 6. Phần tôi hiểu và có thể giải thích
-Nội dung giải thích để đối chiếu khi tự đọc mã:
-- header, main, section, article: tổ chức phần đầu trang, nội dung chính, danh sách và từng sản phẩm.
-- img và alt: hiển thị ảnh và cung cấp mô tả thay thế.
-- h1 là tiêu đề trang, h2 là tiêu đề danh sách, h3 là tên sách.
-- del tạo giá gốc gạch ngang.
-- details và summary mở/đóng mô tả bằng HTML.
-- Grid chia cột sản phẩm; gap tạo khoảng cách giữa thẻ.
-- object-fit: contain giữ ảnh bìa không bị cắt.
-- margin tạo khoảng cách bên ngoài; padding tạo khoảng đệm bên trong.
-- Media query áp dụng CSS theo kích thước màn hình.
+## 6. Phần em hiểu và có thể giải thích
+- `header`, `nav`, `main`, `section`, `article` và `footer` chia nội dung trang theo vai trò.
+- `img` hiển thị ảnh; `alt` mô tả ảnh khi ảnh không tải được hoặc khi dùng trình đọc màn hình.
+- `ul` và `li` biểu diễn danh sách sản phẩm; `h1`, `h2`, `h3` tạo thứ bậc tiêu đề.
+- `del` gạch ngang giá gốc; `details` và `summary` mở/đóng mô tả bằng HTML.
+- Grid chia danh sách thành các cột. `align-items: stretch` giúp các phần tử trong cùng một hàng lấp đầy chiều cao hàng.
+- Flexbox bên trong từng mục giúp thẻ sản phẩm lấp đầy phần tử cha; `margin-top: auto` trong `.price-area` đẩy khu vực giá xuống dưới.
+- Media query đổi số cột theo chiều rộng màn hình; `:hover` và `:focus-visible` thể hiện trạng thái tương tác chuột và bàn phím.
+- Em cần đối chiếu các giải thích này với mã nguồn và thực hành trực tiếp để trả lời câu hỏi của giảng viên.
 
-Tôi cần tự đối chiếu các giải thích này với mã nguồn trước khi nộp.
+## 7. Nguồn tham khảo sản phẩm
+- [Nhà Giả Kim (Tái Bản 2025)](https://www.fahasa.com/nha-gia-kim-tai-ban-2025.html)
+- [Hoàng Tử Bé (Tái Bản 2025)](https://www.fahasa.com/hoang-tu-be-tai-ban-2025.html)
+- [Đắc Nhân Tâm](https://www.fahasa.com/dac-nhan-tam-425244.html)
+- [Tuổi Trẻ Đáng Giá Bao Nhiêu - Ấn Bản Đặc Biệt 20 Năm Thành Lập Nhã Nam - Bìa Cứng](https://www.fahasa.com/tuoi-tre-dang-gia-bao-nhieu-an-ban-dac-biet-20-nam-thanh-lap-bia-cung.html)

@@ -1,0 +1,33 @@
+BÁO CÁO KIỂM TRA GIAO DIỆN - BUỔI 2
+
+1. KHU VỰC VÀ VẤN ĐỀ PHÁT HIỆN
+- Khu vực chọn: danh sách và thẻ sản phẩm sách, kế thừa giao diện Buổi 1.
+- Vấn đề 1: ảnh bìa và thông tin trên các thẻ ban đầu là dữ liệu minh họa, chưa phải thông tin sách cụ thể.
+- Vấn đề 2: phần đầu trang có nền trắng, chưa tạo được điểm nhấn rõ.
+- Vấn đề 3: tên sách có độ dài khác nhau làm chiều cao các thẻ trong cùng hàng không đều; giá và nút thao tác bị lệch.
+
+2. CÁC THAY ĐỔI
+- Thêm nền màu ấm cho header.
+- Thay bốn bìa minh họa bằng ảnh bìa sách thật và cập nhật thông tin tham khảo từ FAHASA.
+- Giữ nguyên tên sách đầy đủ, cho phép tự xuống dòng.
+- Căn các thẻ trong cùng hàng bằng align-items: stretch; mỗi mục danh sách dùng Flexbox và thẻ sản phẩm lấp đầy mục đó.
+- Giữ bố cục responsive: 4 cột trên màn hình lớn, 2 cột trên màn hình vừa, 1 cột trên điện thoại.
+
+3. KẾT QUẢ KIỂM TRA
+- Trang mở được trên máy cục bộ; phản hồi HTTP: 200.
+- Bốn ảnh bìa hiển thị và có alt.
+- Đã kiểm tra thao tác mở/đóng “Xem chi tiết” trên cả bốn thẻ.
+- Bố cục: 1366 px = 4 cột; 768 px = 2 cột; 390 px = 1 cột. Ảnh chụp đúng viewport không cho thấy tràn ngang.
+- Ảnh sau chỉnh sửa: evidence/buoi2-after-1366.png, evidence/buoi2-after-768.png, evidence/buoi2-after-390.png.
+- Em đã tự thử hai giá trị start và stretch trong VS Code và xem kết quả trên trình duyệt. Ảnh trước/sau: evidence/buoi2-self-adjust-before.png và evidence/buoi2-self-adjust-after.png.
+- CSS có quy tắc hover và focus-visible; em cần tự bấm Tab/di chuyển chuột để xác nhận lại trước khi nộp.
+- Em cần tự bấm các liên kết sản phẩm để kiểm tra trang đích.
+
+4. PHẦN EM ĐÃ TỰ ĐIỀU CHỈNH
+- Hiện tượng: khi để align-items: start, thẻ thứ tư cao hơn và nút “Xem chi tiết” nằm thấp hơn các thẻ còn lại.
+- Cách thử: em đổi giá trị start sang stretch, lưu tệp và xem lại giao diện.
+- Kết quả: các thẻ trong cùng một hàng có chiều cao bằng nhau; giá và nút thao tác cân đều hơn. Tên sách vẫn hiển thị đầy đủ.
+
+5. GHI CHÚ
+- Thông tin và giá sách được tham khảo trên FAHASA ngày 31/10/2026; giá có thể thay đổi.
+- Các kiểm tra responsive và thao tác chi tiết đã được đối chiếu trên bản cục bộ. Em cần tự xem lại giao diện trên máy của mình và bấm các liên kết trước khi nộp.

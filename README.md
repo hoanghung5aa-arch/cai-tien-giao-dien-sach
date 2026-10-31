@@ -1,51 +1,48 @@
 # E-commerce UI Improvement
 
 ## 1. Giới thiệu
-Góc sách nhỏ là trang giao diện danh sách sách trong bài tập cá nhân môn Phát triển ứng dụng WEB/TMĐT. Khu vực cải tiến là thẻ sản phẩm, giúp hiển thị đầy đủ tên sách và trình bày thông tin giá rõ ràng hơn.
+Đây là giao diện danh sách sách tĩnh được tiếp tục từ bài tập Buổi 1 môn Phát triển ứng dụng WEB/TMĐT. Khu vực tập trung cải tiến là danh sách và thẻ sản phẩm sách.
 
 ## 2. Website tham khảo
 - Tên website: Nhà sách trực tuyến FAHASA.
 - URL: https://www.fahasa.com/
-- Khu vực đã khảo sát: Trang chủ, danh mục sản phẩm, chi tiết sản phẩm, tìm kiếm và giỏ hàng.
-- Khu vực cải tiến: Thẻ sản phẩm trong danh sách sách.
+- Khu vực tham khảo: danh mục và trang sản phẩm sách.
+- Khu vực cải tiến: danh sách sách và cách trình bày thẻ sản phẩm.
 
 ## 3. Chức năng
-- Hiển thị bốn sản phẩm sách mẫu có ảnh bìa, tên và giá.
-- Hiển thị giá gốc và tỷ lệ giảm giá với sản phẩm có khuyến mãi.
-- Mở và đóng mô tả bằng mục “Xem chi tiết”.
-- Hiển thị bốn cột trên màn hình lớn, hai cột trên màn hình vừa và một cột trên điện thoại.
+- Hiển thị bốn sách tham khảo với ảnh bìa, tên, tác giả, thông tin bìa và giá.
+- Hiển thị giá gốc, giá bán và mức giảm được ghi nhận tại thời điểm khảo sát.
+- Mở/đóng mô tả sách bằng `details` và `summary`.
+- Có liên kết tới trang sản phẩm tương ứng trên FAHASA.
+- Tự đổi bố cục danh sách theo chiều rộng màn hình.
 
-## 4. Công nghệ
-- HTML5.
-- CSS3.
-- Không sử dụng JavaScript, thư viện ngoài, backend hoặc cơ sở dữ liệu.
+## 4. Công nghệ và kỹ thuật
+- HTML5: `header`, `nav`, `main`, `section`, `article`, `footer`, tiêu đề, danh sách, ảnh có `alt`, liên kết và `details`/`summary`.
+- CSS3: selector, Box Model, Flexbox, Grid, media query, `:hover` và `:focus-visible`.
+- Không dùng JavaScript, backend, cơ sở dữ liệu hay thư viện giao diện bên ngoài.
 
 ## 5. Cách chạy
-Tải toàn bộ dự án, giữ nguyên các file và thư mục images, sau đó mở file index.html bằng Chrome hoặc Edge.
-
-Cấu trúc dự án:
-
-```text
-index.html
-style.css
-images/
-  book-1.svg
-  book-2.svg
-  book-3.svg
-  book-4.svg
-README.md
-AI_USAGE.md
-```
+Mở `index.html` bằng trình duyệt. Giữ nguyên `style.css` và thư mục `images` để trang tải đúng định dạng và ảnh bìa.
 
 ## 6. Cải tiến đã thực hiện
-- Vấn đề ban đầu: Một số tên sách dài trên danh mục FAHASA bị rút gọn bằng dấu “…”, gây khó khăn khi phân biệt sản phẩm ngay trong danh sách.
-- Cho tên sách hiển thị đầy đủ và tự xuống dòng.
-- Đặt ảnh trong khung cùng chiều cao, giữ nguyên tỷ lệ ảnh bìa.
-- Làm nổi bật giá bán bằng màu đỏ, gạch ngang giá gốc và thêm nhãn giảm giá.
-- Thay đổi số cột theo kích thước màn hình.
-- Thu gọn khoảng cách giữa thông tin loại bìa và giá trên điện thoại.
+- Thêm nền màu ấm cho phần đầu trang.
+- Thay bốn bìa minh họa bằng ảnh sách thật và cập nhật thông tin sách tham khảo từ FAHASA.
+- Giữ đầy đủ tên sách và cho phép tên dài tự xuống dòng.
+- Căn các thẻ trong cùng một hàng cao bằng nhau bằng Grid kết hợp Flexbox. Khi thấy thẻ thứ tư cao hơn, em đã thử đổi `align-items` từ `start` sang `stretch` và quan sát kết quả trong trình duyệt.
+- Bố trí bốn cột trên màn hình lớn, hai cột trên màn hình vừa và một cột trên điện thoại.
 
-Tên sách, giá, mô tả và ảnh bìa là dữ liệu minh họa được tạo cho bài tập, không phải dữ liệu sản phẩm FAHASA.
+Giá sách được ghi nhận ngày 31/10/2026 và có thể thay đổi. Trang chỉ minh họa giao diện, không xử lý đặt hàng.
 
 ## 7. Hỗ trợ từ AI
-ChatGPT và Codex hỗ trợ phân tích, đề xuất bố cục, tạo HTML/CSS, bìa minh họa và giải thích mã nguồn. Tôi đã mở trang trên máy tính, bật chế độ giả lập điện thoại và gửi ảnh, đoạn quay để đối chiếu. AI hỗ trợ sửa khoảng cách trên điện thoại. Các prompt chính và nội dung kiểm tra được ghi trong AI_USAGE.md.
+Prompt, kết quả AI hỗ trợ, việc em đã tự kiểm tra và phần cần kiểm tra tiếp được ghi trong [AI_USAGE.md](AI_USAGE.md).
+
+## 8. Ảnh minh chứng
+- Trước khi cải tiến: [buoi2-before.png](evidence/buoi2-before.png).
+- Trước khi đổi `start` sang `stretch`: [buoi2-self-adjust-before.png](evidence/buoi2-self-adjust-before.png).
+- Sau khi đổi sang `stretch`: [buoi2-self-adjust-after.png](evidence/buoi2-self-adjust-after.png).
+- Giao diện sau cải tiến: [máy tính](evidence/buoi2-after-1366.png), [máy tính bảng](evidence/buoi2-after-768.png), [điện thoại](evidence/buoi2-after-390.png).
+- Kết quả kiểm tra: [KIEM_TRA.txt](KIEM_TRA.txt).
+
+## 9. GitHub
+- Repository: https://github.com/hoanghung5aa-arch/cai-tien-giao-dien-sach
+- GitHub Pages: https://hoanghung5aa-arch.github.io/cai-tien-giao-dien-sach/
