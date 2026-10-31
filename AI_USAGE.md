@@ -19,11 +19,11 @@
 - Tạo cấu trúc trang và định dạng thẻ sách trong `index.html` và `style.css`.
 - Thay ảnh minh họa bằng ảnh bìa của bốn sách tham khảo FAHASA: Nhà Giả Kim (Tái Bản 2025), Hoàng Tử Bé (Tái Bản 2025), Đắc Nhân Tâm và ấn bản bìa cứng Tuổi Trẻ Đáng Giá Bao Nhiêu.
 - Thêm nền màu ấm, bố cục Grid/Flexbox, cách hiển thị theo kích thước màn hình và hiệu ứng cho liên kết.
-- Đề xuất dùng `align-items: stretch` kết hợp Flexbox để thẻ trong cùng một hàng có chiều cao bằng nhau mà không cắt tên sách.
+- Hỗ trợ phân tích vì sao thẻ có tên dài cao hơn và giải thích cách thử `align-items` trong Grid. Phần gợi ý của AI là một phương án để em kiểm tra; em tự thay giá trị trong VS Code và quan sát giao diện.
 
 ## 5. Kiểm tra và điều chỉnh
 - Codex mở trang cục bộ, kiểm tra ảnh, mục “Xem chi tiết” và bố cục ở chiều rộng 1366 px, 768 px và 390 px; kết quả lần lượt là bốn cột, hai cột và một cột.
-- Em tự nhận ra thẻ sách thứ tư cao hơn do tên dài. Em đổi `align-items` từ `start` sang `stretch` trong VS Code, lưu và quan sát hai trạng thái trên trình duyệt. Hai ảnh so sánh được lưu trong `evidence/buoi2-self-adjust-before.png` và `evidence/buoi2-self-adjust-after.png`.
+- Em tự nhận ra thẻ sách thứ tư cao hơn vì tên sách dài. Trong `style.css`, em thử đổi `align-items` trong `.product-list` thành `start`, quan sát các thẻ không cao bằng nhau, rồi đổi thành `stretch` và lưu file. Sau khi tải lại trang, em thấy các thẻ trong cùng một hàng cao bằng nhau mà tên sách không bị cắt. `.product-item { display: flex; }` cùng `.product-card { flex: 1; }` giúp phần thẻ có nền và viền lấp đầy chiều cao hàng. Hai ảnh so sánh trước và sau lần điều chỉnh này được lưu trong `evidence/buoi2-self-adjust-before.png` và `evidence/buoi2-self-adjust-after.png`.
 - Các tên sách, bìa và giá được ghi theo thông tin tham khảo trên FAHASA ngày 31/10/2026; giá có thể thay đổi.
 - Trước khi nộp, em cần tự bấm kiểm tra các liên kết sản phẩm và xem lại trang trên thiết bị của mình.
 
@@ -32,7 +32,7 @@
 - `img` hiển thị ảnh; `alt` mô tả ảnh khi ảnh không tải được hoặc khi dùng trình đọc màn hình.
 - `ul` và `li` biểu diễn danh sách sản phẩm; `h1`, `h2`, `h3` tạo thứ bậc tiêu đề.
 - `del` gạch ngang giá gốc; `details` và `summary` mở/đóng mô tả bằng HTML.
-- Grid chia danh sách thành các cột. `align-items: stretch` giúp các phần tử trong cùng một hàng lấp đầy chiều cao hàng.
+- Grid chia danh sách thành các cột. Trong `.product-list`, `align-items: stretch` kéo các mục trong cùng một hàng theo chiều cao của mục cao nhất. `display: flex` trên `.product-item` và `flex: 1` trên `.product-card` giúp thẻ lấp đầy chiều cao đó.
 - Flexbox bên trong từng mục giúp thẻ sản phẩm lấp đầy phần tử cha; `margin-top: auto` trong `.price-area` đẩy khu vực giá xuống dưới.
 - Media query đổi số cột theo chiều rộng màn hình; `:hover` và `:focus-visible` thể hiện trạng thái tương tác chuột và bàn phím.
 - Em cần đối chiếu các giải thích này với mã nguồn và thực hành trực tiếp để trả lời câu hỏi của giảng viên.

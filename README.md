@@ -28,7 +28,7 @@ Mở `index.html` bằng trình duyệt. Giữ nguyên `style.css` và thư mụ
 - Thêm nền màu ấm cho phần đầu trang.
 - Thay bốn bìa minh họa bằng ảnh sách thật và cập nhật thông tin sách tham khảo từ FAHASA.
 - Giữ đầy đủ tên sách và cho phép tên dài tự xuống dòng.
-- Căn các thẻ trong cùng một hàng cao bằng nhau bằng Grid kết hợp Flexbox. Khi thấy thẻ thứ tư cao hơn, em đã thử đổi `align-items` từ `start` sang `stretch` và quan sát kết quả trong trình duyệt.
+- Căn các thẻ trong cùng một hàng cao bằng nhau bằng Grid kết hợp Flexbox. Khi thấy thẻ thứ tư cao hơn vì tên sách dài, em thử `align-items: start` rồi đổi thành `align-items: stretch` trong quy tắc `.product-list`. Các thẻ trong một hàng được kéo theo chiều cao của thẻ cao nhất; tên sách vẫn tự xuống dòng. `.product-item` dùng Flexbox và `.product-card` dùng `flex: 1` để nền và viền của từng thẻ phủ hết chiều cao đó.
 - Bố trí bốn cột trên màn hình lớn, hai cột trên màn hình vừa và một cột trên điện thoại.
 
 Giá sách được ghi nhận ngày 31/10/2026 và có thể thay đổi. Trang chỉ minh họa giao diện, không xử lý đặt hàng.
