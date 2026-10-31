@@ -34,7 +34,7 @@ Mở `index.html` bằng trình duyệt. Giữ nguyên `style.css` và thư mụ
 Giá sách được ghi nhận ngày 31/10/2026 và có thể thay đổi. Trang chỉ minh họa giao diện, không xử lý đặt hàng.
 
 ## 7. Hỗ trợ từ AI
-Prompt, kết quả AI hỗ trợ, việc em đã tự kiểm tra và phần cần kiểm tra tiếp được ghi trong [AI_USAGE.md](AI_USAGE.md).
+Prompt tiêu biểu, kết quả AI hỗ trợ và các nội dung em đã tự kiểm tra được ghi trong [AI_USAGE.md](AI_USAGE.md).
 
 ## 8. Ảnh minh chứng
 - Trước khi cải tiến: [buoi2-before.png](evidence/buoi2-before.png).
