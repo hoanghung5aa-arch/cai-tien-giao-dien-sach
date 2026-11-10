@@ -85,7 +85,7 @@ a:focus-visible { outline: 3px solid #e18a28; outline-offset: 3px; }
 .simple-menu { padding: 25px 18px; border: 1px solid #d5e0e3; background: #fff; }
 .simple-menu ul { margin: 0; padding: 0; list-style: none; text-align: center; }
 .simple-menu li { display: inline-block; margin: 0 3px; }
-.simple-menu a { display: inline-block; min-width: 132px; padding: 5px 14px; background: #00dce5; color: #064c91; font-size: 20px; line-height: 1.2; text-align: center; text-decoration: underline; }
+.simple-menu a { display: inline-block; min-width: 132px; padding: 5px 14px; background: #00dce5; color: #064c91; font-size: 20px; line-height: 1.2; text-align: center; text-decoration: none; }
 .simple-menu a:hover { background: #00c6d0; }
 
 /* Bài tập 3: landing page Shared Hosting. */
