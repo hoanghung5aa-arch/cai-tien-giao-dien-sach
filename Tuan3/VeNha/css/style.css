@@ -1,0 +1,149 @@
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: #263238;
+  background: #f4f6f8;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.55;
+}
+
+a { color: inherit; }
+a:focus-visible { outline: 3px solid #e18a28; outline-offset: 3px; }
+
+.index-wrap, .page-main { width: min(100% - 32px, 1080px); margin: 0 auto; }
+.page-main { padding: 28px 0 52px; }
+.back-link { display: inline-block; margin-bottom: 24px; color: #006b72; font-weight: 700; text-decoration: none; }
+.back-link:hover { text-decoration: underline; }
+.eyebrow { margin: 0 0 7px; color: #08777e; font-size: .78rem; font-weight: 800; letter-spacing: .12em; }
+
+.student-card {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 42px 0 32px;
+  padding: 28px;
+  border: 1px solid #d7e0e4;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 12px 28px #173b4b12;
+}
+.student-avatar { width: 104px; height: 104px; border-radius: 50%; }
+.student-card h1 { margin: 0 0 4px; font-size: clamp(1.7rem, 4vw, 2.5rem); }
+.student-card p:not(.eyebrow) { margin: 3px 0 10px; color: #53666f; }
+.social-link { display: inline-flex; align-items: center; gap: 8px; color: #0b6972; font-weight: 700; }
+
+.exercise-section, .game-section { margin: 0 0 24px; padding: 26px; border: 1px solid #d7e0e4; border-radius: 18px; background: #fff; }
+.section-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.section-heading h2, .game-section h2 { margin: 0; }
+.section-icon { color: #08777e; font-size: 1.7rem; }
+.exercise-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.exercise-card { display: flex; align-items: center; gap: 14px; min-height: 82px; padding: 14px 16px; border: 1px solid #e0e7e9; border-radius: 12px; color: #25383e; text-decoration: none; transition: border-color .18s, transform .18s, background .18s; }
+.exercise-card > i { width: 26px; color: #08777e; font-size: 1.25rem; text-align: center; }
+.exercise-card span { display: grid; flex: 1; }
+.exercise-card small { color: #65767d; }
+.exercise-card b { color: #08777e; font-size: 1.3rem; }
+.exercise-card:hover { transform: translateY(-2px); border-color: #08777e; background: #f4fbfb; }
+.game-section p { color: #586b72; }
+.game-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.game-links a { display: inline-flex; align-items: center; gap: 9px; padding: 10px 14px; border-radius: 9px; background: #08777e; color: #fff; font-weight: 700; text-decoration: none; }
+.game-links a:hover { background: #075d63; }
+.site-footer { padding: 18px 0 32px; color: #67777d; text-align: center; font-size: .9rem; }
+
+/* Bài tập 1: các định dạng văn bản và overflow. */
+.page-task1 {
+  min-height: 100vh;
+  background-color: #f6f4ef;
+  background-image: url("../images/bit-logo.png");
+  background-repeat: repeat;
+  background-size: 30px auto;
+  background-attachment: fixed;
+}
+.page-task1 .page-main { padding-top: 28px; }
+.demo-card { padding: 28px; border: 1px solid #d9e0e2; border-radius: 14px; background: rgb(255 255 255 / 94%); }
+.demo-card h1 { margin: 0 0 22px; }
+.text-demo, .background-demo, .overflow-demo { margin-top: 22px; padding: 18px; border: 1px solid #dce4e6; border-radius: 12px; background: #fff; }
+.text-demo h2, .background-demo h2, .overflow-demo h2 { margin-top: 0; }
+#university { color: blue; text-align: center; font-size: 30px; font-weight: 700; text-decoration: underline; }
+#faculty { width: fit-content; margin-left: auto; padding: 10px 16px; border: 2px dotted #f0c419; border-radius: 14px; color: red; background: #bdbdbd; text-align: right; font-size: 15px; font-style: italic; opacity: .5; }
+.bit-demo { width: fit-content; margin: 16px auto; padding: 16px 24px; border-radius: 8px; background: linear-gradient(120deg, #dce990, #a8c95f); color: #c32b21; font-size: 34px; font-weight: 800; letter-spacing: 2px; text-shadow: 0 0 3px #fff348, 2px 3px 5px #7a9e34; }
+.background-demo { min-height: 130px; background-color: #fff; background-image: url("../images/bit-logo.png"); background-repeat: repeat; background-size: 30px auto; background-attachment: fixed; }
+.background-demo p { display: inline-block; padding: 4px 8px; background: rgb(255 255 255 / 88%); }
+.source-paragraph { max-width: 850px; }
+.overflow-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.overflow-grid article { padding: 14px; border: 1px solid #e0e6e7; border-radius: 10px; }
+.overflow-grid h3 { margin-top: 0; font-size: 1rem; }
+.overflow-box { width: 100px; height: 50px; margin: 0; padding: 5px; border: 1px solid #9aa9ae; background: #f7f9fa; }
+.overflow-hidden { overflow: hidden; }
+.overflow-ellipsis { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.overflow-nowrap { white-space: nowrap; }
+
+/* Bài tập 2: menu dùng inline-block. */
+.page-task2 h1, .page-task3 h1, .page-task4 h1, .page-task5 h1, .page-task6 h1 { margin-top: 0; }
+.simple-menu { padding: 25px 18px; border: 1px solid #d5e0e3; background: #fff; }
+.simple-menu ul { margin: 0; padding: 0; list-style: none; text-align: center; }
+.simple-menu li { display: inline-block; margin: 0 3px; }
+.simple-menu a { display: inline-block; min-width: 120px; padding: 8px 15px; background: #00dce5; color: #064c91; text-align: center; text-decoration: underline; }
+.simple-menu a:hover { background: #00c6d0; }
+
+/* Bài tập 3: landing page Shared Hosting. */
+.best-shared { max-width: 860px; margin: 20px auto; padding: 32px 20px 40px; background: #fff; text-align: center; }
+.best-shared .logo { margin: 0 0 22px; }
+.best-shared .logo img { display: inline-block; width: 200px; height: auto; }
+.best-shared h1 { margin: 0 0 12px; color: #3c3c3c; font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 400; }
+.best-shared h1 strong { color: #00a6d9; font-weight: 700; }
+.lead-text { margin: 0 auto 28px; color: #555; font-size: .98rem; }
+.btn-list { margin: 0; padding: 0; list-style: none; }
+.btn-list li { display: inline-block; margin: 0 8px; }
+.btn-list a { display: inline-block; min-width: 145px; padding: 12px 18px; border-radius: 4px; background: #292d30; color: #fff; text-decoration: none; }
+.btn-list a:hover { background: #08777e; }
+
+/* Bài tập 4: portfolio có 7 tab và 9 hình. */
+.portfolio { max-width: 760px; margin: 14px auto; padding: 18px; background: #f8f8f8; }
+.portfolio h1 { margin: 0 0 20px; text-align: center; font-size: 1.35rem; }
+.list-tab { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; margin: 0 0 18px; padding: 0; list-style: none; }
+.list-tab a { display: block; padding: 5px 7px; color: #555; font-size: .78rem; text-decoration: none; }
+.list-tab a.active, .list-tab a:hover { color: #009da5; }
+.list-tab a.active { border-bottom: 2px solid #00aab2; }
+.gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.gallery img { display: block; width: 100%; aspect-ratio: 350 / 260; object-fit: cover; }
+
+/* Bài tập 5: sơ đồ wrapper bằng CSS Grid. */
+.layout-demo { position: relative; display: grid; grid-template-columns: 130px 1fr; grid-template-rows: 76px minmax(280px, auto) 58px; grid-template-areas: "header header" "nav main" "footer footer"; gap: 6px; width: min(100%, 700px); min-height: 440px; margin: 26px auto; padding: 7px; border: 3px solid #222; background: #fff; }
+.layout-demo::before { content: "wrapper"; position: absolute; top: -27px; left: 0; color: #263238; }
+.layout-demo header, .layout-demo nav, .layout-demo main, .layout-demo footer { padding: 12px; border: 2px solid #333; background: #fff; }
+.layout-demo header { grid-area: header; }
+.layout-demo nav { grid-area: nav; }
+.layout-demo main { grid-area: main; }
+.layout-demo footer { grid-area: footer; }
+
+/* Bài tập 6: Hero items dựa trên phần mô tả CSS1 trong đề. */
+.hero-showcase { width: min(100%, 960px); margin: 18px auto; padding: 22px; background: #cfcfcf; color: #252525; font-family: Georgia, "Times New Roman", serif; font-size: 13px; }
+.hero-showcase > h1 { margin: 0 0 18px; text-align: center; font-size: 1.4em; }
+.hero-intro { margin: 0 8px 28px; padding: 13px 18px; border: 2px solid #fff; border-radius: 14px; background: #858585; color: #fff; text-align: center; font-size: .9em; }
+.hero-caption { margin: 0 0 20px; text-align: center; }
+.hero-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.hero-item { position: relative; display: inline-block; width: 100%; min-height: 300px; overflow: hidden; background: #fff; text-align: center; }
+.hero-item h2 { position: relative; z-index: 3; margin: 12px 3px 0; font-size: 1em; }
+.hero-description { position: relative; z-index: 2; height: 124px; margin: 12px 5px 0; padding: 10px 8px; border: 2px solid #fff; border-radius: 8px; background: rgb(92 92 92 / 88%); color: #fff; font-size: .9em; text-align: left; }
+.hero-item img { position: absolute; right: 5px; bottom: 5px; z-index: 1; width: calc(100% - 10px); height: 150px; border: 2px solid #fff; border-radius: 8px; object-fit: cover; }
+
+@media (max-width: 700px) {
+  .exercise-grid, .overflow-grid { grid-template-columns: 1fr; }
+  .hero-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .student-card { align-items: flex-start; padding: 20px; }
+  .student-avatar { width: 76px; height: 76px; }
+}
+
+@media (max-width: 460px) {
+  .index-wrap, .page-main { width: min(100% - 20px, 1080px); }
+  .exercise-section, .game-section, .demo-card { padding: 16px; }
+  .student-card { flex-direction: column; gap: 12px; }
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-showcase { padding: 14px; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .layout-demo { grid-template-columns: 95px 1fr; grid-template-rows: 64px minmax(220px, auto) 52px; }
+  .simple-menu li { margin: 4px 2px; }
+}
