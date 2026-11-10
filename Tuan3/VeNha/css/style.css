@@ -119,20 +119,20 @@ a:focus-visible { outline: 3px solid #e18a28; outline-offset: 3px; }
 .layout-demo main { grid-area: main; }
 .layout-demo footer { grid-area: footer; }
 
-/* Bài tập 6: Hero items dựa trên phần mô tả CSS1 trong đề. */
+/* Bài tập 6: định dạng lại nội dung từ css1.html. */
 .hero-showcase { width: min(100%, 960px); margin: 18px auto; padding: 22px; background: #cfcfcf; color: #252525; font-family: Georgia, "Times New Roman", serif; font-size: 13px; }
-.hero-showcase > h1 { margin: 0 0 18px; text-align: center; font-size: 1.4em; }
-.hero-intro { margin: 0 8px 28px; padding: 13px 18px; border: 2px solid #fff; border-radius: 14px; background: #858585; color: #fff; text-align: center; font-size: .9em; }
-.hero-caption { margin: 0 0 20px; text-align: center; }
-.hero-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-.hero-item { position: relative; display: inline-block; width: 100%; min-height: 300px; overflow: hidden; background: #fff; text-align: center; }
+.hero-showcase .header { margin: 0 0 18px; text-align: center; font-size: 1.6em; }
+.hero-showcase > .description { margin: 0 8px 28px; padding: 13px 18px; border: 2px solid #fff; border-radius: 14px; background: #858585; color: #fff; text-align: center; font-size: .9em; }
+.hero-showcase .remark { margin: 0 0 20px; text-align: center; }
+.heroes-list { margin: 0; padding: 0; list-style: none; font-size: 0; }
+.hero-item { position: relative; display: inline-block; vertical-align: top; width: 23%; min-height: 320px; margin: 1%; overflow: hidden; background: #fff; text-align: center; font-size: 13px; }
 .hero-item h2 { position: relative; z-index: 3; margin: 12px 3px 0; font-size: 1em; }
-.hero-description { position: relative; z-index: 2; height: 124px; margin: 12px 5px 0; padding: 10px 8px; border: 2px solid #fff; border-radius: 8px; background: rgb(92 92 92 / 88%); color: #fff; font-size: .9em; text-align: left; }
+.hero-item .description { position: relative; z-index: 2; height: 124px; margin: 12px 5px 0; padding: 10px 8px; border: 2px solid #fff; border-radius: 8px; background: rgb(92 92 92 / 88%); color: #fff; font-size: .9em; text-align: left; }
 .hero-item img { position: absolute; right: 5px; bottom: 5px; z-index: 1; width: calc(100% - 10px); height: 150px; border: 2px solid #fff; border-radius: 8px; object-fit: cover; }
 
 @media (max-width: 700px) {
   .exercise-grid, .overflow-grid { grid-template-columns: 1fr; }
-  .hero-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-item { width: 48%; margin: 1%; }
   .student-card { align-items: flex-start; padding: 20px; }
   .student-avatar { width: 76px; height: 76px; }
 }
@@ -143,7 +143,7 @@ a:focus-visible { outline: 3px solid #e18a28; outline-offset: 3px; }
   .student-card { flex-direction: column; gap: 12px; }
   .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero-showcase { padding: 14px; }
-  .hero-grid { grid-template-columns: 1fr; }
+  .hero-item { width: 98%; margin: 1%; }
   .layout-demo { grid-template-columns: 95px 1fr; grid-template-rows: 64px minmax(220px, auto) 52px; }
   .simple-menu li { margin: 4px 2px; }
 }
