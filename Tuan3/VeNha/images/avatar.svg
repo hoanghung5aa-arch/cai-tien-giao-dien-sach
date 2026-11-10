@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Ảnh đại diện minh họa NHH, thay bằng ảnh cá nhân khi nộp">
+  <rect width="160" height="160" rx="80" fill="#d9f0ee"/>
+  <circle cx="80" cy="59" r="30" fill="#08777e"/>
+  <path d="M26 145c5-31 25-48 54-48s49 17 54 48" fill="#0d5962"/>
+  <text x="80" y="145" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#fff">NHH</text>
+</svg>
