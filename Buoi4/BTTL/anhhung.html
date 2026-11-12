@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anh Hùng Javascript - Mèo Oggy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Be+Vietnam+Pro:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="anhhung.css" />
+</head>
+<body>
+    <button id="btnSound" class="sound-toggle" title="Bật/tắt âm thanh">🔊</button>
+
+    <h1 class="title">QUYẾT CHIẾN SINH TỬ</h1>
+    <p class="subtitle">Anh Hùng JavaScript · Mèo Oggy đại chiến Rồng Già</p>
+
+    <!-- MÀN HÌNH 1: TẠO NHÂN VẬT -->
+    <section id="setup" class="panel setup">
+        <div class="setup-hero">
+            <img src="oggy.png" alt="Mèo Oggy" class="setup-avatar" />
+            <div id="intro" class="intro"></div>
+        </div>
+
+        <label class="field">
+            <span>Quest 3: Hãy nhập tên bạn</span>
+            <input id="inpName" type="text" placeholder="Gõ đúng họ tên để được +5 INT" autocomplete="off" />
+        </label>
+
+        <p class="field-label">Quest 4: Bạn muốn chọn phân cấp nào?</p>
+        <div class="classes">
+            <button class="class-btn" data-class="a">
+                <b>a · Chiến Binh</b><small>STR +15 · AGI −10 · INT −5</small>
+            </button>
+            <button class="class-btn" data-class="b">
+                <b>b · Sát Thủ</b><small>STR −15 · AGI +10 · INT +5</small>
+            </button>
+            <button class="class-btn" data-class="c">
+                <b>c · Thợ Săn</b><small>STR −15 · INT +15</small>
+            </button>
+        </div>
+
+        <button id="btnStart" class="btn-primary" disabled>⚔️ VÀO ĐẤU TRƯỜNG</button>
+    </section>
+
+    <!-- MÀN HÌNH 2: ĐẤU TRƯỜNG -->
+    <section id="arena" class="arena hidden">
+        <div class="arena-row">
+            <div id="heroCard" class="card hero-card">
+                <div class="card-head">
+                    <img src="oggy.png" alt="Mèo Oggy" class="avatar" />
+                    <div>
+                        <h2 id="heroName" class="card-name"></h2>
+                        <p id="heroClass" class="card-sub"></p>
+                    </div>
+                </div>
+                <div class="hp-label"><span>HP (Máu)</span><span id="heroHpText" class="hp-num hero-num"></span></div>
+                <div class="hp-bar"><div id="heroHpBar" class="hp-fill hero-fill"></div></div>
+                <div class="stats">
+                    <div><small>STR</small><b id="heroStr" class="c-str"></b></div>
+                    <div><small>AGI</small><b id="heroAgi" class="c-agi"></b></div>
+                    <div><small>INT</small><b id="heroInt" class="c-int"></b></div>
+                </div>
+            </div>
+
+            <div class="center">
+                <button id="btnAttack" class="btn-attack">⚔️ TẤN CÔNG!</button>
+                <a href="#" id="btnReplay" class="replay">Chơi lại từ đầu</a>
+            </div>
+
+            <div id="dragonCard" class="card dragon-card">
+                <div class="card-head">
+                    <div class="avatar dragon-avatar">🐉</div>
+                    <div>
+                        <h2 class="card-name dragon-name">Rồng Già</h2>
+                        <p class="card-sub">Boss Khủng Bố</p>
+                    </div>
+                </div>
+                <div class="hp-label"><span>HP (Máu)</span><span id="dragonHpText" class="hp-num dragon-num"></span></div>
+                <div class="hp-bar"><div id="dragonHpBar" class="hp-fill dragon-fill"></div></div>
+                <div class="stats">
+                    <div><small>STR</small><b id="dragonStr" class="c-str"></b></div>
+                    <div><small>AGI</small><b id="dragonAgi" class="c-agi"></b></div>
+                    <div><small>INT</small><b id="dragonInt" class="c-int"></b></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel log-panel">
+            <h3>Nhật Ký Chiến Đấu</h3>
+            <div id="log" class="log"></div>
+        </div>
+    </section>
+
+    <footer class="footer">Nguyễn Hoàng Hưng · MSSV 31241027221 · PTUDTMDT Buổi 4</footer>
+
+    <script src="anhhung.js"></script>
+</body>
+</html>
