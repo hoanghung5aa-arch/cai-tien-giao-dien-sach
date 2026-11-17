@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Danh sách các bài thực hành Lab 10 về jQuery.">
+  <title>Lab 10 · JavaScript 3: jQuery</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/lab10.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="../index.html">HƯNG · JAVASCRIPT LABS</a>
+      <nav aria-label="Điều hướng chính">
+        <ul class="nav-links">
+          <li><a href="../index.html">Trang chủ</a></li>
+          <li><a href="#exercises">Danh sách Exercise</a></li>
+          <li><a href="#notes">Ghi chú kỹ thuật</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container lab-page">
+    <p class="crumb"><a href="../index.html">JavaScript Labs</a> / Lab 10</p>
+    <section class="lab-hero">
+      <p class="eyebrow">Lab 10 · JavaScript 3</p>
+      <h1>jQuery</h1>
+      <p>Thực hành dùng jQuery để chọn phần tử, lắng nghe sự kiện, cập nhật DOM, tạo hiệu ứng và gửi GET request. Mỗi Exercise có trang demo riêng để dễ mở, thử và chụp minh chứng.</p>
+      <div class="button-row">
+        <a class="button" href="#exercises">Mở danh sách bài</a>
+        <a class="button secondary" href="../../index.html">Về website học phần</a>
+      </div>
+    </section>
+
+    <section class="section" id="exercises">
+      <div class="section-head">
+        <p class="eyebrow">10 bài thực hành</p>
+        <h2>Chọn một Exercise để chạy</h2>
+        <p class="section-lead">Các trang dùng chung jQuery 3.1.1 từ CDN HTTPS và có bản local dự phòng. Riêng hai bài GET có dữ liệu JSON cùng origin để chạy ổn định trên GitHub Pages.</p>
+      </div>
+      <div class="exercise-grid">
+        <article class="exercise-card"><span class="lab-number">EXERCISE 10.1</span><h3>Set up jQuery</h3><p>Tải thư viện từ CDN và kiểm tra bản local dự phòng.</p><a href="Exercise01/index.html">Mở Exercise 10.1 →</a></article>
+        <article class="exercise-card"><span class="lab-number">EXERCISE 10.2</span><h3>Basic selectors</h3><p>Dùng selector và các phương thức val, html, attr, css, addClass.</p><a href="Exercise02/index.html">Mở Exercise 10.2 →</a></article>
+        <article class="exercise-card"><span class="lab-number">EXERCISE 10.3</span><h3>Advanced selectors</h3><p>Thử pseudo-selector cho trường password, nth-child và contains.</p><a href="Exercise03/index.html">Mở Exercise 10.3 →</a></article>
+        <article class="exercise-card"><span class="lab-number">EXERCISE 10.4</span><h3>jQuery listeners</h3><p>So sánh click, on, document ready, nối handler và off.</p><a href="Exercise04/index.html">Mở Exercise 10.4 →</a></article>
+        <article class="exercise-card"><span class="lab-number">EXERCISE 10.5</span><h3>Inserting DOM elements</h3><p>Chuyển một ảnh qua after, before, append, prepend và các biến thể.</p><a href="Exercise05/index.html">Mở Exercise 10.5 →</a></article>
+        <article class="exercise-card"><span class="lab-number">EXERCISE 10.6</span><h3>Simple jQuery animation</h3><p>Thử fadeIn, fadeOut, fadeToggle, slideDown, slideUp, slideToggle.</p><a href="Exercise06/index.html">Mở Exercise 10.6 →</a></article>
+        <article class="exercise-card"><span class="lab-number">EXERCISE 10.7</span><h3>More jQuery animation</h3><p>Tạo ảnh xem trước lớn hơn, caption và theo dõi vị trí con trỏ.</p><a href="Exercise07/index.html">Mở Exercise 10.7 →</a></article>
+        <article class="exercise-card"><span class="lab-number">EXERCISE 10.8</span><h3>Complex animations</h3><p>Animate nhiều thuộc tính và nối ba animation theo thứ tự.</p><a href="Exercise08/index.html">Mở Exercise 10.8 →</a></article>
+        <article class="exercise-card"><span class="lab-number">EXERCISE 10.9</span><h3>GET requests</h3><p>Lấy danh sách thành phố bằng GET, duyệt JSON và hiển thị kết quả.</p><a href="Exercise09/index.html">Mở Exercise 10.9 →</a></article>
+        <article class="exercise-card"><span class="lab-number">EXERCISE 10.10</span><h3>jqXHR handling</h3><p>Dùng done, fail, always và loader khi request thành công hoặc lỗi.</p><a href="Exercise10/index.html">Mở Exercise 10.10 →</a></article>
+      </div>
+    </section>
+
+    <section class="section" id="notes">
+      <article class="panel">
+        <p class="eyebrow">Ghi chú</p>
+        <h2>Request và dữ liệu demo</h2>
+        <p>Tài liệu Lab 10 (2017) minh họa dịch vụ <code>http://www.randyconnolly.com/funwebdev/services/travel/cities.php</code>. Trình duyệt có thể chặn HTTP khi trang được phục vụ qua HTTPS, hoặc dịch vụ có thể không còn cho phép request từ website khác. Vì vậy, Exercise 10.9 và 10.10 dùng GET tới <code>data/cities.json</code> cùng origin làm luồng chính. JSON có trường <code>name</code> giống dạng dữ liệu mà tài liệu dùng; nút thử endpoint gốc sẽ tự chuyển sang dữ liệu local nếu request lỗi.</p>
+        <p class="small-note">Mở trang qua GitHub Pages hoặc máy chủ local để request JSON hoạt động; mở trực tiếp bằng <code>file://</code> có thể bị trình duyệt chặn.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="page-footer"><div class="container"><span>JavaScript 3: jQuery · Lab 10</span><a href="../index.html">Trở về trang chủ JavaScript Labs</a></div></footer>
+</body>
+</html>

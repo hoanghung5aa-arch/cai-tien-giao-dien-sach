@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>10.6 · Simple jQuery animation</title>
+  <link rel="stylesheet" href="../../css/style.css"><link rel="stylesheet" href="../css/lab10.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../js/jquery-3.1.1.min.js"><\/script>');</script>
+</head>
+<body>
+  <header class="site-header"><div class="nav-wrap"><a class="brand" href="../index.html">LAB 10 · JQUERY</a><nav aria-label="Điều hướng"><ul class="nav-links"><li><a href="../index.html">Danh sách Exercise</a></li><li><a href="../../index.html">Trang chủ Labs</a></li></ul></nav></div></header>
+  <main class="container lab-page">
+    <p class="crumb"><a href="../index.html">Lab 10</a> / Exercise 10.6</p>
+    <section class="lab-hero"><p class="eyebrow">Exercise 10.6</p><h1>Simple jQuery animation</h1><p>Dùng các nút để làm ảnh ẩn/hiện bằng fade và slide. Thử nhấn cùng một nút nhiều lần để quan sát trạng thái hiện tại của ảnh.</p></section>
+    <section class="panel"><h2>Điều khiển hiệu ứng</h2><div class="demo-actions"><button id="btnFadeIn">fadeIn</button><button id="btnFadeOut">fadeOut</button><button id="btnFade">fadeToggle</button><button id="btnSlideDown">slideDown</button><button id="btnSlideUp">slideUp</button><button id="btnSlide">slideToggle</button></div><figure class="fade-figure"><img src="../assets/art/thumbs/13030.jpg" alt="Ảnh minh họa hiệu ứng jQuery"><figcaption>Ảnh được điều khiển bằng hiệu ứng fade và slide.</figcaption></figure><p id="animationStatus" class="demo-status" role="status" aria-live="polite">Ảnh ban đầu đang ẩn.</p><p class="demo-note">fadeIn/fadeOut dùng 1000ms; fadeToggle dùng 500ms; các nút slide dùng thời lượng trong bài hướng dẫn.</p></section>
+    <div class="button-row" style="margin-top:1rem"><a class="button secondary" href="../Exercise05/index.html">← Exercise 10.5</a><a class="button secondary" href="../index.html">Danh sách</a><a class="button" href="../Exercise07/index.html">Exercise 10.7 →</a></div>
+  </main>
+  <script src="Exercise06.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 9.1 · Basic DOM Selection</title>
+  <link rel="stylesheet" href="../../css/style.css"><link rel="stylesheet" href="../lab09.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="site-header"><div class="nav-wrap"><a class="brand" href="../../index.html">HƯNG / JAVASCRIPT LABS</a><nav aria-label="Điều hướng"><ul class="nav-links"><li><a href="../index.html">Lab 09</a></li><li><a href="../../index.html">Trang chủ</a></li></ul></nav></div></header>
+  <main class="container lab-main">
+    <p class="crumb"><a href="../index.html">Lab 09</a> / Exercise 9.1</p>
+    <section class="lab-hero"><p class="eyebrow">Exercise 9.1</p><h1>Basic DOM Selection</h1><p>Em dùng các cách chọn phần tử khác nhau để đọc nội dung hoặc cập nhật trang.</p></section>
+    <div class="exercise-meta"><span>getElementById</span><span>getElementsByTagName</span><span>querySelector</span><span>innerHTML / innerText</span></div>
+    <section class="demo-panel" aria-labelledby="title-demo"><h2 id="title-demo">Vùng DOM mẫu</h2>
+      <div id="first" class="sample-block">
+        <h3 id="pageTitle">DOM Example</h3>
+        <p id="firstParagraph">Đây là <strong>đoạn thứ nhất</strong> để so sánh HTML và phần chữ.</p>
+        <p id="secondParagraph">Đoạn thứ hai có <em>một cụm in nghiêng</em>.</p>
+        <textarea id="msgArea" class="demo-textarea" placeholder="Kết quả chọn DOM sẽ hiện ở đây" aria-label="Kết quả thao tác DOM"></textarea>
+      </div>
+      <div id="stories" class="dom-story-grid">
+        <article class="dom-story"><h3>Câu chuyện 1</h3><p>Node đầu có phần tử con.</p></article>
+        <article class="dom-story"><h3>Câu chuyện 2</h3><p>Node thứ hai để duyệt danh sách.</p></article>
+        <article class="dom-story"><h3>Câu chuyện 3</h3><p>Node cuối trong vùng stories.</p></article>
+      </div>
+      <div id="features" class="demo-panel"><h3>Thông số mẫu</h3><ul class="feature-list">
+        <li><span class="count-number">20000</span>ly cà phê</li><li><span class="count-number">24</span>chương</li><li><span class="count-number">48</span>bài trình bày</li><li><span class="count-number">560</span>sơ đồ</li>
+      </ul></div>
+    </section>
+    <section class="demo-panel"><h2>Thử các cách truy xuất</h2><p class="demo-copy">Bấm từng nút và quan sát textarea hoặc phần tử được cập nhật. Có thể mở Inspect để xem thuộc tính/class thay đổi.</p>
+      <div class="demo-toolbar">
+        <button type="button" data-action="title">Đổi tiêu đề</button><button type="button" data-action="html">Đọc innerHTML</button><button type="button" data-action="text">Đọc innerText</button><button type="button" data-action="attribute">Đọc class</button><button type="button" data-action="tag">Chọn theo tag</button><button type="button" data-action="spans">Lấy nội dung span</button><button type="button" data-action="class">Chọn theo class</button><button type="button" data-action="query-one">querySelector</button><button type="button" data-action="query-all">querySelectorAll</button><button type="button" data-action="hide">Ẩn textarea</button><button type="button" class="quiet-button" data-action="show">Hiện textarea</button><button type="button" class="quiet-button" data-action="green">Đổi nền features</button>
+      </div>
+      <p id="actionStatus" class="demo-output" aria-live="polite"></p>
+    </section>
+    <p class="crumb"><a href="../index.html">← Trở lại danh sách Lab 09</a></p>
+  </main>
+</body>
+</html>

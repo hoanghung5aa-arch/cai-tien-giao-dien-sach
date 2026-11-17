@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>10.9 · GET requests</title>
+  <link rel="stylesheet" href="../../css/style.css"><link rel="stylesheet" href="../css/lab10.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../js/jquery-3.1.1.min.js"><\/script>');</script>
+</head>
+<body>
+  <header class="site-header"><div class="nav-wrap"><a class="brand" href="../index.html">LAB 10 · JQUERY</a><nav aria-label="Điều hướng"><ul class="nav-links"><li><a href="../index.html">Danh sách Exercise</a></li><li><a href="../../index.html">Trang chủ Labs</a></li></ul></nav></div></header>
+  <main class="container lab-page">
+    <p class="crumb"><a href="../index.html">Lab 10</a> / Exercise 10.9</p>
+    <section class="lab-hero"><p class="eyebrow">Exercise 10.9</p><h1>GET requests</h1><p>Gửi GET request, đọc mảng JSON và dùng <code>$.each()</code> để đưa tên thành phố vào danh sách.</p></section>
+    <section class="exercise-layout">
+      <article class="panel"><h2>Gửi request</h2><div class="demo-actions"><button id="loadLocal">GET JSON cùng origin</button><button id="loadOriginal" class="secondary">Thử endpoint trong tài liệu</button></div><p id="requestStatus" class="demo-status" role="status" aria-live="polite">Chưa gửi request.</p><p class="demo-note">Luồng chính đọc <code>../data/cities.json</code> cùng origin. Nút còn lại thử endpoint cities.php của tài liệu qua HTTPS; nếu endpoint không cho truy cập hoặc thất bại, trang tự chuyển sang dữ liệu JSON local.</p></article>
+      <article class="panel"><h2>Kết quả</h2><div id="results" class="output"><span>Danh sách thành phố sẽ hiện ở đây.</span></div></article>
+    </section>
+    <section class="panel" style="margin-top:1rem"><h2>Nguồn và cách chạy</h2><p>Tài liệu Lab 10 minh họa <code>http://www.randyconnolly.com/funwebdev/services/travel/cities.php</code>, response được đọc theo dạng mảng có trường <code>name</code>. Trang này dùng JSON mẫu cùng cấu trúc để GET ổn định trên GitHub Pages HTTPS; đó không phải response live của dịch vụ cũ.</p><p class="small-note">Mở qua GitHub Pages hoặc máy chủ local, không mở bằng <code>file://</code>, vì browser có thể chặn AJAX trên file tĩnh.</p></section>
+    <div class="button-row" style="margin-top:1rem"><a class="button secondary" href="../Exercise08/index.html">← Exercise 10.8</a><a class="button secondary" href="../index.html">Danh sách</a><a class="button" href="../Exercise10/index.html">Exercise 10.10 →</a></div>
+  </main>
+  <script src="Exercise09.js"></script>
+</body>
+</html>

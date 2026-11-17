@@ -1,0 +1,1 @@
+document.getElementById("js-status").textContent="JavaScript đang bật trên trang này. Hãy tiếp tục kiểm tra JavaScriptTest.php theo hướng dẫn.";

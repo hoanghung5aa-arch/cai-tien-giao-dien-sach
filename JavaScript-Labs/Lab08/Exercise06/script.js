@@ -1,0 +1,5 @@
+function renderBuiltInObjects(){var output=document.getElementById("objects-output");output.replaceChildren();
+var stringOne=new String("Test"),stringTwo="Test",stringThree="Test",stringFour=new String("Test");
+var rows=[["typeof stringOne",typeof stringOne],["typeof stringThree",typeof stringThree],["stringOne == stringTwo",stringOne==stringTwo],["stringOne == stringFour",stringOne==stringFour],["stringOne === stringTwo",stringOne===stringTwo],["stringTwo === stringThree",stringTwo===stringThree],["stringTwo === stringFour",stringTwo===stringFour],["new Date()",new Date().toString()],["Math.PI",Math.PI],["Math.sqrt(4)",Math.sqrt(4)],["Math.random()",Math.random()]];
+rows.forEach(function(row){var item=document.createElement("div");item.className="result-row";var label=document.createElement("strong");label.textContent=row[0]+": ";item.append(label,document.createTextNode(String(row[1])));output.append(item);});}
+renderBuiltInObjects();document.getElementById("objects-button").addEventListener("click",renderBuiltInObjects);

@@ -1,0 +1,7 @@
+var daysOfWeek=["Mon","Tues","Wed","Thur","Fri"];daysOfWeek.push("Sat");daysOfWeek.unshift("Sun");
+function buildCalendar(){var weekOutput=document.getElementById("weekday-output"),weekdayTable=document.createElement("table");weekdayTable.className="calendar-table";var head=document.createElement("thead"),row=document.createElement("tr");
+for(var i=0;i<daysOfWeek.length;i++){var th=document.createElement("th"),day=daysOfWeek[i];if(day.length>3){var em=document.createElement("em");em.textContent=day;th.append(em);}else th.textContent=day;row.append(th);}
+head.append(row);weekdayTable.append(head);weekOutput.replaceChildren(weekdayTable);
+var table=document.createElement("table");table.className="calendar-table";var tbody=document.createElement("tbody"),dayNumber=1;
+for(var week=0;week<5;week++){var tr=document.createElement("tr");for(var d=0;d<daysOfWeek.length;d++){var cell=document.createElement("td");if(dayNumber<=30){cell.textContent=String(dayNumber++);}else{cell.className="blank";cell.setAttribute("aria-label","Không có ngày");}tr.append(cell);}tbody.append(tr);}table.append(tbody);document.getElementById("calendar-output").replaceChildren(table);}
+buildCalendar();document.getElementById("calendar-button").addEventListener("click",buildCalendar);

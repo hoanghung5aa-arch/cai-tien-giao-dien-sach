@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>10.3 · Advanced selectors</title>
+  <link rel="stylesheet" href="../../css/style.css"><link rel="stylesheet" href="../css/lab10.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../js/jquery-3.1.1.min.js"><\/script>');</script>
+</head>
+<body>
+  <header class="site-header"><div class="nav-wrap"><a class="brand" href="../index.html">LAB 10 · JQUERY</a><nav aria-label="Điều hướng"><ul class="nav-links"><li><a href="../index.html">Danh sách Exercise</a></li><li><a href="../../index.html">Trang chủ Labs</a></li></ul></nav></div></header>
+  <main class="container lab-page">
+    <p class="crumb"><a href="../index.html">Lab 10</a> / Exercise 10.3</p>
+    <section class="lab-hero"><p class="eyebrow">Exercise 10.3</p><h1>Advanced selectors</h1><p>Ba nút dưới đây lần lượt áp dụng selector theo loại input, vị trí con và nội dung nhãn.</p></section>
+    <section class="panel"><h2>Biểu mẫu mẫu</h2><form id="selectorForm" class="selector-form">
+      <label for="nameField">Họ tên<input id="nameField" type="text" value="Nguyễn An"></label>
+      <label for="emailField">Email<input id="emailField" type="email" value="an@example.com"></label>
+      <label for="passwordField">Password<input id="passwordField" type="password" value="abc123"></label>
+      <label for="keywordField">Keyword<input id="keywordField" type="text" value="jQuery"></label>
+      <label for="cityField">Thành phố<input id="cityField" type="text" value="Bangkok"></label>
+      <label for="courseField">Môn học<input id="courseField" type="text" value="JavaScript"></label>
+    </form><div class="demo-actions"><button id="passwordSelector">:password</button><button id="nthSelector">:nth-child(4n)</button><button id="containsSelector">:contains("word")</button><button id="clearSelectors" class="secondary">Xóa highlight</button></div><p id="advancedStatus" class="demo-status" role="status" aria-live="polite">Chưa áp dụng selector.</p><p class="demo-note">Selector :contains() phân biệt chữ hoa thường; nhãn “Password” có chứa chuỗi chữ thường <code>word</code>.</p></section>
+    <div class="button-row" style="margin-top:1rem"><a class="button secondary" href="../Exercise02/index.html">← Exercise 10.2</a><a class="button secondary" href="../index.html">Danh sách</a><a class="button" href="../Exercise04/index.html">Exercise 10.4 →</a></div>
+  </main>
+  <script src="Exercise03.js"></script>
+</body>
+</html>

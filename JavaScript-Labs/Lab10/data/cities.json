@@ -1,0 +1,9 @@
+[
+  { "name": "Bangkok", "country": "Thailand" },
+  { "name": "Vancouver", "country": "Canada" },
+  { "name": "Chicago", "country": "United States" },
+  { "name": "London", "country": "United Kingdom" },
+  { "name": "Singapore", "country": "Singapore" },
+  { "name": "Tokyo", "country": "Japan" },
+  { "name": "Sydney", "country": "Australia" }
+]

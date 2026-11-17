@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",function(){document.getElementById("hello-button").addEventListener("click",function(){window.showHelloWorld();document.getElementById("hello-status").textContent="Đã gọi hàm JavaScript nhúng trong phần head.";});});

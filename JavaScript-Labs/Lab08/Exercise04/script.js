@@ -1,0 +1,1 @@
+document.getElementById("enabled-message").textContent="JavaScript đang bật. Thẻ noscript không hiển thị khi script chạy.";
