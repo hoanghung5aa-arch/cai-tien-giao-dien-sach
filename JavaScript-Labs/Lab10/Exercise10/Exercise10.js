@@ -1,6 +1,9 @@
 $(function () {
   const localUrl = "../data/cities.json"; // JSON mẫu tĩnh cùng cấu trúc, không phải response live.
-  const originalUrl = "https://www.randyconnolly.com/funwebdev/services/travel/cities.php"; // Bản HTTPS của endpoint HTTP trong handout.
+  // Use the handout's live HTTP endpoint on a local HTTP server; use HTTPS on Pages to avoid mixed content.
+  const originalUrl = window.location.protocol === "http:"
+    ? "http://www.randyconnolly.com/funwebdev/services/travel/cities.php"
+    : "https://www.randyconnolly.com/funwebdev/services/travel/cities.php";
   const $loader = $(".animLoading");
   const $status = $("#requestStatus");
 
@@ -32,7 +35,7 @@ $(function () {
       .fail(function (xhr, status, error) {
         if (isOriginal) {
           fallbackPending = true;
-          $status.text("Endpoint HTTPS lỗi hoặc bị chặn (" + status + "); đang tải JSON local dự phòng.");
+          $status.text("Endpoint gốc không truy cập được qua giao thức hiện tại (" + status + "); đang tải JSON mẫu local dự phòng.");
           $.get("../data/cities.json")
             .done(function (data) {
               if (renderCities(data)) $status.text("Đã tải JSON local dự phòng sau khi endpoint lỗi.");
