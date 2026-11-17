@@ -1,8 +1,56 @@
 <!DOCTYPE html>
-<html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Exercise 8.5 · Using the Browser Console</title>
-<link rel="stylesheet" href="../../css/style.css"><link rel="stylesheet" href="../lab08.css"><script src="script.js" defer></script></head>
-<body><header class="site-header"><div class="nav-wrap"><a class="brand" href="../index.html">JAVASCRIPT LABS</a><nav aria-label="Điều hướng"><ul class="nav-links"><li><a href="../../index.html">Portfolio</a></li><li><a href="../index.html">Lab 08</a></li></ul></nav></div></header>
-<main class="container lesson-page"><p class="crumb"><a href="../index.html">Lab 08</a> / Exercise 8.5</p><section class="lesson-heading"><p class="eyebrow">Exercise 8.5</p><h1>Using the Browser Console</h1><p class="section-lead">Theo dõi lỗi, đọc biến và dùng log/warn/error.</p></section><div class="lesson-layout"><section class="panel"><h2>Thực hành Browser Console</h2><ol class="step-list"><li>Mở DevTools (thường F12 hoặc Ctrl+Shift+I), chọn Console.</li><li>Trong bản mẫu, đổi tạm <code>document</code> thành <code>doccumment</code>, tải lại, đọc ReferenceError rồi sửa chính tả.</li><li>Nhập lần lượt <code>count</code>, <code>output</code>, <code>var temp = count * 7</code>, <code>temp</code>. Kết quả dự kiến: 2, chuỗi, undefined, 14.</li><li>Quan sát log, warning và error khi trang tải.</li></ol><div class="action-row"><button type="button" id="console-error-button" class="secondary">Ghi lỗi mẫu vào console</button></div><p class="code-note">Không để lỗi chính tả trong mã đang chạy để trang vẫn hoạt động.</p></section><aside class="panel"><h2>Biến toàn cục thử trong console</h2><pre><code>count = 2
-output = "JavaScript Console"
-temp = count * 7</code></pre><p id="console-result" class="demo-output"></p></aside></div></main>
-<footer class="page-footer"><div class="container"><span>Exercise 8.5 · Lab 08</span><a href="../index.html">Về danh sách Exercise</a></div></footer></body></html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 8.5 · Using the Browser Console</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../lab08.css">
+  <script>
+    /* These messages are embedded in the head, following the Lab steps. */
+    console.log("script within the head element");
+    console.warn("oh no, this is a warning");
+    console.error("sample error message from Exercise 8.5");
+  </script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><div class="nav-wrap"><a class="brand" href="../index.html">JAVASCRIPT LABS</a>
+    <nav aria-label="Điều hướng"><ul class="nav-links"><li><a href="../../index.html">Portfolio</a></li><li><a href="../index.html">Lab 08</a></li></ul></nav>
+  </div></header>
+  <main class="container lesson-page">
+    <p class="crumb"><a href="../index.html">Lab 08</a> / Exercise 8.5</p>
+    <section class="lesson-heading"><p class="eyebrow">Exercise 8.5</p><h1>Using the Browser Console</h1>
+      <p class="section-lead">Sắp xếp file ngoài vào thư mục js, tạo và sửa lỗi, rồi đọc giá trị biến trong console.</p>
+    </section>
+    <div class="lesson-layout">
+      <section class="panel">
+        <h2>Các bước thực hành theo Lab</h2>
+        <ol class="step-list">
+          <li>File <code>hello.js</code> đã được đặt trong thư mục <code>js/</code>; trang đang liên kết bằng <code>src="js/hello.js"</code>.</li>
+          <li>Trong editor, tạm đổi <code>document</code> ở dòng <code>document.write(...)</code> thành <code>doccumment</code>, lưu và tải lại. Mở Console để đọc lỗi “doccumment is not defined”.</li>
+          <li>Sửa lại thành <code>document</code>, lưu và tải lại để nội dung hiện lại. Mã hiện tại đang ở dạng đúng để trang hoạt động.</li>
+          <li>Mở DevTools bằng F12 hoặc Ctrl+Shift+I, chọn Console. Firefox có thể mở Web Console từ menu Web Developer.</li>
+          <li>Nhập lần lượt <code>count</code>, <code>output</code>, <code>var temp = count * 7</code>, rồi <code>temp</code>. Kết quả dự kiến: <code>2</code>, <code>"&lt;br&gt;Count = 2"</code>, <code>undefined</code>, <code>14</code>.</li>
+          <li>Quan sát các dòng log, warning và error từ script trong head. Dùng nút dưới đây nếu muốn tạo một ReferenceError độc lập để tập đọc Console.</li>
+        </ol>
+        <div class="action-row"><button type="button" id="trigger-typo">Mô phỏng lỗi doccumment</button></div>
+        <p id="error-status" class="demo-output" aria-live="polite">Chưa chạy mô phỏng lỗi.</p>
+        <p class="code-note">Nút chỉ tạo lỗi trong một lần bấm. Để hoàn thành đúng bước PDF, hãy tự sửa rồi khôi phục dòng trong file <code>js/hello.js</code>.</p>
+      </section>
+      <aside class="panel">
+        <h2>File ngoài hiện tại: js/hello.js</h2>
+        <pre><code>document.write("this text was written from JS");
+var count = 1;
+document.write("&lt;br&gt;Count = " + count);
+count++;
+var output = "&lt;br&gt;Count = " + count;
+document.write(output);</code></pre>
+        <div id="hello-output" class="demo-output" aria-live="polite"><script src="js/hello.js"></script></div>
+        <p id="console-result" class="code-note"></p>
+      </aside>
+    </div>
+  </main>
+  <footer class="page-footer"><div class="container"><span>Exercise 8.5 · Lab 08</span><a href="../index.html">Về danh sách Exercise</a></div></footer>
+</body>
+</html>

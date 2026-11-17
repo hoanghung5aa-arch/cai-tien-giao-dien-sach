@@ -1,0 +1,16 @@
+/* Small reusable styles for the expanded, step-by-step Lab 08 demos. */
+.demo-toolbar{display:flex;flex-wrap:wrap;gap:.55rem;margin:.8rem 0}
+.demo-output{color:#202823}
+.task-panel{margin-top:1rem}
+.task-details{margin-top:.8rem}
+.task-details summary{cursor:pointer;font-weight:700;color:var(--green-dark)}
+.task-details p{margin:.55rem 0}
+.order-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;margin-top:.9rem}
+.order-card{padding:.9rem;border:1px solid var(--line);border-radius:14px;background:#fffefa}
+.order-card h3{font-size:1rem;margin:0 0 .45rem}
+.order-card p{margin:0;color:var(--muted)}
+.comparison-table th,.comparison-table td{vertical-align:top}
+.comparison-table th:first-child{min-width:190px}
+.demo-toolbar button.secondary{background:transparent;border:1px solid var(--green);color:var(--green-dark)}
+.demo-toolbar button.secondary:hover{background:var(--mint)}
+@media(max-width:780px){.order-grid{grid-template-columns:1fr}.comparison-table{min-width:620px}}

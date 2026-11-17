@@ -1,6 +1,6 @@
 $(function () {
-  const localUrl = "../data/cities.json";
-  const originalUrl = "https://www.randyconnolly.com/funwebdev/services/travel/cities.php";
+  const localUrl = "../data/cities.json"; // JSON mẫu tĩnh cùng cấu trúc, không phải response live.
+  const originalUrl = "https://www.randyconnolly.com/funwebdev/services/travel/cities.php"; // Bản HTTPS của endpoint HTTP trong handout.
   const $loader = $(".animLoading");
   const $status = $("#requestStatus");
 

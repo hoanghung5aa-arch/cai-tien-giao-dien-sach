@@ -1,16 +1,73 @@
-var countries=[
-{name:"Bahamas",capital:"Nassau",population:"khoảng 400 nghìn",iso:"BS",continent:"North America"},
-{name:"Canada",capital:"Ottawa",population:"khoảng 40 triệu",iso:"CA",continent:"North America"},
-{name:"Germany",capital:"Berlin",population:"khoảng 84 triệu",iso:"DE",continent:"Europe"},
-{name:"Spain",capital:"Madrid",population:"khoảng 49 triệu",iso:"ES",continent:"Europe"},
-{name:"United Kingdom",capital:"London",population:"khoảng 69 triệu",iso:"GB",continent:"Europe"},
-{name:"Ghana",capital:"Accra",population:"khoảng 35 triệu",iso:"GH",continent:"Africa"},
-{name:"Greece",capital:"Athens",population:"khoảng 10 triệu",iso:"GR",continent:"Europe"},
-{name:"Hungary",capital:"Budapest",population:"khoảng 9.6 triệu",iso:"HU",continent:"Europe"},
-{name:"Italy",capital:"Rome",population:"khoảng 59 triệu",iso:"IT",continent:"Europe"},
-{name:"United States",capital:"Washington, D.C.",population:"khoảng 340 triệu",iso:"US",continent:"North America"}
+function Country(name, iso, capital, population) {
+  this.name = name;
+  this.iso = iso;
+  this.capital = capital;
+  this.population = population;
+}
+
+var countries = [
+  new Country("Bahamas", "BS", "Nassau", 301790),
+  new Country("Canada", "CA", "Ottawa", 33679000),
+  new Country("Germany", "DE", "Berlin", 81802257)
 ];
-function renderCountries(){var output=document.getElementById("countries-output");output.replaceChildren();for(var i=0;i<countries.length;i++){var country=countries[i],article=document.createElement("article");article.className="country-card";
-var image=document.createElement("img");image.src="../assets/flags/"+country.iso+".png";image.alt=country.name+" flag";var title=document.createElement("strong");title.append(image,document.createTextNode(country.name));article.append(title);
-var list=document.createElement("dl");for(var propertyName in country){if(propertyName==="iso")continue;var dt=document.createElement("dt"),dd=document.createElement("dd");dt.textContent=propertyName;dd.textContent=country[propertyName];list.append(dt,dd);}article.append(list);output.append(article);}}
+
+countries.push(new Country("Spain", "ES", "Madrid", 46505963));
+countries.push(new Country("United Kingdom", "GB", "London", 62348447));
+
+var currentNameMode = "dot";
+
+function getCountryName(country, mode) {
+  if (mode === "dot") {
+    return country.name;
+  }
+  if (mode === "bracket") {
+    return country["name"];
+  }
+  var temp = "name";
+  return country[temp];
+}
+
+function renderCountries() {
+  var output = document.getElementById("countries-output");
+  output.replaceChildren();
+  var modeDescription = {
+    dot: "Đang dùng country.name.",
+    bracket: 'Đang dùng country["name"].',
+    variable: 'Đang dùng temp = "name" rồi country[temp].'
+  };
+  document.getElementById("name-mode-status").textContent =
+    modeDescription[currentNameMode] + " Cards được tạo bằng vòng lặp mảng và for..in.";
+
+  for (var i = 0; i < countries.length; i++) {
+    var c = countries[i];
+    var article = document.createElement("article");
+    article.className = "country-card";
+
+    var image = document.createElement("img");
+    image.src = "../assets/flags/" + c.iso + ".png";
+    image.alt = c.name + " flag";
+    var title = document.createElement("strong");
+    title.append(image, document.createTextNode(getCountryName(c, currentNameMode)));
+    article.append(title);
+
+    var list = document.createElement("dl");
+    for (var propertyName in c) {
+      var term = document.createElement("dt");
+      var value = document.createElement("dd");
+      term.textContent = propertyName;
+      value.textContent = c[propertyName];
+      list.append(term, value);
+    }
+    article.append(list);
+    output.append(article);
+  }
+}
+
+document.querySelectorAll("[data-name-mode]").forEach(function (button) {
+  button.addEventListener("click", function () {
+    currentNameMode = button.dataset.nameMode;
+    renderCountries();
+  });
+});
+
 renderCountries();

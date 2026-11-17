@@ -8,7 +8,8 @@
 .selected { outline: 3px solid var(--gold); outline-offset: 3px; background: #fff1d6 !important; }
 .selector-mark { background: #ffe8a8 !important; outline: 2px solid #d59a43; }
 .selector-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
-.selector-form label { padding: .5rem; border-radius: 8px; }
+.selector-form label { padding: .5rem; border-radius: 8px; color: var(--muted); }
+.panel pre, .panel pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
 .event-panels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
 .event-panel { min-height: 150px; display: grid; place-items: center; text-align: center; color: #fff; background: var(--green); border-radius: 16px; padding: 1rem; cursor: pointer; user-select: none; }
 .event-panel:nth-child(2) { background: #865b29; }
@@ -30,6 +31,7 @@
 #box { position: absolute; top: 0; left: 0; width: 80px; height: 80px; display: grid; place-items: center; border-radius: 12px; color: #fff; background: #c76846; opacity: .45; font-weight: 800; }
 .city-list { margin: .4rem 0 0; padding-left: 1.4rem; }
 .animLoading { display: none; width: 34px; height: 34px; margin: .8rem 0; border: 4px solid #dce3dc; border-top-color: var(--green); border-radius: 50%; animation: spin .8s linear infinite; }
+button:disabled { opacity: .55; cursor: not-allowed; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (max-width: 780px) {
   .event-panels, .selector-form, .photo-gallery { grid-template-columns: 1fr; }

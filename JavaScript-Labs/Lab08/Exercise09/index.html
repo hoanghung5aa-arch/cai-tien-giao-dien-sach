@@ -1,8 +1,52 @@
 <!DOCTYPE html>
-<html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Exercise 8.9 · Functions as Objects</title>
-<link rel="stylesheet" href="../../css/style.css"><link rel="stylesheet" href="../lab08.css"><script src="script.js" defer></script></head>
-<body><header class="site-header"><div class="nav-wrap"><a class="brand" href="../index.html">JAVASCRIPT LABS</a><nav aria-label="Điều hướng"><ul class="nav-links"><li><a href="../../index.html">Portfolio</a></li><li><a href="../index.html">Lab 08</a></li></ul></nav></div></header>
-<main class="container lesson-page"><p class="crumb"><a href="../index.html">Lab 08</a> / Exercise 8.9</p><section class="lesson-heading"><p class="eyebrow">Exercise 8.9</p><h1>Functions as Objects</h1><p class="section-lead">Tính thuế và thử hàm lồng, ẩn danh, callback.</p></section><div class="lesson-layout"><section class="panel"><h2>Tính subtotal, thuế và tổng</h2><div class="control-row"><label for="price">Giá mỗi món</label><input id="price" type="number" min="0" step="0.01" value="15"></div><div class="control-row"><label for="quantity">Số lượng</label><input id="quantity" type="number" min="1" step="1" value="2"></div><div class="control-row"><label><input id="is-canadian" type="checkbox" checked> Áp dụng thuế 5%</label></div><div class="action-row"><button type="button" id="calculate-button">Tính tổng</button></div><div id="tax-output" class="result-list" aria-live="polite"></div></section><aside class="panel"><h2>Các cách viết trong bài</h2><ul><li>Hàm thuế riêng, sau đó lồng vào hàm tính.</li><li>Gán hàm có tên hoặc hàm ẩn danh cho biến.</li><li>Truyền hàm ẩn danh làm tham số.</li></ul><details><summary>Xem mẫu callback cuối bài</summary><pre><code>calculateTax(amount, function () {
-  return isCanadian ? 0.05 : 0;
-});</code></pre></details></aside></div></main>
-<footer class="page-footer"><div class="container"><span>Exercise 8.9 · Lab 08</span><a href="../index.html">Về danh sách Exercise</a></div></footer></body></html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 8.9 · Functions as Objects</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../lab08.css">
+  <link rel="stylesheet" href="../demo-fixes.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><div class="nav-wrap"><a class="brand" href="../index.html">JAVASCRIPT LABS</a>
+    <nav aria-label="Điều hướng"><ul class="nav-links"><li><a href="../../index.html">Portfolio</a></li><li><a href="../index.html">Lab 08</a></li></ul></nav>
+  </div></header>
+  <main class="container lesson-page">
+    <p class="crumb"><a href="../index.html">Lab 08</a> / Exercise 8.9</p>
+    <section class="lesson-heading"><p class="eyebrow">Exercise 8.9</p><h1>Functions as Objects</h1>
+      <p class="section-lead">So sánh các cách biểu diễn taxRate và truyền một hàm làm tham số cho phép tính.</p>
+    </section>
+    <div class="lesson-layout">
+      <section class="panel">
+        <h2>Thay đổi dữ liệu đầu vào</h2>
+        <div class="control-row"><label for="price">Giá mỗi món</label><input id="price" type="number" min="0" step="0.01" value="15"></div>
+        <div class="control-row"><label for="quantity">Số lượng</label><input id="quantity" type="number" min="1" step="1" value="2"></div>
+        <div class="control-row"><label><input id="is-canadian" type="checkbox" checked> isCanadian = true (thuế 5%)</label></div>
+        <p class="code-note">Đổi giá, số lượng hoặc trạng thái isCanadian; các cách viết bên phải sẽ cập nhật theo.</p>
+      </section>
+      <aside class="panel"><h2>Tính tax và total</h2><p id="tax-summary" class="demo-output" aria-live="polite"></p>
+        <p>Với mẫu mặc định: subtotal = 15 × 2 = 30; tax = 30 × 5% = 1.50; total = 31.50.</p>
+      </aside>
+    </div>
+    <section class="panel task-panel">
+      <h2>Kết quả của từng phiên bản</h2>
+      <div class="table-scroll"><table class="comparison-table"><thead><tr><th>Cách viết</th><th>Tax</th><th>Total</th><th>Phần tử hàm</th></tr></thead><tbody id="tax-approaches"></tbody></table></div>
+      <details class="task-details"><summary>Xem các bước refactor trong PDF</summary>
+        <ol class="step-list"><li>Hàm ngoài <code>taxRate()</code> được gọi bởi <code>calculateTax(amount)</code> và <code>calculateTotal(price, quantity)</code>.</li><li>Chuyển <code>taxRate()</code> thành named nested function.</li><li>Gán named function expression cho biến <code>tax</code>, gọi <code>tax()</code>.</li><li>Bỏ tên hàm để tạo anonymous function expression.</li><li>Cuối cùng truyền anonymous function như tham số <code>tax</code> vào <code>calculateTax</code>.</li></ol>
+        <pre><code>function calculateTax(amount, tax) {
+  return amount * tax();
+}
+function calculateTotal(price, quantity) {
+  var amount = price * quantity;
+  return amount + calculateTax(amount, function () {
+    return isCanadian ? 0.05 : 0.0;
+  });
+}</code></pre>
+      </details>
+    </section>
+  </main>
+  <footer class="page-footer"><div class="container"><span>Exercise 8.9 · Lab 08</span><a href="../index.html">Về danh sách Exercise</a></div></footer>
+</body>
+</html>

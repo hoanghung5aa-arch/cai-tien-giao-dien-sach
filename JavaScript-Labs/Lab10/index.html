@@ -58,7 +58,7 @@
       <article class="panel">
         <p class="eyebrow">Ghi chú</p>
         <h2>Request và dữ liệu demo</h2>
-        <p>Tài liệu Lab 10 (2017) minh họa dịch vụ <code>http://www.randyconnolly.com/funwebdev/services/travel/cities.php</code>. Trình duyệt có thể chặn HTTP khi trang được phục vụ qua HTTPS, hoặc dịch vụ có thể không còn cho phép request từ website khác. Vì vậy, Exercise 10.9 và 10.10 dùng GET tới <code>data/cities.json</code> cùng origin làm luồng chính. JSON có trường <code>name</code> giống dạng dữ liệu mà tài liệu dùng; nút thử endpoint gốc sẽ tự chuyển sang dữ liệu local nếu request lỗi.</p>
+        <p>Tài liệu Lab 10 (2017) minh họa dịch vụ <code>http://www.randyconnolly.com/funwebdev/services/travel/cities.php</code>. Khi kiểm tra ngày 17/11/2026, URL HTTP trả JSON nhưng không thể dùng từ GitHub Pages HTTPS vì mixed content; URL HTTPS của dịch vụ gặp lỗi chứng chỉ đã hết hạn. Vì vậy, Exercise 10.9 và 10.10 dùng GET tới <code>data/cities.json</code> cùng origin làm luồng ổn định. Đây là dữ liệu mẫu tĩnh có trường <code>name</code>, không phải response live; nút thử endpoint HTTPS sẽ tự chuyển sang dữ liệu mẫu nếu request lỗi.</p>
         <p class="small-note">Mở trang qua GitHub Pages hoặc máy chủ local để request JSON hoạt động; mở trực tiếp bằng <code>file://</code> có thể bị trình duyệt chặn.</p>
       </article>
     </section>
