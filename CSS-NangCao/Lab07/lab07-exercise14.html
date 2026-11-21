@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exercise 7.14 - CSS transforms</title>
+    <link rel="stylesheet" href="lab07-exercise14.css">
+</head>
+<body>
+    <header class="page-heading">
+        <p class="eyebrow">Lab 7 · Advanced CSS</p>
+        <h1>Transforms</h1>
+        <p>CSS transforms rotate, skew, and move an element without changing the document flow.</p>
+    </header>
+
+    <main>
+        <section class="transform-gallery" aria-label="Examples of CSS transforms">
+            <figure class="transform-card rotate-demo">
+                <img src="images/700.jpg" alt="Arsenal stadium facade">
+                <figcaption><strong>Rotate the container</strong><code>figure { transform: rotate(45deg); }</code></figcaption>
+            </figure>
+            <figure class="transform-card skew-demo">
+                <img src="images/700.jpg" alt="Arsenal stadium facade">
+                <figcaption><strong>Skew the container</strong><code>figure { transform: skew(-20deg); }</code></figcaption>
+            </figure>
+            <figure class="transform-card translate-demo">
+                <img src="images/700.jpg" alt="Arsenal stadium facade">
+                <figcaption><strong>Translate the image</strong><code>img { transform: translateX(100px) translateY(-30px); }</code></figcaption>
+            </figure>
+            <figure class="transform-card combined-demo">
+                <img src="images/700.jpg" alt="Arsenal stadium facade">
+                <figcaption><strong>Combine transforms</strong><code>figure { transform: rotate(15deg); } img { transform: rotate(45deg) scale(.5); }</code></figcaption>
+            </figure>
+        </section>
+    </main>
+</body>
+</html>

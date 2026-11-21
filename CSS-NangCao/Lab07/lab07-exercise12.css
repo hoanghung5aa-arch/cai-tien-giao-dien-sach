@@ -1,0 +1,53 @@
+/* Shared presentation loaded by both responsive layouts. */
+* { box-sizing: border-box; }
+
+html, body, header, footer, main, aside, div, nav, p, h1, h2, h3, figure, figcaption, ul, li {
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 0.9em;
+   line-height: 1.45;
+}
+
+h1 { font-size: 1.5em; margin: 0.25em; }
+h2 { font-size: 1.25em; margin: 0.25em; }
+h3 { font-size: 1em; margin: 0.25em; }
+p { margin: 0.5em 0; }
+a:link, a:visited { color: #090388; }
+li { list-style: none; margin: 0.25em 0; }
+
+header {
+   color: white;
+   background-color: #262626;
+   padding: 0.5em;
+}
+
+nav {
+   color: white;
+   background-color: #A9A9A9;
+   padding: 0.5em;
+}
+
+#main { padding: 0.5em; }
+
+figure {
+   border: 1pt solid #262626;
+   background-color: #c1c1c1;
+   padding: 10px;
+   width: 220px;
+   max-width: 100%;
+   margin: 10px;
+}
+
+figure img { display: block; max-width: 100%; height: auto; }
+figcaption { padding-top: 0.25em; }
+
+footer {
+   color: white;
+   background-color: #2F4F4F;
+   padding: 0.5em;
+   min-height: 3em;
+}

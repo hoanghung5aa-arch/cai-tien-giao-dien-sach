@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio học tập CSS nâng cao của Nguyễn Hoàng Hưng — Lab 07 Advanced CSS Layout.">
+  <title>CSS nâng cao — Nguyễn Hoàng Hưng</title>
+  <link rel="stylesheet" href="css/portfolio.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Đến nội dung chính</a>
+  <header class="site-header">
+    <a class="wordmark" href="#top"><span>Hưng</span><span class="wordmark-sep">/</span><span>CSS Lab</span></a>
+    <nav class="desktop-nav" aria-label="Điều hướng chính">
+      <a href="#gioi-thieu">Giới thiệu</a><a href="#bai-tap">Bài thực hành</a><a href="#tong-ket">Tổng kết</a>
+      <a class="nav-github" href="https://github.com/hoanghung5aa-arch" target="_blank" rel="noreferrer">GitHub cá nhân</a>
+    </nav>
+    <details class="mobile-nav"><summary>Mục lục</summary><nav aria-label="Điều hướng trên điện thoại">
+      <a href="#gioi-thieu">Giới thiệu</a><a href="#bai-tap">Bài thực hành</a><a href="#tong-ket">Tổng kết</a>
+      <a href="https://github.com/hoanghung5aa-arch" target="_blank" rel="noreferrer">GitHub cá nhân ↗</a>
+    </nav></details>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="hero-identity">
+          <img class="student-avatar" src="assets/avatar-monogram.svg" alt="Avatar minh họa chữ viết tắt HH, không phải ảnh cá nhân">
+          <p class="course-line">Phát triển ứng dụng TMĐT <span>/</span> Chương 5</p>
+        </div>
+        <h1 id="hero-title">CSS nâng cao<br>và bố cục trang</h1>
+        <p class="hero-intro">Portfolio ghi lại 19 bài thực hành về document flow, định vị, responsive design và hiệu ứng CSS. Mỗi bài có trang riêng để xem mã nguồn và kết quả.</p>
+        <dl class="student-meta">
+          <div><dt>Sinh viên</dt><dd>Nguyễn Hoàng Hưng</dd></div>
+          <div><dt>MSSV</dt><dd>31241027221</dd></div>
+          <div><dt>Lớp học phần</dt><dd>K50-EE0002</dd></div>
+        </dl>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#bai-tap">Xem bài thực hành <span aria-hidden="true">↓</span></a>
+          <a class="button button-secondary" href="https://github.com/hoanghung5aa-arch/cai-tien-giao-dien-sach" target="_blank" rel="noreferrer">Mã nguồn trên GitHub ↗</a>
+        </div>
+      </div>
+
+      <figure class="position-diagram">
+        <div class="diagram-topline"><span>Minh họa bố cục</span><span>7.2 / 7.3</span></div>
+        <div class="diagram-canvas" role="img" aria-label="Sơ đồ: phần tử relative giữ vị trí trong luồng, phần tử absolute đặt theo khung cha">
+          <div class="diagram-ruler ruler-top" aria-hidden="true"><span>0</span><span>120</span><span>240</span><span>360</span></div>
+          <div class="diagram-ruler ruler-side" aria-hidden="true"><span>0</span><span>80</span><span>160</span></div>
+          <div class="document-frame">
+            <span class="frame-label">article · containing block</span>
+            <div class="flow-slot"><span>normal flow</span></div>
+            <div class="relative-box"><span>position: relative</span></div>
+            <div class="absolute-box"><span>position: absolute</span></div>
+          </div>
+        </div>
+        <figcaption>Relative giữ chỗ trong luồng; absolute định vị theo phần tử cha đã đặt vị trí.</figcaption>
+      </figure>
+      <div class="hero-bottomline"><span>Lab 07 · Advanced CSS: Layout</span><a href="Lab07/">Mở danh sách bài ↗</a></div>
+    </section>
+
+    <section class="section intro-section" id="gioi-thieu">
+      <div class="section-heading"><p class="section-kicker">Mục tiêu thực hành</p><h2>Từ cách phần tử hiển thị<br>đến giao diện thích ứng.</h2></div>
+      <div class="section-copy">
+        <p>Lab 07 đi từ những quy tắc nền tảng của document flow, display và positioning đến các bố cục float, hai cột và ba cột. Các bài responsive giúp kiểm tra cách cùng một trang thay đổi trên desktop và điện thoại.</p>
+        <p>Những bài cuối thực hành transforms, transitions, filters, animations và Bootstrap. Đây là các kỹ thuật có thể dùng trong giao diện thương mại điện tử, từ danh mục sản phẩm đến menu điều hướng.</p>
+      </div>
+    </section>
+
+    <section class="section exercises-section" id="bai-tap">
+      <div class="section-heading exercise-heading">
+        <div><p class="section-kicker">Mục lục · 19 bài</p><h2>Các phần thực hành</h2></div><a class="index-link" href="Lab07/">Mở trang Lab 07 ↗</a>
+      </div>
+      <div class="exercise-list">
+        <article class="exercise-group"><p class="group-index">01</p><div class="group-main"><p class="group-range">7.1 — 7.4</p><h3>Document flow và positioning</h3><p>Thay đổi display, định vị tương đối/tuyệt đối và xếp lớp bằng z-index.</p></div><nav class="exercise-links" aria-label="Bài 7.1 đến 7.4"><a href="Lab07/lab07-exercise01.html">7.1</a><a href="Lab07/lab07-exercise02.html">7.2</a><a href="Lab07/lab07-exercise03.html">7.3</a><a href="Lab07/lab07-exercise04.html">7.4</a></nav></article>
+        <article class="exercise-group"><p class="group-index">02</p><div class="group-main"><p class="group-range">7.5 — 7.9</p><h3>Float, clear và positioning</h3><p>Bố trí nhiều hình, xử lý phần tử trôi và đặt caption lên ảnh.</p></div><nav class="exercise-links" aria-label="Bài 7.5 đến 7.9"><a href="Lab07/lab07-exercise05.html">7.5</a><a href="Lab07/lab07-exercise06.html">7.6</a><a href="Lab07/lab07-exercise07.html">7.7</a><a href="Lab07/lab07-exercise08.html">7.8</a><a href="Lab07/lab07-exercise09.html">7.9</a></nav></article>
+        <article class="exercise-group"><p class="group-index">03</p><div class="group-main"><p class="group-range">7.10 — 7.13</p><h3>Bố cục nhiều cột và responsive</h3><p>Dựng bố cục 2/3 cột, media queries, viewport và điều hướng theo kích thước màn hình.</p></div><nav class="exercise-links" aria-label="Bài 7.10 đến 7.13"><a href="Lab07/lab07-exercise10.html">7.10</a><a href="Lab07/lab07-exercise11.html">7.11</a><a href="Lab07/lab07-exercise12.html">7.12</a><a href="Lab07/lab07-exercise12.html#exercise-713">7.13*</a></nav></article>
+        <article class="exercise-group"><p class="group-index">04</p><div class="group-main"><p class="group-range">7.14 — 7.18</p><h3>Transforms và hiệu ứng CSS</h3><p>Thực hành biến đổi, chuyển tiếp, bộ lọc ảnh và hoạt ảnh keyframes.</p></div><nav class="exercise-links" aria-label="Bài 7.14 đến 7.18"><a href="Lab07/lab07-exercise14.html">7.14</a><a href="Lab07/lab07-exercise15.html">7.15</a><a href="Lab07/lab07-exercise16.html">7.16</a><a href="Lab07/lab07-exercise17.html">7.17</a><a href="Lab07/lab07-exercise18.html">7.18</a></nav></article>
+        <article class="exercise-group"><p class="group-index">05</p><div class="group-main"><p class="group-range">7.19</p><h3>Bootstrap grid system</h3><p>Sử dụng hệ lưới và thành phần giao diện Bootstrap để tổ chức nội dung.</p></div><nav class="exercise-links" aria-label="Bài 7.19"><a href="Lab07/lab07-exercise19.html">Mở bài 7.19 ↗</a></nav></article>
+      </div>
+      <p class="index-note">* Exercise 7.13 được làm tiếp trong các file của Exercise 7.12 theo tài liệu Lab.</p>
+    </section>
+
+    <section class="section learning-section" id="tong-ket">
+      <div class="section-heading"><p class="section-kicker">Kiến thức thu được</p><h2>Chọn kỹ thuật theo<br>vấn đề của bố cục.</h2></div>
+      <div class="section-copy">
+        <p>Positioning giải quyết việc đặt phần tử chính xác; float và clear cho thấy nội dung bao quanh phần tử trôi; media query giúp thay đổi cấu trúc theo chiều rộng màn hình. Các kỹ thuật này bổ sung cho nhau, nhưng không thay thế lẫn nhau.</p>
+        <p>Bootstrap rút ngắn thời gian dựng lưới. Thực hành HTML/CSS thuần giúp hiểu điều gì đang xảy ra phía sau framework và khi nào cần tự điều chỉnh bố cục.</p>
+      </div>
+    </section>
+
+    <section class="reflection-section" aria-labelledby="reflection-title">
+      <div class="reflection-label"><span>Ghi chú cuối Lab</span><span>7.1 — 7.19</span></div>
+      <div><h2 id="reflection-title">Tự đánh giá</h2><p>Qua Lab 07, em hiểu rõ giới hạn của từng cách bố trí. Relative giữ chỗ trong document flow; absolute cần ancestor được định vị, còn z-index chịu ảnh hưởng của quan hệ cha–con. Float và clear cho thấy cách nội dung bao quanh hình, nhưng bố cục nhiều cột cần được kiểm soát khi màn hình hẹp. Media query và viewport giúp chuyển bố cục desktop sang điện thoại. Phần responsive khó nhất vì phải phối hợp các stylesheet và kiểm tra ở nhiều chiều rộng. Transforms, transitions, filters và animations tạo phản hồi trực quan khi được dùng có mục đích. Với website thương mại điện tử, em có thể dùng lưới responsive cho danh mục, menu gọn trên điện thoại và hiệu ứng hover nhẹ cho thẻ sản phẩm. Bootstrap giúp dựng lưới nhanh; thực hành HTML/CSS thuần giúp hiểu cơ chế phía sau.</p></div>
+    </section>
+  </main>
+  <footer class="site-footer"><p>Nguyễn Hoàng Hưng <span>·</span> 31241027221 <span>·</span> K50-EE0002</p><a href="https://github.com/hoanghung5aa-arch/cai-tien-giao-dien-sach" target="_blank" rel="noreferrer">Repository trên GitHub ↗</a></footer>
+</body>
+</html>

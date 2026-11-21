@@ -1,0 +1,50 @@
+* { box-sizing: border-box; }
+
+body { margin: 0; color: #17211d; background: #d7ccc8; font: 1rem/1.5 "Open Sans", Arial, sans-serif; }
+.site-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem clamp(1rem, 5vw, 4rem); color: #fafafa; background: #1a237e; }
+.site-header h1 { margin: 0; font: 1.8rem/1.2 Lobster, "Times New Roman", serif; }
+.site-header a { color: inherit; font-weight: 700; text-decoration-thickness: .12em; text-underline-offset: .2em; }
+main { max-width: 76rem; margin: 0 auto; padding: 1.5rem clamp(1rem, 4vw, 3rem) 5rem; }
+.intro { margin: 0 0 2rem; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); align-items: center; gap: 2rem; }
+
+figure {
+    position: relative;
+    z-index: 0;
+    display: grid;
+    align-content: start;
+    gap: .75rem;
+    width: min(100%, 18rem);
+    margin: 0 auto;
+    padding: .9rem;
+    border-radius: .5rem;
+    color: #17211d;
+    background-color: #fff;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 15%);
+    /* The resting state controls the smooth return after the pointer leaves. */
+    transition: all .6s ease-out .25s;
+}
+
+figure img { display: block; width: 100%; height: 12rem; border-radius: .25rem; object-fit: cover; }
+figcaption { font-weight: 700; }
+
+/* Hover transitions the four properties shown in the lab. */
+figure:hover,
+figure:focus-visible {
+    z-index: 1;
+    color: #fff;
+    background-color: #263238;
+    box-shadow: 10px 10px 32px -4px rgb(0 0 0 / 75%);
+    transform: scale(1.75);
+    transition: all 1s ease-in .25s;
+}
+
+figure:focus-visible { outline: 3px solid #146d37; outline-offset: 4px; }
+
+@media (max-width: 540px) {
+    figure:hover, figure:focus-visible { transform: scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    figure, figure:hover, figure:focus-visible { transition: none; }
+}

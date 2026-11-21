@@ -1,0 +1,29 @@
+* { box-sizing: border-box; }
+
+body { margin: 0; padding: 2rem 1.25rem 4rem; color: #17211d; background: #f4f7f4; font: 1rem/1.5 Arial, sans-serif; }
+.page-heading { max-width: 70rem; margin: 0 auto 2rem; }
+.page-heading h1 { margin: 0 0 .5rem; font-size: clamp(2rem, 5vw, 3.25rem); }
+.page-heading p { max-width: 42rem; margin: .4rem 0; }
+.eyebrow { color: #28774e; font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.transform-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); align-items: center; gap: 3rem 2rem; max-width: 70rem; margin: 0 auto; }
+.transform-card { display: grid; justify-items: center; gap: .75rem; width: 15rem; min-height: 14rem; margin: 1rem auto; padding: 1rem; border: 1px solid #d8e2da; border-radius: .75rem; background: #fff; box-shadow: 0 8px 24px rgb(29 66 45 / 9%); text-align: center; }
+.transform-card img { width: 100%; height: 8rem; border-radius: .4rem; object-fit: cover; }
+.transform-card figcaption { display: grid; gap: .35rem; }
+.transform-card code { color: #375644; font-size: .76rem; overflow-wrap: anywhere; }
+
+/* Transforming a figure also transforms its caption and image. */
+.rotate-demo { transform: rotate(45deg); }
+.skew-demo { transform: skew(-20deg); }
+
+/* Translation moves the image while preserving its original layout space. */
+.translate-demo { overflow: visible; }
+.translate-demo img { transform: translateX(100px) translateY(-30px); }
+
+/* The figure and image can use independent, combined transforms. */
+.combined-demo { transform: rotate(15deg); }
+.combined-demo img { transform: rotate(45deg) scale(.5); }
+
+@media (max-width: 420px) {
+    .transform-card { width: 13rem; }
+    .translate-demo img { transform: translateX(100px) translateY(-30px); }
+}

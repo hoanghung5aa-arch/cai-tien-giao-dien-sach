@@ -1,0 +1,24 @@
+main {
+   width: 90%;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+#container {
+   /* Establish the containing block for the absolutely placed navigation. */
+   position: relative;
+}
+
+nav {
+   width: 10em;
+   position: absolute;
+   left: 0;
+   top: 0;
+}
+
+nav select { display: none; }
+
+#main {
+   margin-left: 12em;
+   margin-right: 2em;
+}

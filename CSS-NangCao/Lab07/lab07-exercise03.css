@@ -1,0 +1,31 @@
+/* 7.3: figure rời normal flow. Body không được định vị nên top/left tính từ
+   khung nhìn trình duyệt; khoảng trống ban đầu không còn được giữ lại. */
+figure {  
+   background-color: #EDEDDD;
+   border: 1pt solid #A8A8A8;
+   padding: 5px;
+   width: 150px;
+   top: 150px;
+   left: 200px;
+   position: absolute;
+}
+
+/* Caption nằm theo ancestor gần nhất có position: chính figure. */
+figcaption {
+   background-color: #EDEDDD;
+   padding: 5px;
+   top: 150px;
+   left: 200px;
+   position: absolute;
+}
+
+figure img {
+   display: block;
+   max-width: 100%;
+   height: auto;
+}
+
+body {
+   font-family: Arial, Helvetica, sans-serif;
+   line-height: 1.6;
+}

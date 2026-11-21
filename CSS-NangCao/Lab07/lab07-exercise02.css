@@ -1,0 +1,26 @@
+/* 7.2: top/left chỉ dịch figure khi position được đặt. Relative giữ chỗ cũ
+   trong document flow nên phần tử có thể chồng lên đoạn văn tiếp theo. */
+figure {
+ background-color: #EDEDDD;
+ border: 1pt solid #A8A8A8;
+ padding: 5px;
+ width: 150px;
+ margin: 10px;
+ top: 150px;
+ left: 200px;
+ position: relative;
+}
+
+figure img {
+ display: block;
+ max-width: 100%;
+ height: auto;
+}
+
+body {
+ font-family: Arial, Helvetica, sans-serif;
+ line-height: 1.6;
+}
+
+
+

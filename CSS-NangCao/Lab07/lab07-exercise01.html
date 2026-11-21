@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Lab 7.1 · Chia sẻ hành trình</title>
+   <link rel="stylesheet" href="lab07-exercise01.css" />
+</head>
+<body>
+<header>
+  <h1>Chia sẻ <span>hành trình</span></h1>
+  <nav>
+    <ul>
+	  <li><a href="#description">Giới thiệu</a></li>
+	  <li><a href="#related">Ảnh liên quan</a></li>
+	  <li><a href="#reviews">Nhận xét</a></li>
+    </ul> 
+  </nav>
+</header>
+<main>
+   <h2>Bài viết của Camille Bernard</h2>
+   <div class="entry">
+      <div id="related" aria-label="Ảnh về chuyến đi nước Ý">
+         <img src="images/travel/9498358806.jpg" alt="Nhà thờ chính tòa Florence" />
+         <img src="images/travel/9504449928.jpg" alt="Nhà thờ Santo Spirito ở Florence" />
+         <img src="images/travel/9494472443.jpg" alt="Nhà thờ Santa Maria della Salute ở Venice" />
+         <img src="images/travel/9498386718.jpg" alt="Quảng trường Thánh Phêrô ở Rome" />
+         <img src="images/travel/9504609042.jpg" alt="Nhà nguyện Pazzi ở Florence" />
+      </div>
+      <div class="entryContent" id="description">
+         <h3>Khám phá nước Ý</h3>
+         <p>Hành trình đưa chúng ta qua những mái vòm cổ kính ở Florence, các con phố bên kênh đào Venice và những quảng trường rộng mở tại Rome. Mỗi điểm dừng đều có một câu chuyện riêng về kiến trúc, nghệ thuật và nhịp sống của thành phố.</p>
+      </div>
+      <div class="right">
+         <a href="#related" class="linkbutton">Xem ảnh chuyến đi</a>
+      </div>      
+   </div>
+   <section id="reviews" aria-labelledby="reviews-heading">
+      <h2 id="reviews-heading">Nhận xét</h2>
+      <p>Một chuyến đi đáng nhớ qua những công trình và quảng trường nổi tiếng của nước Ý.</p>
+   </section>
+</main>
+<footer>
+  <p><a href="#">Trang chủ</a> | <a href="#related">Duyệt ảnh</a> | <a href="#description">Tìm hiểu</a></p>
+  <p><em>Bản thực hành CSS nâng cao · Lab 7.1</em></p>
+</footer>
+</body>
+</html>

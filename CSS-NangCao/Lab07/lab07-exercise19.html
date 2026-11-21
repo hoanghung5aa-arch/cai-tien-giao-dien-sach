@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exercise 7.19 - Bootstrap grid and components</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="lab07-exercise19.css">
+</head>
+<body>
+    <header class="container">
+        <nav class="navbar navbar-default" aria-label="Main navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#top">Travel Notes</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#top" aria-current="page">Home</a></li>
+                    <li><a href="#destinations">Browse</a></li>
+                    <li><a href="#destinations">Search</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main id="top" class="container">
+        <!-- Demonstrate the lab's 12-column 2/7/3 layout. -->
+        <section class="grid-example" aria-labelledby="grid-heading">
+            <h1 id="grid-heading">Bootstrap 12-column grid</h1>
+            <p>At medium screen widths, these columns use 2 + 7 + 3 columns. Resize the page to see them stack on smaller screens.</p>
+            <div class="row">
+                <div class="col-md-2"><div class="grid-cell">Left column <code>col-md-2</code></div></div>
+                <div class="col-md-7"><div class="grid-cell">Main content <code>col-md-7</code></div></div>
+                <div class="col-md-3"><div class="grid-cell">Right column <code>col-md-3</code></div></div>
+            </div>
+        </section>
+
+        <!-- The final layout uses 3/9 columns and Bootstrap's built-in components. -->
+        <section class="row content-layout" aria-label="Travel destination layout">
+            <aside class="col-md-3" aria-labelledby="destination-heading">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 id="destination-heading" class="panel-title">Destinations</h2>
+                    </div>
+                    <div class="panel-body">
+                        <!-- A list group sits inside the Bootstrap panel. -->
+                        <ul class="list-group">
+                            <li class="list-group-item">Austria</li>
+                            <li class="list-group-item">Canada</li>
+                            <li class="list-group-item">France</li>
+                            <li class="list-group-item">Italy</li>
+                            <li class="list-group-item">Spain</li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="col-md-9" id="destinations" aria-labelledby="main-heading">
+                <!-- The jumbotron uses Bootstrap's built-in content styling. -->
+                <div class="jumbotron" id="about">
+                    <h2 id="main-heading">Main Content</h2>
+                    <p>Bootstrap uses a responsive 12-column grid. Rows contain columns, and built-in components such as panels, lists, and buttons help shape the page.</p>
+                </div>
+
+                <h2>Nested columns</h2>
+                <!-- Nested columns divide this row into four equal destination cards. -->
+                <div class="row destination-row">
+                    <article class="col-md-3">
+                        <div class="destination-card">
+                            <img src="images/464.jpg" alt="City view in London">
+                            <h3>London</h3>
+                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> View</button>
+                            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart</button>
+                        </div>
+                    </article>
+                    <article class="col-md-3">
+                        <div class="destination-card">
+                            <img src="images/9498358806.jpg" alt="Florence cityscape">
+                            <h3>Florence</h3>
+                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> View</button>
+                            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart</button>
+                        </div>
+                    </article>
+                    <article class="col-md-3">
+                        <div class="destination-card">
+                            <img src="images/9504449928.jpg" alt="Historic buildings in Florence">
+                            <h3>Florence</h3>
+                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> View</button>
+                            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart</button>
+                        </div>
+                    </article>
+                    <article class="col-md-3">
+                        <div class="destination-card">
+                            <img src="images/9494472443.jpg" alt="Canal and buildings in Venice">
+                            <h3>Venice</h3>
+                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> View</button>
+                            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </section>
+    </main>
+</body>
+</html>

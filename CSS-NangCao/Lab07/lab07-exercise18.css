@@ -1,0 +1,23 @@
+* { box-sizing: border-box; }
+
+body { margin: 0; padding: 2rem 1rem; color: #17211d; background: #f4f7f4; font: 1rem/1.5 Arial, sans-serif; }
+.lesson { width: min(100%, 54rem); margin: 0 auto; }
+.eyebrow { margin-bottom: .5rem; color: #28774e; font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.lesson h1 { margin: 0 0 .5rem; font-size: clamp(2rem, 5vw, 3rem); }
+.lesson p { max-width: 42rem; }
+.animation-stage { min-height: 40rem; margin: 2rem 0 1rem; overflow: hidden; border: 1px solid #cbd8ce; border-radius: .75rem; background: linear-gradient(135deg, #fff, #e8f0e9); }
+.box { width: 100px; height: 100px; margin: 100px; background-color: green; animation: animTwo 5s ease-out 1s 3; }
+.hint { color: #52645a; font-size: .9rem; }
+
+/* Percentage keyframes animate color, position, size, rotation, and shape. */
+@keyframes animTwo {
+    0% { background-color: green; margin-top: 100px; }
+    25% { background-color: red; transform: scale(1.5) rotate(90deg); margin-left: 400px; }
+    50% { background-color: yellow; transform: scale(1); margin-top: 400px; border-radius: 100%; }
+    75% { background-color: blue; margin-left: 100px; transform: scale(.5); }
+    100% { background-color: green; border-radius: 0; margin-top: 100px; transform: scale(1) rotate(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .box { animation: none; }
+}

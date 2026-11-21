@@ -1,0 +1,24 @@
+body {
+   font-size: 1.1em;
+   font-family: Arial, Helvetica, sans-serif;
+   line-height: 1.6;
+}
+
+/* 7.5: đã thử float:left ở bước 2; bước 3 đổi sang float:right để kiểm tra
+   văn bản bao quanh figure từ phía đối diện. Đây là trạng thái cuối theo đề. */
+figure { 
+   border: 1pt solid #A8A8A8; 
+   background-color: #EDEDDD;
+   padding: 5px;
+   margin: 10px;
+   width: 150px;
+   float: right;
+}
+
+figure img {
+   display: block;
+   max-width: 100%;
+   height: auto;
+}
+
+

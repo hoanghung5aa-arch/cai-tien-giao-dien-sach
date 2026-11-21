@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exercise 7.17 - CSS filters</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="lab07-exercise17.css">
+</head>
+<body>
+    <main class="page-shell">
+        <header class="page-heading">
+            <p class="eyebrow">Lab 7 · Advanced CSS</p>
+            <h1>CSS filters</h1>
+            <p>Each image uses a filter function. Hover over an image to compare it with the original.</p>
+        </header>
+        <section class="filter-gallery" aria-label="Examples of CSS image filters">
+            <figure class="filter-card"><img alt="Self portrait in a straw hat, original colors" src="images/Lebrun.jpg"><figcaption>Original</figcaption></figure>
+            <figure class="filter-card"><img class="saturate" alt="Self portrait with increased color saturation" src="images/Lebrun.jpg"><figcaption>saturate(3)</figcaption></figure>
+            <figure class="filter-card"><img class="grayscale" alt="Self portrait in grayscale" src="images/Lebrun.jpg"><figcaption>grayscale(100%)</figcaption></figure>
+            <figure class="filter-card"><img class="contrast" alt="Self portrait with increased contrast" src="images/Lebrun.jpg"><figcaption>contrast(160%)</figcaption></figure>
+            <figure class="filter-card"><img class="brightness" alt="Self portrait with reduced brightness" src="images/Lebrun.jpg"><figcaption>brightness(30%)</figcaption></figure>
+            <figure class="filter-card"><img class="blur" alt="Self portrait with a blur effect" src="images/Lebrun.jpg"><figcaption>blur(3px)</figcaption></figure>
+            <figure class="filter-card"><img class="invert" alt="Self portrait with inverted colors" src="images/Lebrun.jpg"><figcaption>invert(100%)</figcaption></figure>
+            <figure class="filter-card"><img class="sepia" alt="Self portrait with a sepia tone" src="images/Lebrun.jpg"><figcaption>sepia(100%)</figcaption></figure>
+            <figure class="filter-card"><img class="huerotate" alt="Self portrait with a 90 degree hue rotation" src="images/Lebrun.jpg"><figcaption>hue-rotate(90deg)</figcaption></figure>
+            <figure class="filter-card"><img class="filter-opacity" alt="Self portrait at half opacity" src="images/Lebrun.jpg"><figcaption>opacity(50%)</figcaption></figure>
+            <figure class="filter-card"><img class="combo-1" alt="Self portrait with combined brightness, contrast, grayscale, invert, and sepia filters" src="images/Lebrun.jpg"><figcaption>Combined filter 1</figcaption></figure>
+            <figure class="filter-card"><img class="combo-2" alt="Self portrait with combined brightness, contrast, hue, and saturation filters" src="images/Lebrun.jpg"><figcaption>Combined filter 2</figcaption></figure>
+        </section>
+    </main>
+</body>
+</html>
