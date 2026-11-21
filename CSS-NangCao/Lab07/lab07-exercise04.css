@@ -13,11 +13,11 @@ figure {
    top: 150px;
    left: 200px;
    position: absolute;
-   z-index: 5;
+   z-index: -1;
 }
 
-/* Caption là con của figure, vì vậy nó vẫn được vẽ phía trên ảnh dù z-index
-   thấp hơn z-index của cha. */
+/* Đã thử figure 5/caption 1, rồi figure 1/caption -1.
+   Bước cuối -1/1 đưa stacking context của figure và caption xuống dưới văn bản. */
 figcaption {
    font-size: 1.25em;
    background-color: yellow;
@@ -34,6 +34,3 @@ figure img {
    height: auto;
 }
 
-/* Thử thêm theo đề: figure z-index: 1 với caption z-index: -1; sau đó đổi
-   figure thành z-index: -1 và caption thành z-index: 1 để quan sát stacking
-   context của cha tác động lên các phần tử con có định vị. */
