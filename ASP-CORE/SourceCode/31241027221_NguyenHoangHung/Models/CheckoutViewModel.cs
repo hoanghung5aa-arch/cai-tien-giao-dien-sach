@@ -16,11 +16,13 @@ public class CheckoutViewModel
 
     [Required(ErrorMessage = "Vui lòng nhập email.")]
     [EmailAddress(ErrorMessage = "Email chưa đúng định dạng.")]
+    [StringLength(254)]
     [Display(Name = "Email")]
     public string Email { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Vui lòng nhập số điện thoại.")]
     [Phone(ErrorMessage = "Số điện thoại chưa đúng định dạng.")]
+    [StringLength(20)]
     [Display(Name = "Số điện thoại")]
     public string Mobile { get; set; } = string.Empty;
 

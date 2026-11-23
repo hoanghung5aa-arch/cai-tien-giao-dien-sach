@@ -94,7 +94,7 @@ dotnet --version
 dotnet tool restore
 dotnet restore SourceCode/31241027221_NguyenHoangHung/31241027221_NguyenHoangHung.csproj
 dotnet ef database update --project SourceCode/31241027221_NguyenHoangHung/31241027221_NguyenHoangHung.csproj
-dotnet run --project SourceCode/31241027221_NguyenHoangHung/31241027221_NguyenHoangHung.csproj
+dotnet run --launch-profile https --project SourceCode/31241027221_NguyenHoangHung/31241027221_NguyenHoangHung.csproj
 ```
 
 Mở địa chỉ HTTPS in ở dòng `Now listening on` trong terminal. Cổng chạy local có thể khác nhau theo máy. Dự án ghim SDK tối thiểu 10.0.100 trong `global.json` và cho phép cập nhật lên feature band mới hơn của .NET 10; tool manifest ghim `dotnet-ef` 10.0.15.

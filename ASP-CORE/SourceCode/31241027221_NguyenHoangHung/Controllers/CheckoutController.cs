@@ -88,7 +88,7 @@ public sealed class CheckoutController : Controller
         }
 
         HttpContext.Session.SetString(LastOrderSessionKey, order.Id.ToString(System.Globalization.CultureInfo.InvariantCulture));
-        var emailSent = await _emailService.TrySendConfirmationAsync(order, order.ShippingDetail, cancellationToken);
+        var emailSent = await _emailService.TrySendConfirmationAsync(order, order.ShippingDetail, movies, cancellationToken);
         HttpContext.Session.ClearCart();
         TempData["EmailSent"] = emailSent;
         return RedirectToAction(nameof(ThankYou), new { id = order.Id });
