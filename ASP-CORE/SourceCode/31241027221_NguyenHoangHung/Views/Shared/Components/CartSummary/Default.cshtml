@@ -1,0 +1,6 @@
+@model _31241027221_NguyenHoangHung.ViewComponents.CartSummaryViewComponent.CartSummary
+<a class="cart-nav-link" asp-controller="Cart" asp-action="Index" aria-label="Giỏ hàng, @Model.Count sản phẩm">
+    <span>Giỏ hàng</span>
+    <b>@Model.Count</b>
+    <span class="cart-nav-total">@Model.Total.ToString("N0") ₫</span>
+</a>

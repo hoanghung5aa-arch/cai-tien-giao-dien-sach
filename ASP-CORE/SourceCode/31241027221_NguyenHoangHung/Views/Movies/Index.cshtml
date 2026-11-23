@@ -1,0 +1,96 @@
+@model IEnumerable<Movie>
+@{
+    ViewData["Title"] = "Khám phá phim";
+    var movies = Model.ToList();
+    var leadMovie = movies.FirstOrDefault(movie =>
+        !string.IsNullOrWhiteSpace(movie.PicturePath) && movie.PicturePath != "/images/no-poster.svg");
+}
+
+<section class="hero-panel">
+    <div class="hero-copy">
+        <span class="eyebrow">Danh mục của Góc Phim Hưng</span>
+        <h1>Chọn một phim<br /><span>cho buổi tối này.</span></h1>
+        <p>Tìm theo tên hoặc thể loại, xem thông tin từng tựa phim và đặt hàng trong vài bước.</p>
+        <div class="hero-actions">
+            <a class="btn btn-forest" href="#catalog">Xem danh mục phim</a>
+            <a class="btn btn-outline-forest" asp-controller="Genres" asp-action="Index">Duyệt thể loại</a>
+        </div>
+    </div>
+    @if (leadMovie is not null)
+    {
+        <article class="hero-feature">
+            <img src="@leadMovie.PicturePath" alt="@(leadMovie.PicturePath.EndsWith(".svg", StringComparison.OrdinalIgnoreCase) ? "Bìa minh họa của cửa hàng" : $"Ảnh bìa của {leadMovie.Title}")" />
+            <div class="hero-feature-copy">
+                <small>@(leadMovie.PicturePath.EndsWith(".svg", StringComparison.OrdinalIgnoreCase) ? "Bìa minh họa dự án" : "Một tựa trong danh mục")</small>
+                <h2>@leadMovie.Title</h2>
+                <p>@leadMovie.GenreObj?.Name</p>
+                <span class="hero-price">@leadMovie.Price.ToString("N0") ₫</span>
+            </div>
+        </article>
+    }
+</section>
+
+<section class="catalog-section" id="catalog">
+    <div class="section-heading">
+        <div><span class="eyebrow eyebrow-dark">Tìm và chọn</span><h2>Danh mục phim</h2><p>Lọc danh sách theo tên phim hoặc thể loại.</p></div>
+        <a asp-action="Create" class="btn btn-outline-forest">Thêm phim</a>
+    </div>
+    <form asp-action="Index" method="get" class="catalog-filter">
+        <label class="visually-hidden" for="search">Tìm theo tên phim</label>
+        <input id="search" name="search" value="@ViewBag.Search" class="form-control" placeholder="Tên phim" />
+        <label class="visually-hidden" for="genreId">Lọc theo thể loại</label>
+        <select id="genreId" name="genreId" class="form-select" asp-items="ViewBag.Genres"><option value="">Tất cả thể loại</option></select>
+        <button class="btn btn-forest" type="submit">Tìm phim</button>
+        @if (!string.IsNullOrWhiteSpace(ViewBag.Search as string) || Context.Request.Query.ContainsKey("genreId"))
+        {
+            <a asp-action="Index" class="filter-reset">Xóa bộ lọc</a>
+        }
+    </form>
+
+    @if (movies.Count == 0)
+    {
+        <div class="empty-state">
+            <h3>Chưa có tựa phim phù hợp</h3>
+            <p>Thử tên khác hoặc chọn một thể loại khác trong danh sách.</p>
+            <a asp-action="Index" class="btn btn-outline-forest">Xóa bộ lọc</a>
+        </div>
+    }
+    else
+    {
+        <div class="movie-grid">
+        @foreach (var movie in movies)
+        {
+            var projectArt = movie.PicturePath.EndsWith(".svg", StringComparison.OrdinalIgnoreCase) && movie.PicturePath != "/images/no-poster.svg";
+            var imageAlt = movie.PicturePath == "/images/no-poster.svg"
+                ? "Chưa có ảnh bìa"
+                : projectArt ? "Bìa minh họa của cửa hàng" : $"Ảnh bìa của {movie.Title}";
+            <article class="movie-card">
+                <a class="poster-wrap" asp-action="Details" asp-route-id="@movie.Id" aria-label="Xem thông tin phim @movie.Title">
+                    <img class="movie-poster" src="@movie.PicturePath" alt="@imageAlt" loading="lazy" />
+                    <span class="rating-badge" aria-label="Xếp hạng @movie.Rated trên 5">@movie.Rated.ToString("0.#") / 5</span>
+                </a>
+                <div class="movie-card-body">
+                    <div class="movie-meta"><span>@movie.GenreObj?.Name</span><span>@movie.ReleaseDate.ToString("dd/MM/yyyy")</span></div>
+                    <h3><a asp-action="Details" asp-route-id="@movie.Id">@movie.Title</a></h3>
+                    <p class="movie-summary">@movie.Summary</p>
+                    <div class="movie-card-bottom">
+                        <strong>@movie.Price.ToString("N0") <small>₫</small></strong>
+                        <form asp-controller="Movies" asp-action="AddToCart" asp-route-id="@movie.Id" method="post">
+                            <button class="btn btn-forest btn-icon" type="submit" aria-label="Thêm @movie.Title vào giỏ hàng">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h2l2 10h9l2-7H8"/><circle cx="10" cy="19" r="1"/><circle cx="17" cy="19" r="1"/><path d="M12 7v4m-2-2h4"/></svg>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="card-admin-links"><a asp-action="Edit" asp-route-id="@movie.Id">Chỉnh sửa</a><a asp-action="Delete" asp-route-id="@movie.Id">Xóa</a></div>
+                </div>
+            </article>
+        }
+        </div>
+    }
+</section>
+
+<section class="value-strip" aria-label="Chức năng cửa hàng">
+    <div><strong>Duyệt theo thể loại</strong><small>Lọc phim theo danh mục đã tạo</small></div>
+    <div><strong>Xem thông tin phim</strong><small>Đọc giới thiệu, ngày phát hành và giá</small></div>
+    <div><strong>Đặt hàng trực tuyến</strong><small>Theo dõi số lượng và tổng tiền trong giỏ</small></div>
+</section>

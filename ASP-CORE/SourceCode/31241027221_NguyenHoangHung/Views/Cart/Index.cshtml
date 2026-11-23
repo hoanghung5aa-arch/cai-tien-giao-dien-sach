@@ -1,0 +1,46 @@
+@model IReadOnlyList<CartItem>
+@{ ViewData["Title"] = "Giỏ hàng"; var total = Model.Sum(item => item.LineTotal); }
+<div class="form-page">
+    <a asp-controller="Movies" asp-action="Index" class="back-link">Tiếp tục chọn phim</a>
+    <div class="form-heading"><span class="eyebrow eyebrow-dark">Giỏ hàng</span><h1>Những tựa phim đã chọn</h1><p>Điều chỉnh số lượng trước khi nhập thông tin người nhận.</p></div>
+    @if (Model.Count == 0)
+    {
+        <div class="empty-state"><h3>Giỏ hàng đang trống</h3><p>Chọn một tựa phim trong danh mục để bắt đầu.</p><a asp-controller="Movies" asp-action="Index" class="btn btn-forest">Mở danh mục phim</a></div>
+    }
+    else
+    {
+        <div class="cart-layout">
+            <section class="cart-lines" aria-label="Sản phẩm trong giỏ">
+            @foreach (var item in Model)
+            {
+                var projectArt = item.PicturePath.EndsWith(".svg", StringComparison.OrdinalIgnoreCase) && item.PicturePath != "/images/no-poster.svg";
+                var imageAlt = item.PicturePath == "/images/no-poster.svg"
+                    ? "Chưa có ảnh bìa"
+                    : projectArt ? "Bìa minh họa của cửa hàng" : $"Ảnh bìa của {item.Title}";
+                <article class="cart-line">
+                    <img src="@item.PicturePath" alt="@imageAlt" />
+                    <div class="cart-line-info"><h2>@item.Title</h2><span>Đơn giá @item.UnitPrice.ToString("N0") ₫</span></div>
+                    <form asp-controller="Cart" asp-action="Update" method="post" class="quantity-form">
+                        <input type="hidden" name="id" value="@item.MovieId" />
+                        <label class="visually-hidden" for="quantity-@item.MovieId">Số lượng @item.Title</label>
+                        <input id="quantity-@item.MovieId" class="form-control" type="number" name="quantity" value="@item.Quantity" min="1" max="50" />
+                        <button class="btn btn-outline-forest btn-small" type="submit">Cập nhật</button>
+                    </form>
+                    <strong class="line-total">@item.LineTotal.ToString("N0") ₫</strong>
+                    <form asp-controller="Cart" asp-action="Remove" method="post"><input type="hidden" name="id" value="@item.MovieId" /><button class="remove-link" type="submit">Xóa</button></form>
+                </article>
+            }
+            </section>
+            <aside class="summary-card">
+                <span class="eyebrow eyebrow-dark">Tóm tắt</span>
+                <h2>Đơn hàng</h2>
+                <div class="summary-row"><span>@Model.Sum(item => item.Quantity) sản phẩm</span><span>@total.ToString("N0") ₫</span></div>
+                <div class="summary-row muted"><span>Phương thức thanh toán</span><span>Khi nhận hàng</span></div>
+                <hr />
+                <div class="summary-row summary-total"><strong>Tổng cộng</strong><strong>@total.ToString("N0") ₫</strong></div>
+                <a asp-controller="Checkout" asp-action="Index" class="btn btn-forest w-100">Tiếp tục đặt hàng</a>
+                <p class="summary-note">Giá được đối chiếu lại từ danh mục khi lưu đơn hàng.</p>
+            </aside>
+        </div>
+    }
+</div>

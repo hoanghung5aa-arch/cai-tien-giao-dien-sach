@@ -1,0 +1,26 @@
+@model Movie
+@{ ViewData["Title"] = "Thêm phim"; }
+<div class="form-page">
+    <a asp-action="Index" class="back-link">Quay lại danh mục phim</a>
+    <div class="form-heading"><span class="eyebrow eyebrow-dark">Quản lý danh mục</span><h1>Thêm một tựa phim</h1><p>Nhập thông tin phim và thêm ảnh bìa để hoàn thiện mục trong danh mục.</p></div>
+    <form asp-action="Create" method="post" enctype="multipart/form-data" class="editor-card">
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+        <div class="form-grid">
+            <div class="field"><label asp-for="Title"></label><input asp-for="Title" class="form-control" minlength="3" maxlength="200" placeholder="Tên phim" /><span asp-validation-for="Title"></span></div>
+            <div class="field"><label asp-for="GenreId"></label><select asp-for="GenreId" class="form-select" asp-items="ViewBag.GenreId"><option value="">Chọn thể loại</option></select><span asp-validation-for="GenreId"></span></div>
+            <div class="field"><label asp-for="ReleaseDate"></label><input asp-for="ReleaseDate" type="date" class="form-control" /><span class="field-hint">Chọn ngày phát hành trong tương lai.</span><span asp-validation-for="ReleaseDate"></span></div>
+            <div class="field"><label asp-for="Price"></label><div class="input-suffix"><input asp-for="Price" class="form-control" min="5000" step="1000" placeholder="129000" /><span>VNĐ</span></div><span asp-validation-for="Price"></span></div>
+            <div class="field"><label asp-for="Rated">Xếp hạng (1–5)</label><input asp-for="Rated" type="number" class="form-control" min="1" max="5" step="0.1" placeholder="4.5" /><span class="field-hint">Dùng thang điểm từ 1 đến 5.</span><span asp-validation-for="Rated"></span></div>
+            <div class="field field-wide"><label asp-for="Summary"></label><textarea asp-for="Summary" class="form-control" rows="4" minlength="3" maxlength="1200" placeholder="Giới thiệu ngắn về phim"></textarea><span asp-validation-for="Summary"></span></div>
+            <div class="field field-wide">
+                <label asp-for="PictureUpload"></label>
+                <input asp-for="PictureUpload" type="file" class="form-control" accept=".jpg,.jpeg,.png,.gif,.webp,image/jpeg,image/png,image/gif,image/webp" data-image-preview-input />
+                <span class="field-hint">JPG, PNG, GIF hoặc WEBP, tối đa 5 MB. Nếu chưa chọn ảnh, cửa hàng dùng ảnh bìa mặc định.</span>
+                <img class="upload-preview" data-image-preview alt="Ảnh xem trước" />
+                <span asp-validation-for="PictureUpload"></span>
+            </div>
+        </div>
+        <div class="form-actions"><a asp-action="Index" class="btn btn-outline-forest">Hủy</a><button type="submit" class="btn btn-forest">Lưu tựa phim</button></div>
+    </form>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

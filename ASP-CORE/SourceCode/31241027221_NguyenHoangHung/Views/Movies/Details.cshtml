@@ -1,0 +1,28 @@
+@model Movie
+@{
+    ViewData["Title"] = Model.Title;
+    var projectArt = Model.PicturePath.EndsWith(".svg", StringComparison.OrdinalIgnoreCase) && Model.PicturePath != "/images/no-poster.svg";
+    var imageAlt = Model.PicturePath == "/images/no-poster.svg"
+        ? "Chưa có ảnh bìa"
+        : projectArt ? "Bìa minh họa của cửa hàng" : $"Ảnh bìa của {Model.Title}";
+}
+<div class="form-page">
+    <a asp-action="Index" class="back-link">Quay lại danh mục phim</a>
+    <article class="detail-card">
+        <div class="detail-poster"><img src="@Model.PicturePath" alt="@imageAlt" /></div>
+        <div class="detail-copy">
+            <span class="eyebrow eyebrow-dark">@Model.GenreObj?.Name</span>
+            <h1>@Model.Title</h1>
+            <p class="detail-summary">@Model.Summary</p>
+            <dl class="detail-facts">
+                <div><dt>Ngày phát hành</dt><dd>@Model.ReleaseDate.ToString("dd/MM/yyyy")</dd></div>
+                <div><dt>Xếp hạng</dt><dd>@Model.Rated.ToString("0.#") / 5</dd></div>
+            </dl>
+            <div class="detail-buy">
+                <strong>@Model.Price.ToString("N0") <small>₫</small></strong>
+                <form asp-controller="Movies" asp-action="AddToCart" asp-route-id="@Model.Id" method="post"><button class="btn btn-forest" type="submit">Thêm vào giỏ hàng</button></form>
+            </div>
+            <div class="card-admin-links"><a asp-action="Edit" asp-route-id="@Model.Id">Chỉnh sửa thông tin</a><a asp-action="Delete" asp-route-id="@Model.Id">Xóa phim</a></div>
+        </div>
+    </article>
+</div>

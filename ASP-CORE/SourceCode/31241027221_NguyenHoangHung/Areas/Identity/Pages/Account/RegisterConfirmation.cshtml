@@ -1,0 +1,27 @@
+@page
+@model _31241027221_NguyenHoangHung.Areas.Identity.Pages.Account.RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Xác nhận email";
+}
+
+<section class="container py-5">
+    <div class="mx-auto" style="max-width: 44rem;">
+        <p class="text-uppercase small fw-semibold text-primary mb-2">Góc Phim Hưng</p>
+        <h1 class="display-6 mb-3">Xác nhận email</h1>
+        <p class="lead">Tài khoản <strong>@Model.Email</strong> đã được tạo. Hãy xác nhận email để đăng nhập.</p>
+
+        @if (Model.DisplayConfirmAccountLink && !string.IsNullOrWhiteSpace(Model.EmailConfirmationUrl))
+        {
+            <div class="alert alert-info" role="status">
+                Đây là môi trường phát triển trên máy cá nhân. Bấm nút bên dưới để xác nhận tài khoản.
+            </div>
+            <a class="btn btn-primary" href="@Model.EmailConfirmationUrl">Xác nhận tài khoản</a>
+        }
+        else
+        {
+            <div class="alert alert-success" role="status">
+                Một email xác nhận đã được gửi đến địa chỉ trên. Mở email và làm theo hướng dẫn để hoàn tất đăng ký.
+            </div>
+        }
+    </div>
+</section>

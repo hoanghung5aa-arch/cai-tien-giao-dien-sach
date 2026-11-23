@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f3eb" />
+    <title>@ViewData["Title"] · Góc Phim Hưng</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    @{ var currentController = ViewContext.RouteData.Values["controller"]?.ToString(); }
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg container">
+            <a class="navbar-brand brand" asp-controller="Movies" asp-action="Index" aria-label="Góc Phim Hưng, về danh mục phim">
+                <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 3v18M16 3v18M4 8h4M16 8h4M4 16h4M16 16h4"/></svg></span>
+                <span>Góc Phim Hưng</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Mở menu"><span class="nav-toggle-icon" aria-hidden="true"></span></button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link @(currentController == "Movies" ? "active" : "")" asp-controller="Movies" asp-action="Index">Danh mục phim</a></li>
+                    <li class="nav-item"><a class="nav-link @(currentController == "Genres" ? "active" : "")" asp-controller="Genres" asp-action="Index">Thể loại</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Movies" asp-action="Create">Thêm phim</a></li>
+                    <li class="nav-item">@await Component.InvokeAsync("CartSummary")</li>
+                    <li class="nav-item">@await Html.PartialAsync("_LoginPartial")</li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container page-content">
+        @if (TempData["Notice"] is string notice)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="status">
+                @notice
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+            </div>
+        }
+        @RenderBody()
+    </main>
+    <footer class="site-footer">
+        <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+            <span class="footer-brand">Góc Phim Hưng · Cửa hàng phim trực tuyến</span>
+            <span class="footer-owner">Nguyễn Hoàng Hưng · MSSV 31241027221</span>
+        </div>
+    </footer>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

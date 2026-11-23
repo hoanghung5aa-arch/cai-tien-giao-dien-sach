@@ -1,0 +1,30 @@
+@model Movie
+@{
+    ViewData["Title"] = "Xóa phim";
+    var projectArt = Model.PicturePath.EndsWith(".svg", StringComparison.OrdinalIgnoreCase) && Model.PicturePath != "/images/no-poster.svg";
+    var imageAlt = Model.PicturePath == "/images/no-poster.svg"
+        ? "Chưa có ảnh bìa"
+        : projectArt ? "Bìa minh họa của cửa hàng" : $"Ảnh bìa của {Model.Title}";
+}
+<div class="form-page">
+    <a asp-action="Index" class="back-link">Quay lại danh mục phim</a>
+    <section class="editor-card confirm-card">
+        <img class="confirm-poster" src="@Model.PicturePath" alt="@imageAlt" />
+        <div>
+            <span class="eyebrow eyebrow-dark">Xác nhận xóa</span>
+            <h1>Xóa “@Model.Title” khỏi danh mục?</h1>
+            <p>Thao tác này xóa thông tin phim khỏi danh mục cửa hàng.</p>
+            <div class="confirm-facts">
+                <span>Thể loại: <strong>@Model.GenreObj?.Name</strong></span>
+                <span>Ngày phát hành: <strong>@Model.ReleaseDate.ToString("dd/MM/yyyy")</strong></span>
+                <span>Giá: <strong>@Model.Price.ToString("N0") ₫</strong></span>
+                <span>Xếp hạng: <strong>@Model.Rated.ToString("0.#") / 5</strong></span>
+            </div>
+        </div>
+        <form asp-action="Delete" method="post" class="form-actions">
+            <input type="hidden" asp-for="Id" />
+            <a asp-action="Index" class="btn btn-outline-forest">Giữ lại</a>
+            <button type="submit" class="btn btn-danger">Xóa phim</button>
+        </form>
+    </section>
+</div>

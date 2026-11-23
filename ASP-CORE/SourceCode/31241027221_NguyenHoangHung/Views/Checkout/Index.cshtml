@@ -1,0 +1,31 @@
+@model CheckoutViewModel
+@{ ViewData["Title"] = "Thông tin đặt hàng"; }
+<div class="form-page">
+    <a asp-controller="Cart" asp-action="Index" class="back-link">Quay lại giỏ hàng</a>
+    <div class="form-heading"><span class="eyebrow eyebrow-dark">Đặt hàng</span><h1>Thông tin người nhận</h1><p>Nhập thông tin giao hàng và kiểm tra lại đơn hàng trước khi xác nhận.</p></div>
+    <div class="checkout-layout">
+        <form asp-action="Index" method="post" class="editor-card checkout-form">
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+            <div class="form-grid">
+                <div class="field"><label asp-for="FullName"></label><input asp-for="FullName" class="form-control" autocomplete="name" placeholder="Họ và tên người nhận" /><span asp-validation-for="FullName"></span></div>
+                <div class="field"><label asp-for="Email"></label><input asp-for="Email" class="form-control" autocomplete="email" placeholder="ban@example.com" /><span asp-validation-for="Email"></span></div>
+                <div class="field field-wide"><label asp-for="Address"></label><textarea asp-for="Address" class="form-control" rows="3" autocomplete="street-address" placeholder="Số nhà, đường, phường/xã, tỉnh/thành phố"></textarea><span asp-validation-for="Address"></span></div>
+                <div class="field"><label asp-for="Mobile"></label><input asp-for="Mobile" class="form-control" autocomplete="tel" placeholder="Số điện thoại người nhận" /><span asp-validation-for="Mobile"></span></div>
+                <div class="field"><label asp-for="ReleaseDate"></label><input asp-for="ReleaseDate" type="date" class="form-control" min="@DateTime.Today.AddDays(1).ToString("yyyy-MM-dd")" data-min-date-tomorrow="true" /><span asp-validation-for="ReleaseDate"></span></div>
+            </div>
+            <div class="payment-note"><strong>Thanh toán khi nhận hàng</strong><span>Thông tin người nhận và ngày nhận dự kiến được lưu cùng đơn hàng.</span></div>
+            <button type="submit" class="btn btn-forest w-100">Xác nhận đặt hàng · @Model.Total.ToString("N0") ₫</button>
+        </form>
+        <aside class="summary-card">
+            <span class="eyebrow eyebrow-dark">Tóm tắt</span><h2>Sản phẩm</h2>
+            @foreach (var item in Model.Items)
+            {
+                <div class="checkout-item"><img src="@item.PicturePath" alt="" /><div><strong>@item.Title</strong><small>Số lượng: @item.Quantity</small></div><span>@item.LineTotal.ToString("N0") ₫</span></div>
+            }
+            <hr />
+            <div class="summary-row summary-total"><strong>Tổng cộng</strong><strong>@Model.Total.ToString("N0") ₫</strong></div>
+            <p class="summary-note">Email xác nhận được gửi nếu SMTP đã được cấu hình.</p>
+        </aside>
+    </div>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

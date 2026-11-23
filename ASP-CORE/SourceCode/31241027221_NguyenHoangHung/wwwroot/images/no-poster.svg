@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 600" role="img" aria-label="Poster chưa có ảnh">
+  <defs><linearGradient id="bg" x2="0" y2="1"><stop stop-color="#173a35"/><stop offset="1" stop-color="#101a20"/></linearGradient></defs>
+  <rect width="420" height="600" fill="url(#bg)"/><circle cx="210" cy="235" r="88" fill="#e7bd70" opacity=".92"/><path d="M0 390 112 300l75 69 68-96 165 129v198H0Z" fill="#1d6853"/><path d="M0 455 120 365l100 92 91-83 109 78v148H0Z" fill="#0c2925"/>
+  <text x="210" y="525" text-anchor="middle" fill="#f8f3e7" font-family="Arial,sans-serif" font-size="22" letter-spacing="5">GÓC PHIM HƯNG</text>
+</svg>

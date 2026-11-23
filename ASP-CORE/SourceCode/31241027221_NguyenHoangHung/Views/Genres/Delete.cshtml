@@ -1,0 +1,14 @@
+@model Genre
+@{ ViewData["Title"] = "Xóa thể loại"; }
+<div class="form-page">
+    <a asp-action="Index" class="back-link">Quay lại danh sách thể loại</a>
+    <section class="editor-card">
+        <span class="eyebrow eyebrow-dark">Xác nhận xóa</span>
+        <h1>Xóa thể loại “@Model.Name”?</h1>
+        <p>Thể loại này hiện có @Model.Movies.Count tựa phim. Chuyển các phim sang thể loại khác trước khi xóa.</p>
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-actions"><a asp-action="Index" class="btn btn-outline-forest">Quay lại</a><button type="submit" class="btn btn-danger" disabled="@(Model.Movies.Count > 0)">Xóa thể loại</button></div>
+        </form>
+    </section>
+</div>

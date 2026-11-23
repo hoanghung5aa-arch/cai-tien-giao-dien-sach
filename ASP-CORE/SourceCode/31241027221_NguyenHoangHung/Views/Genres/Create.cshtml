@@ -1,0 +1,12 @@
+@model Genre
+@{ ViewData["Title"] = "Thêm thể loại"; }
+<div class="form-page">
+    <a asp-action="Index" class="back-link">Quay lại danh sách thể loại</a>
+    <div class="form-heading"><span class="eyebrow eyebrow-dark">Danh mục phim</span><h1>Thêm thể loại</h1><p>Đặt tên cho một nhóm phim mới.</p></div>
+    <form asp-action="Create" method="post" class="editor-card genre-editor">
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+        <div class="field"><label asp-for="Name"></label><input asp-for="Name" class="form-control" maxlength="200" placeholder="Tên thể loại" autofocus /><span asp-validation-for="Name"></span></div>
+        <div class="form-actions"><a asp-action="Index" class="btn btn-outline-forest">Hủy</a><button type="submit" class="btn btn-forest">Lưu thể loại</button></div>
+    </form>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

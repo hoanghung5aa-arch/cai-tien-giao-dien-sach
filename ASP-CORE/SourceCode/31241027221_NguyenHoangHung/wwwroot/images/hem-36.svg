@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 600">
+  <defs><linearGradient id="night" x2="0" y2="1"><stop stop-color="#4b3550"/><stop offset="1" stop-color="#151d25"/></linearGradient></defs>
+  <rect width="420" height="600" fill="url(#night)"/><path d="M70 0h280v600H70Z" fill="#222b32"/><path d="M112 0h196v600H112Z" fill="#302d38"/><rect x="126" y="112" width="54" height="80" rx="4" fill="#f1bd6e"/><rect x="242" y="238" width="55" height="72" rx="4" fill="#7bd0bb"/><path d="M188 600V350h44v250" fill="#10151b"/><circle cx="68" cy="422" r="36" fill="#ec7654"/><path d="M44 420h50m-26-26v54" stroke="#fff4dc" stroke-width="7"/><text x="30" y="72" fill="#f7eee1" font-family="Arial,sans-serif" font-size="34" font-weight="bold">HẺM 36</text><text x="30" y="552" fill="#f0c782" font-family="Arial,sans-serif" font-size="14" letter-spacing="3">CƯỜI MỘT CHÚT, THƯƠNG NHAU NHIỀU</text>
+</svg>

@@ -1,0 +1,26 @@
+@model IEnumerable<Genre>
+@{ ViewData["Title"] = "Thể loại phim"; var genres = Model.ToList(); }
+<div class="form-page">
+    <a asp-controller="Movies" asp-action="Index" class="back-link">Quay lại danh mục phim</a>
+    <div class="section-heading">
+        <div><span class="eyebrow eyebrow-dark">Danh mục phim</span><h2>Thể loại</h2><p>Tổ chức phim theo chủ đề.</p></div>
+        <a asp-action="Create" class="btn btn-forest">Thêm thể loại</a>
+    </div>
+    @if (genres.Count == 0)
+    {
+        <div class="empty-state"><h3>Chưa có thể loại</h3><p>Tạo thể loại để phân nhóm các tựa phim trong danh mục.</p><a asp-action="Create" class="btn btn-forest">Tạo thể loại</a></div>
+    }
+    else
+    {
+        <div class="genre-list">
+        @foreach (var genre in genres)
+        {
+            <article class="genre-row">
+                <div class="genre-name"><h3>@genre.Name</h3><span>@genre.Movies.Count tựa phim</span></div>
+                <a asp-controller="Movies" asp-action="Index" asp-route-genreId="@genre.Id" class="genre-view">Xem phim</a>
+                <div class="genre-actions"><a asp-action="Edit" asp-route-id="@genre.Id">Sửa</a><a asp-action="Delete" asp-route-id="@genre.Id">Xóa</a></div>
+            </article>
+        }
+        </div>
+    }
+</div>

@@ -1,0 +1,12 @@
+@model ErrorViewModel
+@{ ViewData["Title"] = "Đã xảy ra lỗi"; }
+<section class="editor-card error-card">
+    <span class="eyebrow eyebrow-dark">Góc Phim Hưng</span>
+    <h1>Trang này chưa thể tải</h1>
+    <p>Đã xảy ra lỗi khi xử lý yêu cầu. Bạn có thể quay lại danh mục phim và thử lại.</p>
+    @if (Model.ShowRequestId)
+    {
+        <p class="request-id">Mã yêu cầu: @Model.RequestId</p>
+    }
+    <a asp-controller="Movies" asp-action="Index" class="btn btn-forest">Về danh mục phim</a>
+</section>

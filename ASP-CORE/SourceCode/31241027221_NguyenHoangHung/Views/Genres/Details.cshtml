@@ -1,0 +1,11 @@
+@model Genre
+@{ ViewData["Title"] = Model.Name; }
+<div class="form-page">
+    <a asp-action="Index" class="back-link">Quay lại danh sách thể loại</a>
+    <section class="editor-card genre-editor">
+        <span class="eyebrow eyebrow-dark">Thể loại</span>
+        <h1>@Model.Name</h1>
+        <p>@Model.Movies.Count tựa phim trong danh mục.</p>
+        <div class="form-actions"><a class="btn btn-outline-forest" asp-action="Edit" asp-route-id="@Model.Id">Chỉnh sửa tên</a><a class="btn btn-forest" asp-controller="Movies" asp-action="Index" asp-route-genreId="@Model.Id">Xem phim thuộc thể loại</a></div>
+    </section>
+</div>

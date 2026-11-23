@@ -1,0 +1,14 @@
+@model HoaDon
+@{ ViewData["Title"] = "Đơn hàng đã lưu"; }
+<section class="thanks-card">
+    <span class="eyebrow eyebrow-dark">Đơn hàng đã được ghi nhận</span>
+    <h1>Cảm ơn, @Model.ShippingDetail.FullName</h1>
+    <p>Đơn hàng <strong>#@Model.Id</strong> đã được lưu. Thông tin xác nhận sẽ được gửi đến <strong>@Model.ShippingDetail.Email</strong> nếu email được cấu hình.</p>
+    <div class="thanks-total"><span>Thanh toán khi nhận hàng</span><strong>@Model.Total.ToString("N0") ₫</strong></div>
+    <div class="summary-row"><span>Ngày nhận dự kiến</span><strong>@Model.ShippingDetail.ReleaseDate.ToString("dd/MM/yyyy")</strong></div>
+    @if (TempData["EmailSent"] is bool sent && sent)
+    { <p class="email-status">Email xác nhận đã được gửi đến hộp thư của bạn.</p> }
+    else
+    { <p class="email-status">Đơn hàng đã lưu. Chưa gửi được email xác nhận vì SMTP chưa được cấu hình.</p> }
+    <div class="form-actions"><a asp-controller="Movies" asp-action="Index" class="btn btn-forest">Tiếp tục xem phim</a><a asp-controller="Cart" asp-action="Index" class="btn btn-outline-forest">Giỏ hàng</a></div>
+</section>
