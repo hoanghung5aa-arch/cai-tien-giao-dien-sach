@@ -1,0 +1,40 @@
+@page
+@model _31241027221_NguyenHoangHung.Areas.Identity.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+<section class="container py-5">
+    <div class="mx-auto" style="max-width: 34rem;">
+        <p class="text-uppercase small fw-semibold text-primary mb-2">Góc Phim Hưng</p>
+        <h1 class="display-6 mb-2">Tạo tài khoản</h1>
+        <p class="text-secondary mb-4">Nhập email và tạo mật khẩu. Bạn cần xác nhận email trước khi đăng nhập.</p>
+
+        <form method="post" asp-route-returnUrl="@Model.ReturnUrl">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+            <div class="mb-3">
+                <label asp-for="Input.Email" class="form-label"></label>
+                <input asp-for="Input.Email" class="form-control" autocomplete="email" inputmode="email" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Input.Password" class="form-label"></label>
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <div class="form-text">Ít nhất 6 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt.</div>
+            </div>
+            <div class="mb-4">
+                <label asp-for="Input.ConfirmPassword" class="form-label"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
+        </form>
+
+        <p class="text-secondary mt-4 mb-0">Đã có tài khoản? <a asp-page="/Account/Login" asp-route-returnUrl="@Model.ReturnUrl">Đăng nhập</a></p>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

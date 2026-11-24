@@ -30,7 +30,7 @@ Bài tập cá nhân xây dựng website cửa hàng phim bằng ASP.NET Core MV
 - Giỏ hàng lưu trong session; có thể thêm sản phẩm, cập nhật số lượng (1–50), xóa dòng và xem tổng tiền.
 - Checkout kiểm tra thông tin nhận hàng, tải lại giá và thông tin phim từ SQL Server, rồi lưu hóa đơn, chi tiết hóa đơn và địa chỉ giao hàng trong cùng một transaction. `ShippingDetail` có quan hệ một-một với `HoaDon`; một hóa đơn có nhiều `ChiTietHoaDon`.
 - Các POST thay đổi dữ liệu trong luồng giỏ hàng, checkout, phim và thể loại dùng antiforgery token.
-- Tài khoản Identity cần xác nhận email. Cần cấu hình SMTP hợp lệ để gửi liên kết xác nhận ở Production. Email xác nhận đơn hàng gửi sau khi lưu đơn; lỗi SMTP được ghi log và không rollback đơn hàng.
+- Tài khoản Identity cần xác nhận email. Form đăng ký tự gửi liên kết xác nhận; khi SMTP lỗi, trang thông báo rằng tài khoản đã tạo nhưng thư chưa gửi và cho phép gửi lại. Liên kết trực tiếp chỉ hiển thị ở môi trường Development. Cần cấu hình SMTP hợp lệ để gửi email ở Production. Email xác nhận đơn hàng gửi sau khi lưu đơn; lỗi SMTP được ghi log và không rollback đơn hàng.
 
 Migration khởi tạo năm phim và ba thể loại mẫu. Trên site Somee, đã nhập thêm năm phim và ba thể loại qua các form quản trị; kiểm tra danh mục sau khi lưu thấy đủ năm tên phim mới và sáu thể loại tổng cộng.
 
@@ -81,7 +81,7 @@ dotnet user-secrets set "Email:UserName" "YOUR_GMAIL_ADDRESS" --project SourceCo
 dotnet user-secrets set "Email:AppPassword" "YOUR_GMAIL_APP_PASSWORD" --project SourceCode/31241027221_NguyenHoangHung/31241027221_NguyenHoangHung.csproj
 ```
 
-Có thể đặt các khóa email khác nếu cần: `Email:Host` (`smtp.gmail.com`), `Email:Port` (`587`) và `Email:FromName` (`Góc Phim Hưng`). Trên hosting, dùng `ConnectionStrings__DefaultConnection`, `Email__UserName`, `Email__AppPassword`, `Email__Host`, `Email__Port` và `Email__FromName` trong phần quản lý biến môi trường bí mật của host. Gmail App Password cần được tạo theo quy trình bảo mật hiện hành của Google; không dùng mật khẩu đăng nhập Gmail thông thường.
+Có thể đặt các khóa email khác nếu cần: `Email:Host` (`smtp.gmail.com`), `Email:Port` (`587`) và `Email:FromName` (`Góc Phim Hưng`). Trên hosting, dùng `ConnectionStrings__DefaultConnection`, `Email__UserName`, `Email__AppPassword`, `Email__Host`, `Email__Port` và `Email__FromName` trong phần quản lý biến môi trường bí mật của host. App Password có thể nhập liền hoặc có khoảng trắng; ứng dụng bỏ khoảng trắng trước khi xác thực SMTP. Gmail App Password cần được tạo theo quy trình bảo mật hiện hành của Google; không dùng mật khẩu đăng nhập Gmail thông thường.
 
 > **Cài database:** `Database/InstallDatabase.sql` hiện gồm đủ schema đến migration `AlignAssignmentModel` và đã được áp dụng thành công trên database Somee rỗng. Chỉ chạy script này một lần trên database SQL Server mới, rỗng. Với database đã có migration history, dùng `dotnet ef database update` để áp dụng các migration còn thiếu; không chạy lại script cài mới.
 

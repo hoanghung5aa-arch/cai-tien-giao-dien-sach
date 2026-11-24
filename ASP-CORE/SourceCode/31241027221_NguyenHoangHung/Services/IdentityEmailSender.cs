@@ -24,7 +24,12 @@ public sealed class IdentityEmailSender : IEmailSender
 
     public async Task SendEmailAsync(string email, string subject, string htmlMessage)
     {
-        if (string.IsNullOrWhiteSpace(_settings.UserName) || string.IsNullOrWhiteSpace(_settings.AppPassword))
+        var userName = _settings.UserName?.Trim();
+        var appPassword = _settings.AppPassword is null
+            ? string.Empty
+            : new string(_settings.AppPassword.Where(character => !char.IsWhiteSpace(character)).ToArray());
+
+        if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(appPassword))
         {
             if (_environment.IsDevelopment())
             {
@@ -37,9 +42,14 @@ public sealed class IdentityEmailSender : IEmailSender
             throw new InvalidOperationException("Configure Email:UserName and Email:AppPassword before registering an account.");
         }
 
+        if (string.IsNullOrWhiteSpace(_settings.Host) || _settings.Port is < 1 or > 65535)
+        {
+            throw new InvalidOperationException("Configure a valid Email:Host and Email:Port before sending email.");
+        }
+
         using var message = new MailMessage
         {
-            From = new MailAddress(_settings.UserName, _settings.FromName),
+            From = new MailAddress(userName, _settings.FromName),
             Subject = subject,
             Body = htmlMessage,
             IsBodyHtml = true
@@ -49,7 +59,8 @@ public sealed class IdentityEmailSender : IEmailSender
         using var client = new SmtpClient(_settings.Host, _settings.Port)
         {
             EnableSsl = true,
-            Credentials = new NetworkCredential(_settings.UserName, _settings.AppPassword)
+            Credentials = new NetworkCredential(userName, appPassword),
+            Timeout = 15000
         };
 
         try
@@ -62,6 +73,11 @@ public sealed class IdentityEmailSender : IEmailSender
                 exception,
                 "Không gửi được email xác nhận cho {Email} ở môi trường local.",
                 email);
+        }
+        catch (Exception exception)
+        {
+            _logger.LogError(exception, "Không gửi được email xác nhận qua SMTP.");
+            throw new InvalidOperationException("Email delivery failed. Check the SMTP host settings and try again.", exception);
         }
     }
 }

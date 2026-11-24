@@ -8,20 +8,42 @@
     <div class="mx-auto" style="max-width: 44rem;">
         <p class="text-uppercase small fw-semibold text-primary mb-2">Góc Phim Hưng</p>
         <h1 class="display-6 mb-3">Xác nhận email</h1>
-        <p class="lead">Tài khoản <strong>@Model.Email</strong> đã được tạo. Hãy xác nhận email để đăng nhập.</p>
+        <p class="lead">Tài khoản <strong>@Model.Email</strong> đã được tạo. Cần xác nhận email trước khi đăng nhập.</p>
 
-        @if (Model.DisplayConfirmAccountLink && !string.IsNullOrWhiteSpace(Model.EmailConfirmationUrl))
+        @if (Model.EmailConfirmed)
         {
-            <div class="alert alert-info" role="status">
-                Đây là môi trường phát triển trên máy cá nhân. Bấm nút bên dưới để xác nhận tài khoản.
-            </div>
-            <a class="btn btn-primary" href="@Model.EmailConfirmationUrl">Xác nhận tài khoản</a>
+            <div class="alert alert-success" role="status">Email này đã được xác nhận. Bạn có thể đăng nhập.</div>
+            <a class="btn btn-primary" asp-page="/Account/Login" asp-route-returnUrl="@Model.ReturnUrl">Đăng nhập</a>
         }
         else
         {
-            <div class="alert alert-success" role="status">
-                Một email xác nhận đã được gửi đến địa chỉ trên. Mở email và làm theo hướng dẫn để hoàn tất đăng ký.
-            </div>
+            @if (Model.DisplayConfirmAccountLink && !string.IsNullOrWhiteSpace(Model.EmailConfirmationUrl))
+            {
+                <div class="alert alert-info" role="status">Đường dẫn xác nhận chỉ hiển thị ở môi trường phát triển cục bộ.</div>
+                <a class="btn btn-primary mb-4" href="@Model.EmailConfirmationUrl">Xác nhận tài khoản</a>
+            }
+            else if (Model.EmailDeliveryStatus == "failed" || Model.ResendStatus == "failed")
+            {
+                <div class="alert alert-warning" role="alert">Tài khoản đã được tạo nhưng chưa gửi được email xác nhận. Kiểm tra cấu hình SMTP trên hosting rồi gửi lại email.</div>
+            }
+            else if (Model.ResendStatus == "confirmed")
+            {
+                <div class="alert alert-success" role="status">Email này đã được xác nhận. Bạn có thể đăng nhập.</div>
+            }
+            else if (Model.ResendStatus == "sent")
+            {
+                <div class="alert alert-success" role="status">Email xác nhận mới đã được gửi. Kiểm tra hộp thư đến và thư rác.</div>
+            }
+            else
+            {
+                <div class="alert alert-success" role="status">Nếu SMTP đã được cấu hình hợp lệ, email xác nhận đã được gửi. Kiểm tra hộp thư đến và thư rác.</div>
+            }
+
+            <form method="post" asp-page-handler="Resend" class="mt-3">
+                <input type="hidden" name="email" value="@Model.Email" />
+                <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                <button type="submit" class="btn btn-outline-primary">Gửi lại email xác nhận</button>
+            </form>
         }
     </div>
 </section>
