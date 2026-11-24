@@ -80,6 +80,7 @@ public sealed class MoviesController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(Movie movie, CancellationToken cancellationToken)
     {
+        NormalizeTextAndValidateMinimumLengths(movie);
         if (!ModelState.IsValid)
         {
             await LoadGenresAsync(movie.GenreId, cancellationToken);
@@ -126,6 +127,7 @@ public sealed class MoviesController : Controller
     public async Task<IActionResult> Edit(int id, Movie input, CancellationToken cancellationToken)
     {
         if (id != input.Id) return NotFound();
+        NormalizeTextAndValidateMinimumLengths(input);
         var movie = await _context.Movies.FindAsync([id], cancellationToken);
         if (movie is null) return NotFound();
 
@@ -203,5 +205,16 @@ public sealed class MoviesController : Controller
         ViewData["GenreId"] = new SelectList(
             await _context.Genres.AsNoTracking().OrderBy(genre => genre.Name).ToListAsync(cancellationToken),
             "Id", "Name", selectedId);
+    }
+
+    private void NormalizeTextAndValidateMinimumLengths(Movie movie)
+    {
+        movie.Title = movie.Title?.Trim() ?? string.Empty;
+        movie.Summary = movie.Summary?.Trim() ?? string.Empty;
+
+        if (movie.Title.Length < 3 && (ModelState[nameof(movie.Title)]?.Errors.Count ?? 0) == 0)
+            ModelState.AddModelError(nameof(movie.Title), "Tên phim phải có từ 3 đến 200 ký tự.");
+        if (movie.Summary.Length < 3 && (ModelState[nameof(movie.Summary)]?.Errors.Count ?? 0) == 0)
+            ModelState.AddModelError(nameof(movie.Summary), "Phần giới thiệu phải có ít nhất 3 ký tự và tối đa 1.200 ký tự.");
     }
 }

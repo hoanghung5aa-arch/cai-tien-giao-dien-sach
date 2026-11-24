@@ -9,7 +9,7 @@ Bài tập cá nhân xây dựng website cửa hàng phim bằng ASP.NET Core MV
 **Giảng viên:** TS. Nguyễn Mạnh Tuấn
 
 **Repository hiện có:** [hoanghung5aa-arch/cai-tien-giao-dien-sach](https://github.com/hoanghung5aa-arch/cai-tien-giao-dien-sach)  
-**Website Somee:** [http://gocphimhung31241027221.somee.com](http://gocphimhung31241027221.somee.com) đã deploy và trả HTTP 200 ở trang danh mục phim.
+**Website Somee:** [http://gocphimhung31241027221.somee.com](http://gocphimhung31241027221.somee.com) đã nhận bản publish mới ngày 24/11/2026. Sau khi khởi động lại website, các route `/`, `/Movies`, `/Genres`, `/Identity/Account/Register` và `/Identity/Account/Login` đều trả HTTP 200; footer hiển thị © 2026 và MSSV 31241027221.
 
 ## Công nghệ
 
@@ -34,7 +34,7 @@ Bài tập cá nhân xây dựng website cửa hàng phim bằng ASP.NET Core MV
 
 Migration khởi tạo năm phim và ba thể loại mẫu. Trên site Somee, đã nhập thêm năm phim và ba thể loại qua các form quản trị; kiểm tra danh mục sau khi lưu thấy đủ năm tên phim mới và sáu thể loại tổng cộng.
 
-**Tình trạng kiểm tra:** build Release đã thành công với SDK 10.0.404. Bản v3 đã được triển khai lên Somee và trang công khai trả HTTP 200. Browser QA trước deploy xác nhận CRUD, tải poster và giữ ảnh sau sửa phim, giá 5.000 được chấp nhận còn 4.999 bị từ chối, cart Add/Update/Remove, antiforgery khi thiếu token (HTTP 400), và validation checkout. Rating-boundary QA trên v3 xác nhận 0.9 và 5.1 bị từ chối, còn 1, 4.5 và 5 được chấp nhận. Đã xóa các phim thử và xác nhận trang chi tiết trả 404; không tạo đơn trong vòng QA mới.
+**Tình trạng kiểm tra:** build Release đã thành công với SDK 10.0.404. Gói publish mới được triển khai lên Somee ngày 24/11/2026; năm route công khai đã kiểm tra đều trả HTTP 200 và footer hiển thị năm 2026. Browser QA trước deploy xác nhận CRUD, tải poster và giữ ảnh sau sửa phim, giá 5.000 được chấp nhận còn 4.999 bị từ chối, cart Add/Update/Remove, antiforgery khi thiếu token (HTTP 400), và validation checkout. Rating-boundary QA xác nhận 0.9 và 5.1 bị từ chối, còn 1, 4.5 và 5 được chấp nhận. Source mới cũng chuẩn hóa Title/Summary trước khi kiểm tra độ dài tối thiểu; bản sửa này đã build Release, chưa có kiểm thử runtime riêng cho giá trị có khoảng trắng.
 
 Windows Smart App Control hiện chặn chạy local binary bằng policy VerifiedAndReputableDesktop (Code Integrity event 3077). Bản source cũ từng chạy để QA; bản hiện tại được kiểm tra trên Somee. Không tắt Smart App Control hoặc thêm ngoại lệ ứng dụng để vượt qua chính sách máy.
 
