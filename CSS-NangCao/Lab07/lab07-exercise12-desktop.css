@@ -4,16 +4,9 @@ main {
    margin-right: auto;
 }
 
-#container {
-   /* Establish the containing block for the absolutely placed navigation. */
-   position: relative;
-}
-
 nav {
    width: 10em;
-   position: absolute;
-   left: 0;
-   top: 0;
+   float: left;
 }
 
 nav select { display: none; }

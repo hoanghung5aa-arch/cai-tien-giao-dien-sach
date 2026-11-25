@@ -6,10 +6,37 @@ body { margin: 0; padding: 2rem 1rem; color: #17211d; background: #f4f7f4; font:
 .lesson h1 { margin: 0 0 .5rem; font-size: clamp(2rem, 5vw, 3rem); }
 .lesson p { max-width: 42rem; }
 .animation-stage { min-height: 40rem; margin: 2rem 0 1rem; overflow: hidden; border: 1px solid #cbd8ce; border-radius: .75rem; background: linear-gradient(135deg, #fff, #e8f0e9); }
-.box { width: 100px; height: 100px; margin: 100px; background-color: green; animation: animTwo 5s ease-out 1s 3; }
+.box {
+    width: 100px;
+    height: 100px;
+    margin: 100px;
+    background-color: green;
+
+    /* Step 2 and 4: longhand properties for animOne. */
+    /* animation-name: animOne; */
+    /* animation-duration: 1.5s; */
+    /* animation-iteration-count: infinite; */
+    /* animation-delay: 0.5s; */
+
+    /* Step 6: shorthand properties for animTwo. */
+    animation: animTwo 5s ease-out 1s 3;
+}
 .hint { color: #52645a; font-size: .9rem; }
 
-/* Percentage keyframes animate color, position, size, rotation, and shape. */
+/* Step 3: define the first animation before switching to animTwo in step 6. */
+@keyframes animOne {
+    from {
+        opacity: 1;
+        margin-left: 100px;
+    }
+    to {
+        opacity: 0.5;
+        transform: scale(1.5) rotate(90deg);
+        margin-left: 400px;
+    }
+}
+
+/* Step 5: percentage keyframes animate color, position, size, rotation, and shape. */
 @keyframes animTwo {
     0% { background-color: green; margin-top: 100px; }
     25% { background-color: red; transform: scale(1.5) rotate(90deg); margin-left: 400px; }
