@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 750" role="img" aria-labelledby="title desc">
+  <title id="title">Đêm cuối ở bến cảng</title><desc id="desc">Poster trinh thám với bến tàu, cần cẩu và một con tàu trong đêm mù sương.</desc>
+  <defs><linearGradient id="night" x2="0" y2="1"><stop stop-color="#172536"/><stop offset=".6" stop-color="#75505a"/><stop offset="1" stop-color="#d18964"/></linearGradient><linearGradient id="water" x2="0" y2="1"><stop stop-color="#354954"/><stop offset="1" stop-color="#101e28"/></linearGradient></defs>
+  <path fill="url(#night)" d="M0 0h500v750H0z"/><circle cx="378" cy="199" r="54" fill="#eab381" opacity=".88"/><path fill="#1b2832" d="M0 330h500v155H0z"/><path fill="#b97558" opacity=".3" d="M0 391h500v94H0z"/>
+  <g fill="none" stroke="#1a2730" stroke-width="12" stroke-linecap="square"><path d="M74 149v320M74 157l102 312M74 196h112M179 196v270M179 205l94 261M179 239h98M360 142v326M360 158l112 310M360 192h108"/></g>
+  <g fill="#1c2a32"><path d="M101 352h207l-45 66H145z"/><path d="M140 323h97v29h-97z"/><path d="M174 284h12v39h-12z"/><path d="M150 307h60v12h-60z"/></g>
+  <path fill="url(#water)" d="M0 470h500v280H0z"/><g stroke="#d59b71" opacity=".55"><path d="M84 505h164M126 532h251M38 567h126M265 584h180M93 624h207M12 672h112" stroke-width="3"/></g>
+  <path fill="#ead0ad" d="M38 51h424v2H38z"/><text x="38" y="95" fill="#f0d2b2" font-family="Georgia,serif" font-size="15" letter-spacing="5">GÓC PHIM HƯNG · TRINH THÁM</text><text x="38" y="680" fill="#fff1dc" font-family="Georgia,serif" font-size="31" font-weight="700">ĐÊM CUỐI</text><text x="38" y="724" fill="#fff1dc" font-family="Georgia,serif" font-size="31" font-weight="700">Ở BẾN CẢNG</text>
+</svg>

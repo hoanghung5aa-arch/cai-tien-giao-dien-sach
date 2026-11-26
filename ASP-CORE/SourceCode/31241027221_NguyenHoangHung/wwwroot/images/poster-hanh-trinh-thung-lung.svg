@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 750" role="img" aria-labelledby="title desc">
+  <title id="title">Hành trình qua thung lũng</title><desc id="desc">Poster phiêu lưu với đường mòn uốn qua những dãy núi và người lữ khách.</desc>
+  <defs><linearGradient id="dawn" x2="0" y2="1"><stop stop-color="#385d6b"/><stop offset=".52" stop-color="#c28a67"/><stop offset="1" stop-color="#f1ca8c"/></linearGradient><linearGradient id="mountain" x2="0" y2="1"><stop stop-color="#78917c"/><stop offset="1" stop-color="#294f4c"/></linearGradient></defs>
+  <path fill="url(#dawn)" d="M0 0h500v750H0z"/><circle cx="350" cy="258" r="67" fill="#f8d99b" opacity=".85"/><path fill="#718378" d="M0 394 114 267l61 74 96-151 105 157 62-70 62 69v159H0z"/><path fill="url(#mountain)" d="m0 458 109-135 79 98 97-123 122 142 57-79 36 45v179H0z"/><path fill="#31554b" d="M0 507 98 434l72 66 113-107 120 118 70-74 27 24v171H0z"/>
+  <path fill="#c5a076" d="M220 750c-8-89 41-155 49-218 10-73-49-117-30-171 35 57 97 89 84 162-12 62-73 124-55 227z"/><path fill="#476046" d="M0 601q96-62 184-19t139 0q90-53 177 1v167H0z"/>
+  <g fill="#f1d296"><circle cx="57" cy="325" r="4"/><circle cx="421" cy="386" r="4"/><circle cx="118" cy="453" r="3"/></g>
+  <path fill="#263e3c" d="M243 475c-17 0-27 13-27 30l5 37-20 55h20l22-38 14 38h19l-16-63 2-30c0-17-4-29-19-29z"/><path fill="#d6aa73" d="m240 463 15 2 11 14-18 7-20-8z"/><path fill="#513b31" d="m219 500-28 49 10 8 34-39z"/>
+  <path fill="#f4dfc0" d="M38 51h424v2H38z"/><text x="38" y="95" fill="#f6dfb7" font-family="Georgia,serif" font-size="15" letter-spacing="5">GÓC PHIM HƯNG · PHIÊU LƯU</text><text x="38" y="680" fill="#fff4df" font-family="Georgia,serif" font-size="30" font-weight="700">HÀNH TRÌNH</text><text x="38" y="724" fill="#fff4df" font-family="Georgia,serif" font-size="30" font-weight="700">QUA THUNG LŨNG</text>
+</svg>

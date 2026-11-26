@@ -32,7 +32,12 @@ public sealed class OrderEmailService : IOrderEmailService
         IReadOnlyDictionary<int, Movie> movies,
         CancellationToken cancellationToken = default)
     {
-        if (string.IsNullOrWhiteSpace(_settings.UserName) || string.IsNullOrWhiteSpace(_settings.AppPassword))
+        var userName = _settings.UserName?.Trim();
+        var appPassword = _settings.AppPassword is null
+            ? string.Empty
+            : new string(_settings.AppPassword.Where(character => !char.IsWhiteSpace(character)).ToArray());
+
+        if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(appPassword))
         {
             _logger.LogInformation("Không gửi email xác nhận vì chưa cấu hình Gmail SMTP.");
             return false;
@@ -63,7 +68,7 @@ public sealed class OrderEmailService : IOrderEmailService
 
             using var message = new MailMessage
             {
-                From = new MailAddress(_settings.UserName, _settings.FromName),
+                From = new MailAddress(userName, _settings.FromName),
                 Subject = $"Xác nhận đơn hàng #{order.Id} - Góc Phim Hưng",
                 Body = body.ToString(),
                 IsBodyHtml = false
@@ -73,7 +78,7 @@ public sealed class OrderEmailService : IOrderEmailService
             using var client = new SmtpClient(_settings.Host, _settings.Port)
             {
                 EnableSsl = true,
-                Credentials = new NetworkCredential(_settings.UserName, _settings.AppPassword)
+                Credentials = new NetworkCredential(userName, appPassword)
             };
             cancellationToken.ThrowIfCancellationRequested();
             await client.SendMailAsync(message, cancellationToken);

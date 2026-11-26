@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 750" role="img" aria-labelledby="title desc">
+  <title id="title">Dải ngân hà tĩnh lặng</title><desc id="desc">Poster khoa học viễn tưởng với phi thuyền nhỏ trước tinh vân và hành tinh xanh.</desc>
+  <defs><radialGradient id="space"><stop stop-color="#5d4f9d"/><stop offset=".48" stop-color="#222c61"/><stop offset="1" stop-color="#0b132d"/></radialGradient><linearGradient id="planet" x2="0" y2="1"><stop stop-color="#91e0df"/><stop offset="1" stop-color="#315985"/></linearGradient></defs>
+  <path fill="url(#space)" d="M0 0h500v750H0z"/><ellipse cx="247" cy="318" rx="204" ry="82" fill="#faadcf" opacity=".12" transform="rotate(-27 247 318)"/><ellipse cx="247" cy="318" rx="155" ry="53" fill="#68d8e7" opacity=".18" transform="rotate(-27 247 318)"/>
+  <g fill="#fff5d8"><circle cx="60" cy="135" r="2"/><circle cx="102" cy="227" r="3"/><circle cx="184" cy="99" r="2"/><circle cx="394" cy="115" r="3"/><circle cx="439" cy="247" r="2"/><circle cx="58" cy="365" r="2"/><circle cx="405" cy="405" r="2"/><circle cx="344" cy="193" r="2"/><circle cx="295" cy="76" r="2"/><circle cx="143" cy="447" r="3"/><circle cx="460" cy="505" r="2"/></g>
+  <circle cx="351" cy="338" r="94" fill="url(#planet)"/><path d="M264 353q85-28 181 12-31 66-101 67-62-8-80-79" fill="#345482" opacity=".55"/>
+  <path d="M78 382q150-112 300-159" fill="none" stroke="#b7e7f3" stroke-width="5" opacity=".65"/><path fill="#fff2d5" d="m191 365 117-74-28 56 68 11-133 31 28-20z"/><path fill="#e9a5cc" d="m276 347 26-31-11 36z"/>
+  <path fill="#e6e4ff" d="M38 51h424v2H38z"/><text x="38" y="95" fill="#c9d9ff" font-family="Georgia,serif" font-size="15" letter-spacing="5">GÓC PHIM HƯNG · VIỄN TƯỞNG</text><text x="38" y="672" fill="#fff7ec" font-family="Georgia,serif" font-size="32" font-weight="700">DẢI NGÂN HÀ</text><text x="38" y="716" fill="#fff7ec" font-family="Georgia,serif" font-size="32" font-weight="700">TĨNH LẶNG</text>
+</svg>

@@ -25,7 +25,7 @@ Bài tập cá nhân xây dựng website cửa hàng phim bằng ASP.NET Core MV
 - Duyệt danh mục phim, tìm theo tiêu đề, lọc theo thể loại, xem chi tiết, tạo/sửa/xóa phim và thể loại.
 - Mỗi phim tham chiếu đúng một `Genre` bằng `GenreId`; thể loại không thể xóa khi còn phim tham chiếu.
 - Kiểm tra dữ liệu phía máy chủ: tiêu đề 3–200 ký tự; giới thiệu 3–1.200 ký tự; giá từ 5.000 VNĐ; xếp hạng `double` từ 1 đến 5; ngày phát hành phải ở tương lai; tên thể loại tối đa 200 ký tự và không trùng.
-- Tải poster JPG, JPEG, PNG, GIF hoặc WEBP tối đa 5 MB. Máy chủ kiểm tra chữ ký tệp, đặt tên ngẫu nhiên và lưu ảnh dưới `wwwroot/images/uploads`.
+- Tải poster JPG, JPEG, PNG, GIF hoặc WEBP tối đa 5 MB. Máy chủ kiểm tra chữ ký tệp, đặt tên ngẫu nhiên và lưu ảnh dưới `wwwroot/images/uploads`. Năm tựa phim cửa hàng có poster SVG riêng trong `wwwroot/images`.
 - Cột `PicturePath` trong SQL Server chỉ lưu đường dẫn tương đối của ảnh. Tệp ảnh vẫn nằm trên hệ thống tệp trong `wwwroot`; database không tự sao chép hoặc đồng bộ tệp ảnh. Khi triển khai, cần đưa ảnh tĩnh vào gói publish và giữ thư mục ảnh người dùng tải lên bền vững.
 - Giỏ hàng lưu trong session; có thể thêm sản phẩm, cập nhật số lượng (1–50), xóa dòng và xem tổng tiền.
 - Checkout kiểm tra thông tin nhận hàng, tải lại giá và thông tin phim từ SQL Server, rồi lưu hóa đơn, chi tiết hóa đơn và địa chỉ giao hàng trong cùng một transaction. `ShippingDetail` có quan hệ một-một với `HoaDon`; một hóa đơn có nhiều `ChiTietHoaDon`.
@@ -71,7 +71,7 @@ ASP-CORE/
 
 `appsettings.Development.json` không được chép vào gói publish và đã được loại trừ khỏi Git. Cấu hình mẫu không chứa thông tin bí mật.
 
-Dùng SQL Server local hoặc tạo một database rỗng trên hosting. Cấu hình `ConnectionStrings:DefaultConnection` bằng User Secrets khi phát triển, hoặc bằng biến môi trường/cơ chế secrets của hosting. Chuỗi kết nối SQL Server trên Somee trong tài liệu đề có `TrustServerCertificate=True`; xác nhận thông tin máy chủ và database từ tài khoản của chính mình. Không đưa connection string, mật khẩu SQL hoặc Gmail App Password vào GitHub, README hay báo cáo.
+Dùng SQL Server Somee cho môi trường hosting. Để bản local và hosting cùng truy cập dữ liệu theo yêu cầu bài lab, đặt cùng `ConnectionStrings:DefaultConnection` vào User Secrets ở Development; chỉ dùng SQL Server local riêng nếu chủ động chọn tách dữ liệu. Cấu hình bằng User Secrets khi phát triển, hoặc bằng biến môi trường/cơ chế secrets của hosting. Chuỗi kết nối SQL Server trên Somee trong tài liệu đề có `TrustServerCertificate=True`; xác nhận thông tin máy chủ và database từ tài khoản của chính mình. Không đưa connection string, mật khẩu SQL hoặc Gmail App Password vào GitHub, README hay báo cáo.
 
 Chạy PowerShell tại thư mục `ASP-CORE` để cấu hình secrets local:
 
@@ -81,7 +81,7 @@ dotnet user-secrets set "Email:UserName" "YOUR_GMAIL_ADDRESS" --project SourceCo
 dotnet user-secrets set "Email:AppPassword" "YOUR_GMAIL_APP_PASSWORD" --project SourceCode/31241027221_NguyenHoangHung/31241027221_NguyenHoangHung.csproj
 ```
 
-Có thể đặt các khóa email khác nếu cần: `Email:Host` (`smtp.gmail.com`), `Email:Port` (`587`) và `Email:FromName` (`Góc Phim Hưng`). Trên hosting, dùng `ConnectionStrings__DefaultConnection`, `Email__UserName`, `Email__AppPassword`, `Email__Host`, `Email__Port` và `Email__FromName` trong phần quản lý biến môi trường bí mật của host. App Password có thể nhập liền hoặc có khoảng trắng; ứng dụng bỏ khoảng trắng trước khi xác thực SMTP. Gmail App Password cần được tạo theo quy trình bảo mật hiện hành của Google; không dùng mật khẩu đăng nhập Gmail thông thường.
+Có thể đặt các khóa email khác nếu cần: `Email:Host` (`smtp.gmail.com`), `Email:Port` (`587`) và `Email:FromName` (`Góc Phim Hưng`). Trên hosting, dùng `ConnectionStrings__DefaultConnection`, `Email__UserName`, `Email__AppPassword`, `Email__Host`, `Email__Port` và `Email__FromName` trong phần quản lý biến môi trường bí mật của host. Hai luồng email bỏ khoảng trắng trong App Password trước khi xác thực SMTP. Gmail App Password cần được tạo theo quy trình bảo mật hiện hành của Google; không dùng mật khẩu đăng nhập Gmail thông thường.
 
 > **Cài database:** `Database/InstallDatabase.sql` hiện gồm đủ schema đến migration `AlignAssignmentModel` và đã được áp dụng thành công trên database Somee rỗng. Chỉ chạy script này một lần trên database SQL Server mới, rỗng. Với database đã có migration history, dùng `dotnet ef database update` để áp dụng các migration còn thiếu; không chạy lại script cài mới.
 
