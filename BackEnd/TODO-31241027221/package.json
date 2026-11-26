@@ -1,8 +1,8 @@
 {
-  "name": "focus-todo-31241027221",
+  "name": "orderly-31241027221",
   "version": "1.0.0",
   "private": true,
-  "description": "Ứng dụng quản lý công việc của Nguyễn Hoàng Hưng, MSSV 31241027221",
+  "description": "Ứng dụng quản lý đơn hàng của Nguyễn Hoàng Hưng, MSSV 31241027221",
   "scripts": { "start": "node Bai2.js" },
   "engines": { "node": ">=22.13.0" }
 }

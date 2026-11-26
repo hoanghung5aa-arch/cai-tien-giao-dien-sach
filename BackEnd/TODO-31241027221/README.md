@@ -1,51 +1,27 @@
-# TODO App — Nguyễn Hoàng Hưng
+# Orderly — Quản lý đơn hàng
 
-Ứng dụng quản lý công việc cho môn Phát triển ứng dụng Thương mại Điện tử.
-
-- **Sinh viên:** Nguyễn Hoàng Hưng
-- **MSSV:** 31241027221
-- **Frontend:** HTML, CSS và JavaScript thuần, giao diện tiếng Việt responsive.
-- **Backend:** Node.js HTTP server, API JSON.
-- **Database:** SQLite có sẵn trong Node.js; database được tạo tại `data/tasks.sqlite`.
+Ứng dụng thực tiễn quản lý đơn hàng của Nguyễn Hoàng Hưng (MSSV 31241027221), dùng HTML/CSS/JavaScript, Node.js và SQLite.
 
 ## Chức năng
 
-- Thêm, xem, sửa và xóa công việc; lưu tên, mô tả, mức ưu tiên, hạn hoàn thành.
-- Cập nhật trạng thái Cần làm / Đang làm / Hoàn thành.
-- Thống kê tổng số việc, số lượng từng trạng thái và tỷ lệ hoàn thành.
-- Lọc theo trạng thái, tìm kiếm theo tên và mô tả.
-- Kiểm tra dữ liệu nhập và lưu bền vững sau khi đóng ứng dụng.
+- Thêm, xem, sửa và xóa đơn hàng; lưu thông tin khách hàng, sản phẩm, tổng tiền và ghi chú.
+- Cập nhật trạng thái: Chờ xử lý, Đang giao, Hoàn thành, Đã hủy.
+- Thống kê đơn theo trạng thái và doanh thu của đơn Hoàn thành.
+- Tìm kiếm/lọc đơn hàng; dữ liệu lưu bền vững trong SQLite.
 
-## Cách chạy
+## Chạy ứng dụng
 
-Cần Node.js 22.13 trở lên; không cần cài gói ngoài.
-
-```bash
-npm start
-```
-
-Mở <http://127.0.0.1:8080>. Nhấn `Ctrl+C` để dừng. File SQLite được tạo tự động trong `data/`.
+Cần Node.js 22.13 trở lên. Tại thư mục dự án chạy `npm start`, sau đó mở <http://127.0.0.1:8080>.
 
 ## API
 
-- `GET /api/tasks` — lấy danh sách và số liệu thống kê.
-- `POST /api/tasks` — tạo công việc.
-- `PUT /api/tasks/:id` — sửa đầy đủ thông tin.
-- `PATCH /api/tasks/:id` — cập nhật trạng thái.
-- `DELETE /api/tasks/:id` — xóa công việc.
+- `GET /api/orders` — danh sách và thống kê.
+- `POST /api/orders` — tạo đơn.
+- `PUT /api/orders/:id` — cập nhật thông tin.
+- `PATCH /api/orders/:id` — đổi trạng thái.
+- `DELETE /api/orders/:id` — xóa đơn.
 
 ## Ảnh minh chứng
 
-- [Tổng quan và thống kê](evidence/tong-quan.jpg)
-- [Thêm và sửa công việc](evidence/cap-nhat-cong-viec.jpg)
-- [Lọc công việc theo trạng thái](evidence/loc-cong-viec.jpg)
-
-## Tệp chính
-
-- `Bai2.js` — server Node.js, API và SQLite.
-- `public/Bai1.html` — giao diện chính.
-- `public/app.js`, `public/styles.css` — tương tác và giao diện.
-- `Bai1_css_demo_cu.html` — bài thực hành CSS ban đầu được giữ kèm.
-- `data/` — dữ liệu SQLite cục bộ, không đưa vào Git.
-
-
+- [Bảng điều khiển và thống kê](evidence/quan-ly-don-hang.png)
+- [Biểu mẫu tạo đơn](evidence/tao-don-hang.png)

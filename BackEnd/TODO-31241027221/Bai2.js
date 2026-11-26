@@ -9,105 +9,83 @@ const PUBLIC_DIR = path.join(ROOT, 'public');
 const DATA_DIR = path.join(ROOT, 'data');
 const PORT = Number(process.env.PORT || 8080);
 const HOST = process.env.HOST || '127.0.0.1';
-const MAX_BODY_BYTES = 16 * 1024;
+const MAX_BODY_BYTES = 20 * 1024;
+const STATUSES = ['pending', 'shipping', 'completed', 'cancelled'];
 fs.mkdirSync(DATA_DIR, { recursive: true });
-const db = new DatabaseSync(path.join(DATA_DIR, 'tasks.sqlite'));
+const db = new DatabaseSync(path.join(DATA_DIR, 'orders.sqlite'));
 db.exec(`
   PRAGMA journal_mode = WAL;
-  CREATE TABLE IF NOT EXISTS tasks (
+  CREATE TABLE IF NOT EXISTS orders (
     id TEXT PRIMARY KEY,
-    title TEXT NOT NULL CHECK(length(title) BETWEEN 1 AND 120),
-    description TEXT NOT NULL DEFAULT '' CHECK(length(description) <= 500),
-    status TEXT NOT NULL CHECK(status IN ('todo', 'in_progress', 'done')),
-    priority TEXT NOT NULL CHECK(priority IN ('low', 'normal', 'high')),
-    due_date TEXT,
+    order_code TEXT NOT NULL UNIQUE,
+    customer_name TEXT NOT NULL CHECK(length(customer_name) BETWEEN 1 AND 100),
+    phone TEXT NOT NULL CHECK(length(phone) BETWEEN 8 AND 20),
+    product_summary TEXT NOT NULL CHECK(length(product_summary) BETWEEN 1 AND 200),
+    amount INTEGER NOT NULL CHECK(amount >= 0),
+    status TEXT NOT NULL CHECK(status IN ('pending','shipping','completed','cancelled')),
+    note TEXT NOT NULL DEFAULT '' CHECK(length(note) <= 500),
     created_at TEXT NOT NULL,
     updated_at TEXT NOT NULL
   );
 `);
 const mimeTypes = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8' };
-function sendJson(response, status, data) {
-  response.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
-  response.end(JSON.stringify(data));
+function json(res, status, data) { res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(data)); }
+const ORDER_SELECT = `SELECT id,order_code AS orderCode,customer_name AS customerName,phone,product_summary AS productSummary,amount,status,note,created_at AS createdAt,updated_at AS updatedAt FROM orders`;
+const selectOrder = db.prepare(ORDER_SELECT);
+function listOrders() { return db.prepare(`${ORDER_SELECT} ORDER BY created_at DESC`).all(); }
+function stats() {
+ const rows = db.prepare(`SELECT status,COUNT(*) AS count FROM orders GROUP BY status`).all();
+ const counts = Object.fromEntries(STATUSES.map(s => [s,0])); for (const row of rows) counts[row.status] = Number(row.count);
+ const revenue = Number(db.prepare(`SELECT COALESCE(SUM(amount),0) AS total FROM orders WHERE status='completed'`).get().total);
+ return { total: Object.values(counts).reduce((a,b)=>a+b,0), counts, completedRevenue: revenue };
 }
-function getTasks() {
-  return db.prepare(`SELECT id,title,description,status,priority,due_date AS dueDate,created_at AS createdAt,updated_at AS updatedAt FROM tasks ORDER BY CASE status WHEN 'in_progress' THEN 0 WHEN 'todo' THEN 1 ELSE 2 END, CASE priority WHEN 'high' THEN 0 WHEN 'normal' THEN 1 ELSE 2 END, CASE WHEN due_date IS NULL THEN 1 ELSE 0 END,due_date,created_at DESC`).all();
+async function readJson(req) {
+ let size=0; const chunks=[];
+ for await (const chunk of req) { size+=chunk.length; if(size>MAX_BODY_BYTES) throw Object.assign(new Error('Dữ liệu gửi lên quá lớn.'),{statusCode:413}); chunks.push(chunk); }
+ if(!size) return {};
+ try { return JSON.parse(Buffer.concat(chunks).toString('utf8')); } catch { throw Object.assign(new Error('Dữ liệu JSON không hợp lệ.'),{statusCode:400}); }
 }
-function getStats() {
-  const row = db.prepare(`SELECT COUNT(*) AS total,SUM(CASE WHEN status='todo' THEN 1 ELSE 0 END) AS todo,SUM(CASE WHEN status='in_progress' THEN 1 ELSE 0 END) AS inProgress,SUM(CASE WHEN status='done' THEN 1 ELSE 0 END) AS done FROM tasks`).get();
-  const total = Number(row.total), done = Number(row.done || 0);
-  return { total, todo: Number(row.todo || 0), inProgress: Number(row.inProgress || 0), done, completionRate: total ? Math.round(done * 100 / total) : 0 };
+function validate(input, old={}) {
+ const value=(key, fallback='')=> input[key]===undefined ? (old[key] ?? fallback) : input[key];
+ const customerName=typeof value('customerName')==='string'?value('customerName').trim():'';
+ const phone=typeof value('phone')==='string'?value('phone').trim():'';
+ const productSummary=typeof value('productSummary')==='string'?value('productSummary').trim():'';
+ const status=value('status', 'pending'); const note=typeof value('note')==='string'?value('note').trim():'';
+ const amount=value('amount');
+ if(!customerName||customerName.length>100) throw Object.assign(new Error('Tên khách hàng từ 1 đến 100 ký tự.'),{statusCode:400});
+ if(!/^\+?[0-9\s().-]{8,20}$/.test(phone)) throw Object.assign(new Error('Số điện thoại cần từ 8 đến 20 ký tự số.'),{statusCode:400});
+ if(!productSummary||productSummary.length>200) throw Object.assign(new Error('Thông tin sản phẩm từ 1 đến 200 ký tự.'),{statusCode:400});
+ if(!Number.isSafeInteger(Number(amount))||Number(amount)<0||Number(amount)>1000000000000) throw Object.assign(new Error('Tổng tiền không hợp lệ.'),{statusCode:400});
+ if(!STATUSES.includes(status)) throw Object.assign(new Error('Trạng thái đơn hàng không hợp lệ.'),{statusCode:400});
+ if(note.length>500) throw Object.assign(new Error('Ghi chú tối đa 500 ký tự.'),{statusCode:400});
+ return {customerName,phone,productSummary,amount:Number(amount),status,note};
 }
-async function readJson(request) {
-  let size = 0; const chunks = [];
-  for await (const chunk of request) {
-    size += chunk.length;
-    if (size > MAX_BODY_BYTES) throw Object.assign(new Error('Dữ liệu gửi lên quá lớn.'), { statusCode: 413 });
-    chunks.push(chunk);
-  }
-  if (!size) return {};
-  try { return JSON.parse(Buffer.concat(chunks).toString('utf8')); }
-  catch { throw Object.assign(new Error('Nội dung JSON không hợp lệ.'), { statusCode: 400 }); }
+function one(id) { return db.prepare(`${ORDER_SELECT} WHERE id=?`).get(id); }
+function nextCode() { const day=new Date().toISOString().slice(2,10).replaceAll('-',''); return `DH${day}-${String(Date.now()).slice(-5)}`; }
+async function api(req,res,url) {
+ const parts=url.pathname.split('/').filter(Boolean);
+ if(url.pathname==='/api/orders'&&req.method==='GET') return json(res,200,{orders:listOrders(),stats:stats()});
+ if(url.pathname==='/api/orders'&&req.method==='POST') {
+  const v=validate(await readJson(req)),now=new Date().toISOString(),id=randomUUID(),code=nextCode();
+  db.prepare('INSERT INTO orders(id,order_code,customer_name,phone,product_summary,amount,status,note,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)').run(id,code,v.customerName,v.phone,v.productSummary,v.amount,v.status,v.note,now,now);
+  return json(res,201,{order:one(id)});
+ }
+ if(parts[0]==='api'&&parts[1]==='orders'&&parts.length===3) {
+  const id=parts[2],old=one(id); if(!old) return json(res,404,{error:'Không tìm thấy đơn hàng.'});
+  if(req.method==='PUT') { const v=validate(await readJson(req),old),now=new Date().toISOString(); db.prepare('UPDATE orders SET customer_name=?,phone=?,product_summary=?,amount=?,status=?,note=?,updated_at=? WHERE id=?').run(v.customerName,v.phone,v.productSummary,v.amount,v.status,v.note,now,id); return json(res,200,{order:one(id)}); }
+  if(req.method==='PATCH') { const {status}=await readJson(req); if(!STATUSES.includes(status)) return json(res,400,{error:'Trạng thái đơn hàng không hợp lệ.'}); db.prepare('UPDATE orders SET status=?,updated_at=? WHERE id=?').run(status,new Date().toISOString(),id); return json(res,200,{order:one(id)}); }
+  if(req.method==='DELETE') { db.prepare('DELETE FROM orders WHERE id=?').run(id); res.writeHead(204); return res.end(); }
+ }
+ return json(res,404,{error:'Không tìm thấy API.'});
 }
-function validateTask(input, existing = {}) {
-  const title = typeof input.title === 'string' ? input.title.trim() : existing.title;
-  const description = typeof input.description === 'string' ? input.description.trim() : (existing.description || '');
-  const status = input.status === undefined ? (existing.status || 'todo') : input.status;
-  const priority = input.priority === undefined ? (existing.priority || 'normal') : input.priority;
-  const dueDate = input.dueDate === undefined ? (existing.dueDate || null) : input.dueDate;
-  if (typeof title !== 'string' || title.length < 1 || title.length > 120) throw Object.assign(new Error('Tên công việc cần từ 1 đến 120 ký tự.'), { statusCode: 400 });
-  if (typeof description !== 'string' || description.length > 500) throw Object.assign(new Error('Mô tả tối đa 500 ký tự.'), { statusCode: 400 });
-  if (!['todo','in_progress','done'].includes(status)) throw Object.assign(new Error('Trạng thái không hợp lệ.'), { statusCode: 400 });
-  if (!['low','normal','high'].includes(priority)) throw Object.assign(new Error('Mức ưu tiên không hợp lệ.'), { statusCode: 400 });
-  if (dueDate !== null && (typeof dueDate !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(dueDate) || Number.isNaN(Date.parse(`${dueDate}T00:00:00Z`)) || new Date(`${dueDate}T00:00:00Z`).toISOString().slice(0,10) !== dueDate)) throw Object.assign(new Error('Hạn hoàn thành không hợp lệ.'), { statusCode: 400 });
-  return { title, description, status, priority, dueDate };
+function serve(res,pathname) {
+ let rel; try { rel=pathname==='/'?'Bai1.html':decodeURIComponent(pathname.slice(1)); } catch { return json(res,400,{error:'Địa chỉ không hợp lệ.'}); }
+ const file=path.resolve(PUBLIC_DIR,rel); if(!file.startsWith(PUBLIC_DIR+path.sep)) return json(res,403,{error:'Không có quyền truy cập.'});
+ fs.readFile(file,(err,data)=>{ if(err) return json(res,err.code==='ENOENT'?404:500,{error:'Không thể đọc tệp.'}); res.writeHead(200,{'Content-Type':mimeTypes[path.extname(file)]||'application/octet-stream','Cache-Control':'no-cache'}); res.end(data); });
 }
-const getTask = db.prepare('SELECT id,title,description,status,priority,due_date AS dueDate,created_at AS createdAt,updated_at AS updatedAt FROM tasks WHERE id=?');
-async function handleApi(request, response, url) {
-  const parts = url.pathname.split('/').filter(Boolean);
-  if (url.pathname === '/api/tasks' && request.method === 'GET') return sendJson(response, 200, { tasks: getTasks(), stats: getStats() });
-  if (url.pathname === '/api/tasks' && request.method === 'POST') {
-    const v = validateTask(await readJson(request)), now = new Date().toISOString(), id = randomUUID();
-    db.prepare('INSERT INTO tasks (id,title,description,status,priority,due_date,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?)').run(id,v.title,v.description,v.status,v.priority,v.dueDate,now,now);
-    return sendJson(response, 201, { task: getTask.get(id) });
-  }
-  if (parts[0] === 'api' && parts[1] === 'tasks' && parts.length === 3) {
-    const id = parts[2], existing = getTask.get(id);
-    if (!existing) return sendJson(response,404,{error:'Không tìm thấy công việc.'});
-    if (request.method === 'PUT' || request.method === 'PATCH') {
-      const v = validateTask(await readJson(request),existing);
-      db.prepare('UPDATE tasks SET title=?,description=?,status=?,priority=?,due_date=?,updated_at=? WHERE id=?').run(v.title,v.description,v.status,v.priority,v.dueDate,new Date().toISOString(),id);
-      return sendJson(response,200,{task:getTask.get(id)});
-    }
-    if (request.method === 'DELETE') { db.prepare('DELETE FROM tasks WHERE id=?').run(id); response.writeHead(204); return response.end(); }
-  }
-  return sendJson(response,404,{error:'Không tìm thấy đường dẫn API.'});
-}
-function serveStatic(response, pathname) {
-  let relative;
-  try { relative = pathname === '/' ? 'Bai1.html' : decodeURIComponent(pathname.slice(1)); }
-  catch { return sendJson(response,400,{error:'Địa chỉ yêu cầu không hợp lệ.'}); }
-  const file = path.resolve(PUBLIC_DIR,relative);
-  if (!file.startsWith(PUBLIC_DIR + path.sep)) return sendJson(response,403,{error:'Không có quyền truy cập.'});
-  fs.readFile(file,(error,content) => {
-    if (error) return sendJson(response,error.code === 'ENOENT' ? 404 : 500,{error:error.code === 'ENOENT' ? 'Không tìm thấy tệp.' : 'Không thể đọc tệp.'});
-    response.writeHead(200,{'Content-Type':mimeTypes[path.extname(file)] || 'application/octet-stream','Cache-Control':'no-cache'});
-    response.end(content);
-  });
-}
-const server = http.createServer(async (request,response) => {
-  let url;
-  try { url = new URL(request.url,`http://${request.headers.host || 'localhost'}`); }
-  catch { return sendJson(response,400,{error:'Địa chỉ yêu cầu không hợp lệ.'}); }
-  try {
-    if (url.pathname.startsWith('/api/')) return await handleApi(request,response,url);
-    if (request.method !== 'GET' && request.method !== 'HEAD') return sendJson(response,405,{error:'Phương thức không được hỗ trợ.'});
-    return serveStatic(response,url.pathname);
-  } catch (error) {
-    console.error('Request failed:',error.message);
-    return sendJson(response,error.statusCode || 500,{error:error.statusCode ? error.message : 'Có lỗi khi xử lý yêu cầu.'});
-  }
-});
-server.on('error',error => { console.error(`Không thể mở cổng ${PORT}: ${error.message}`); process.exitCode=1; db.close(); });
-server.listen(PORT,HOST,() => { console.log(`Focus Todo đang chạy tại http://${HOST}:${PORT}`); console.log(`SQLite: ${path.relative(ROOT,path.join(DATA_DIR,'tasks.sqlite'))}`); });
-for (const signal of ['SIGINT','SIGTERM']) process.on(signal,() => server.close(() => { db.close(); process.exit(0); }));
+const server=http.createServer(async(req,res)=>{ let url; try{url=new URL(req.url,`http://${req.headers.host||'localhost'}`); if(url.pathname.startsWith('/api/')) return await api(req,res,url); if(req.method!=='GET'&&req.method!=='HEAD') return json(res,405,{error:'Phương thức không được hỗ trợ.'}); return serve(res,url.pathname);}catch(e){console.error(e.message);return json(res,e.statusCode||500,{error:e.statusCode?e.message:'Có lỗi xử lý yêu cầu.'});} });
+server.on('error',e=>{console.error(`Không mở được cổng ${PORT}: ${e.message}`);process.exitCode=1;db.close();});
+server.listen(PORT,HOST,()=>console.log(`Quản lý đơn hàng: http://${HOST}:${PORT}\nSQLite: data/orders.sqlite`));
+for(const signal of ['SIGINT','SIGTERM']) process.on(signal,()=>server.close(()=>{db.close();process.exit(0);}));
+
+
