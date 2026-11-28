@@ -112,8 +112,13 @@
       "number": "3.3",
       "file": "Hinh_3_3.png",
       "validated": true,
-      "note": "Ảnh lịch sử thật 23/11; cắt vùng giá trị form và nút tạo để loại con trỏ. Quota hiện tại không mở lại form tạo database.",
-      "coverage": "partial"
+      "caption": "Phần form trong ảnh lịch sử Somee thật ngày 23/11/2026: tên database, zone, MS SQL Login, phiên bản SQL Server và nút CREATE DATABASE. Phần gói MS SQL ở ảnh tiếp theo. Hai phần cắt từ cùng một ảnh gốc để loại con trỏ nằm trong khoảng trống; không dựng lại form. Quota hiện tại không cho mở lại form tạo mới.",
+      "companions": [
+        {
+          "file": "Hinh_3_3_plan.png",
+          "caption": "Phần MS SQL plan của cùng ảnh lịch sử Somee ngày 23/11/2026; đi cùng phần còn lại của form ở hình trước."
+        }
+      ]
     },
     {
       "number": "3.4",
@@ -239,8 +244,7 @@
       "number": "5.5",
       "file": "Hinh_5_5.png",
       "validated": true,
-      "coverage": "partial",
-      "caption": "Ảnh lịch sử VS Code của mã migration AddMoviesAndGenres; phần hiển thị có CreateTable cho Genres và Movies. Ảnh đã được crop để bỏ titlebar và con trỏ, nhưng không cho thấy cây thư mục Migrations hoặc đủ hai file theo chú thích của đề; chỉ là minh chứng một phần, không thay cho trạng thái đầy đủ."
+      "caption": "Project MovieStages sau khi tạo và áp dụng AddMoviesAndGenres: Explorer có đúng hai migration InitialIdentity và AddMoviesAndGenres cùng các file Designer; editor hiển thị CreateTable cho Genres và Movies. Ảnh tái hiện cục bộ, không thay đổi migration production."
     },
     {
       "number": "5.8",
@@ -264,8 +268,13 @@
       "number": "7.1",
       "file": "Hinh_7_1.png",
       "validated": true,
-      "coverage": "partial",
-      "caption": "Explorer chụp thư mục ảnh trong project replay. Ứng dụng dùng no-poster.svg làm ảnh dự phòng, tương đương vai trò với no-image.jpg trong ví dụ của đề, nhưng tên và phần mở rộng khác; capture không chứng minh có đúng tệp no-image.jpg. Đây là placeholder, không phải poster phim."
+      "caption": "Explorer của bản tái hiện MovieStages hiển thị tệp no-image trong wwwroot/images, Type là JPG File. Tệp JPEG dự phòng thật được tạo cho bước này; không phải poster phim. Model ở ảnh đi kèm đặt PicturePath mặc định /images/no-image.jpg. Source production dùng no-poster.svg có vai trò tương đương.",
+      "companions": [
+        {
+          "file": "Hinh_7_1_model.png",
+          "caption": "Model Movie trong MovieStages khai báo PicturePath mặc định /images/no-image.jpg và PictureUpload được đánh dấu NotMapped; đối chiếu với tệp JPEG trong Explorer ở hình trước."
+        }
+      ]
     },
     {
       "number": "9.1",
@@ -308,6 +317,31 @@
       "file": "Hinh_10_7.png",
       "validated": true,
       "caption": "Website live tại https://gocphimhung31241027221.somee.com/Movies hiển thị trang danh mục và các poster phim. Crop bỏ thanh trình duyệt để loại giao diện Chrome; URL được ghi rõ trong chú thích và liên kết website của báo cáo."
+    },
+    {
+      "number": "5.4",
+      "file": "Hinh_5_4.png",
+      "validated": true,
+      "caption": "Tái hiện cục bộ trên MovieStages, SQL Express LabEvidence20261128: /Movies báo Invalid object name Movies trước khi tạo và áp dụng migration phim/thể loại. Đây là trạng thái lỗi có chủ đích để đối chiếu bước trong đề, không phải lỗi website Somee hiện tại."
+    },
+    {
+      "number": "5.7",
+      "file": "Hinh_5_7.png",
+      "validated": true,
+      "caption": "Trang Movies Index do scaffold sinh ra trong bản tái hiện cục bộ, sau migration và trước khi thêm bản ghi: có các tiêu đề cột, chưa có dòng dữ liệu."
+    },
+    {
+      "number": "6.1",
+      "file": "Hinh_6_1.png",
+      "validated": true,
+      "caption": "Nhật ký nguyên gốc của lệnh scaffold Genre chạy thành công ngày 28/11/2026, được mở trong VS Code: Added Controller GenresController.cs và năm View Create, Edit, Details, Delete, Index. Có đầy đủ kết quả lệnh nhưng đây là ảnh trình soạn thảo log, chưa đúng yêu cầu khung Terminal của đề.",
+      "coverage": "partial"
+    },
+    {
+      "number": "7.4",
+      "file": "Hinh_7_4.png",
+      "validated": true,
+      "caption": "Movies Index của bản tái hiện cục bộ sau khi thêm phim: cột PicturePath hiển thị chuỗi /images/posters/avengers-doomsday.jpg. Đây là giai đoạn View scaffold còn hiển thị đường dẫn dạng chữ, trước bước thay bằng thẻ img."
     }
   ]
 }

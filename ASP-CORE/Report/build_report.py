@@ -284,7 +284,7 @@ def add_embedded_images(doc, image_entries):
     heading(doc, "Ảnh minh chứng", 1)
     paragraph(doc, "Ảnh minh chứng được chèn trực tiếp vào báo cáo; mã hình và mô tả được đặt ngay dưới mỗi ảnh.", 9, color=GRAY, after=7)
     for index, (label, desc, path) in enumerate(image_entries):
-        if index:
+        if index and label != "Hình 3.3 tiếp":
             doc.add_page_break()
         p = doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -548,7 +548,7 @@ table(doc, ["Hạng mục", "Tình trạng"], [
 heading(doc, "Phạm vi và tài liệu đối chiếu")
 paragraph(doc, "PDF bài tập ASP.NET Core MVC .NET 10 dài 41 trang là căn cứ chính cho yêu cầu source, các bước, 50 vị trí [Hình x.y], mục 14–15 và rubric 100 điểm. Hướng dẫn cũ dùng .NET 5; transcript video thao tác ASP.NET MVC 5/.NET Framework trong Visual Studio. Hai tài liệu cũ chỉ giúp đối chiếu quy trình, không thay cho phiên bản package, Program.cs, route, session, lưu ảnh và publish trong source .NET 10 này.")
 paragraph(doc, "Ma trận dưới đây giữ đủ 50 vị trí theo PDF mới. Các ảnh đã đối chiếu và còn khớp nội dung hiện tại được nhúng trực tiếp ở phụ lục; các vị trí chưa có ảnh được ghi rõ. Ảnh cũ có con trỏ hoặc không còn khớp bản deploy được loại khỏi báo cáo.")
-paragraph(doc, "Các bước khởi tạo và Identity được tái hiện thật trong project riêng, dùng database SQL Express LabEvidence20261128. Các thao tác phim, thể loại và đơn hàng cục bộ dùng LabEvidenceFinal20261128, tách khỏi dữ liệu Somee. Chú thích phân biệt ảnh tái hiện, ảnh lịch sử và ảnh website live. Ảnh lịch sử form Somee được giữ khi quota không cho mở lại form tạo mới. Chỉ cắt khung ảnh để loại thanh ứng dụng và con trỏ, không dựng kết quả. Windows Application Control chặn DLL của bản tái hiện scaffold; các cảnh chưa tái hiện thành công vẫn được ghi là thiếu.")
+paragraph(doc, "Các bước khởi tạo và Identity được tái hiện thật trong project riêng, dùng database SQL Express LabEvidence20261128. Các thao tác phim, thể loại và đơn hàng cục bộ dùng LabEvidenceFinal20261128, tách khỏi dữ liệu Somee. Chú thích phân biệt ảnh tái hiện, ảnh lịch sử và ảnh website live. Ảnh lịch sử form Somee được giữ khi quota không cho mở lại form tạo mới. Chỉ cắt khung ảnh để loại thanh ứng dụng và con trỏ, không dựng kết quả. Sau khi người dùng xử lý Smart App Control, bản tái hiện đã chạy được và scaffold Genre thành công. Hình 6.1 dùng ảnh nhật ký lệnh trong editor, chưa đúng khung Terminal; giới hạn này được ghi trong ma trận.")
 heading(doc, "Đối chiếu yêu cầu báo cáo và nộp bài")
 table(doc, ["Yêu cầu mục 14–15", "Nội dung và trạng thái"], [
     ("Trang đầu", "Có họ tên, MSSV, lớp, học phần, tên bài, ngày báo cáo và URL repository."),
@@ -573,7 +573,7 @@ table(doc, ["Thành phần", "Thông tin ghi nhận"], [
     ("Tooling", "dotnet-ef 10.0.15; dotnet-aspnet-codegenerator 10.0.3."),
     ("PATH", "SDK nằm trong %USERPROFILE%\\.dotnet; terminal mặc định không tìm thấy dotnet. Dùng đường dẫn đầy đủ hoặc thêm SDK folder vào PATH của phiên PowerShell."),
 ], [1.5, 4.7], size=8.6)
-paragraph(doc, "Build Release được kiểm tra xác nhận bằng C:\\Users\\Admin\\.dotnet\\dotnet.exe. Ứng dụng đã publish và được kiểm tra trên Somee. Bản local hiện chạy tại http://127.0.0.1:5080 bằng dotnet và đã truy cập database thành công; không thay đổi chính sách bảo mật Windows.", 9.1, color=GRAY)
+paragraph(doc, "Build Release được kiểm tra xác nhận bằng C:\\Users\\Admin\\.dotnet\\dotnet.exe. Ứng dụng đã publish và được kiểm tra trên Somee. Bản local hiện chạy tại http://127.0.0.1:5080 bằng dotnet và đã truy cập database thành công; môi trường production không bị thay đổi trong lượt bổ sung minh chứng.", 9.1, color=GRAY)
 
 # Project design and personal work.
 heading(doc, "Thiết kế và phần điều chỉnh cá nhân")
@@ -660,7 +660,7 @@ paragraph(doc, "Publish cần dùng thư mục đầu ra mới. Khi nén, lấy 
 paragraph(doc, "SMTP có hai luồng riêng. Email xác nhận cho đơn thử nghiệm #3 và #4 đều có trong Inbox và Sent của Gmail; #4 trị giá 159.000 VNĐ, được lưu sau triển khai ngày 28/11/2026. Trang xác nhận tài khoản cho biết email đã được xác nhận; đã đăng nhập thành công và menu hiển thị Tài khoản/Đăng xuất. Checkout lưu đơn trong transaction trước khi thử gửi mail.")
 
 heading(doc, "Kết luận và việc còn lại")
-paragraph(doc, f"Source ASP.NET Core MVC .NET 10 đã build Release, deploy lại trên Somee và được kiểm tra trực tiếp ở các trang chính. Giao diện dùng font Noto Sans, poster chính thức có nguồn tham khảo, đăng ký và đăng nhập hiển thị đúng tiếng Việt. Email xác nhận đơn #4 trị giá 159.000 VNĐ có trong Inbox và Sent; trang xác nhận cho biết email tài khoản đã xác nhận, đăng nhập thành công đã được xác minh. Ảnh theo đề: {len(figure_evidence)} / {len(FIGURES)} đã chèn, còn {len(FIGURES) - len(figure_evidence)} vị trí chưa có ảnh. Các ảnh lịch sử còn thiếu được liệt kê trong ma trận, không thay bằng ảnh dựng. Sinh viên vẫn cần nộp URL website và repository trên LMS.")
+paragraph(doc, f"Source ASP.NET Core MVC .NET 10 đã build Release, deploy lại trên Somee và được kiểm tra trực tiếp ở các trang chính. Giao diện dùng font Noto Sans, poster chính thức có nguồn tham khảo, đăng ký và đăng nhập hiển thị đúng tiếng Việt. Email xác nhận đơn #4 trị giá 159.000 VNĐ có trong Inbox và Sent; trang xác nhận cho biết email tài khoản đã xác nhận, đăng nhập thành công đã được xác minh. Ảnh theo đề: {len(figure_evidence)} / {len(FIGURES)} đã chèn, còn {len(FIGURES) - len(figure_evidence)} vị trí chưa có ảnh. Hình 6.1 có kết quả scaffold thật trong editor log, chưa đúng khung Terminal của đề; ảnh lịch sử Somee được ghi rõ nguồn và thời điểm. Sinh viên vẫn cần nộp URL website và repository trên LMS.")
 
 heading(doc, "Nguồn đối chiếu")
 paragraph(doc, "Đề mới BaiTap_CaNhan_ASP_CORE_LMS.pdf: ASP.NET Core MVC .NET 10, mục 12–16 và 50 hình minh chứng.")

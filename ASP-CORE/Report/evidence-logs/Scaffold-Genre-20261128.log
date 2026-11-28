@@ -1,0 +1,16 @@
+Building project ...
+Finding the generator 'controller'...
+Running the generator 'controller'...
+
+Minimal hosting scenario!
+Attempting to figure out the EntityFramework metadata for the model and DbContext: 'Genre'
+
+Using database provider 'Microsoft.EntityFrameworkCore.SqlServer'!
+
+Added Controller : '\Controllers\GenresController.cs'.
+Added View : \Views\Genres\Create.cshtml
+Added View : \Views\Genres\Edit.cshtml
+Added View : \Views\Genres\Details.cshtml
+Added View : \Views\Genres\Delete.cshtml
+Added View : \Views\Genres\Index.cshtml
+RunTime 00:00:13.77
