@@ -52,7 +52,7 @@ public sealed class RegisterConfirmationModel : PageModel
 
         Email = email;
         ReturnUrl = GetLocalReturnUrl(returnUrl);
-        EmailDeliveryStatus = TempData["EmailDeliveryStatus"] as string ?? "sent";
+        EmailDeliveryStatus = TempData["EmailDeliveryStatus"] as string ?? string.Empty;
         ResendStatus = TempData["ResendStatus"] as string ?? string.Empty;
         EmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
         DisplayConfirmAccountLink = _environment.IsDevelopment() && !EmailConfirmed;
@@ -113,9 +113,9 @@ public sealed class RegisterConfirmationModel : PageModel
             await _emailSender.SendEmailAsync(email, "Xác nhận email - Góc Phim Hưng", message);
             TempData["ResendStatus"] = "sent";
         }
-        catch (Exception exception)
+        catch (Exception)
         {
-            _logger.LogError(exception, "A confirmation email resend failed.");
+            _logger.LogError("Confirmation email resend preparation or submission failed.");
             TempData["ResendStatus"] = "failed";
         }
 

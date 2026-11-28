@@ -16,8 +16,9 @@
             <p class="detail-summary">@Model.Summary</p>
             <dl class="detail-facts">
                 <div><dt>Ngày phát hành</dt><dd>@Model.ReleaseDate.ToString("dd/MM/yyyy")</dd></div>
-                <div><dt>Xếp hạng</dt><dd>@Model.Rated.ToString("0.#") / 5</dd></div>
+                <div><dt>Điểm mẫu</dt><dd>@Model.Rated.ToString("0.#") / 5</dd></div>
             </dl>
+            <p class="field-hint">Giá trị minh họa cho bài LAB, không phải điểm đánh giá khán giả.</p>
             <div class="detail-buy">
                 <strong>@Model.Price.ToString("N0") <small>₫</small></strong>
                 <form asp-controller="Movies" asp-action="AddToCart" asp-route-id="@Model.Id" method="post"><button class="btn btn-forest" type="submit">Thêm vào giỏ hàng</button></form>

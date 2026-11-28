@@ -1,4 +1,4 @@
-﻿IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
 BEGIN
     CREATE TABLE [__EFMigrationsHistory] (
         [MigrationId] nvarchar(150) NOT NULL,
@@ -531,3 +531,16 @@ END;
 COMMIT;
 GO
 
+
+-- Official film catalog data migration (2026-11-28)
+IF NOT EXISTS (SELECT 1 FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20261128010000_UseOfficialFilmCatalog')
+BEGIN
+    UPDATE [Genres] SET [Name] = N'Hoạt hình' WHERE [Id] = 1;
+    UPDATE [Movies] SET [Title] = N'Avengers: Doomsday', [Summary] = N'Các anh hùng từ nhiều vũ trụ đối mặt với một mối đe dọa có thể thay đổi tất cả.', [ReleaseDate] = '2026-12-18', [GenreId] = 2, [Price] = 159000, [Rated] = 4.8, [AgeRating] = N'', [PicturePath] = N'/images/posters/avengers-doomsday.jpg' WHERE [Id] = 1;
+    UPDATE [Movies] SET [Title] = N'Dune: Part Three', [Summary] = N'Paul Atreides đối diện hậu quả của quyền lực và một âm mưu đang siết chặt đế chế.', [ReleaseDate] = '2026-12-18', [GenreId] = 2, [Price] = 159000, [Rated] = 4.6, [AgeRating] = N'', [PicturePath] = N'/images/posters/dune-part-three.jpg' WHERE [Id] = 2;
+    UPDATE [Movies] SET [Title] = N'Jumanji: Open World', [Summary] = N'Thế giới của trò chơi tràn vào đời thực, mở ra một cuộc phiêu lưu mới cho nhóm bạn.', [ReleaseDate] = '2026-12-25', [GenreId] = 3, [Price] = 139000, [Rated] = 4.9, [AgeRating] = N'', [PicturePath] = N'/images/posters/jumanji-open-world.jpg' WHERE [Id] = 3;
+    UPDATE [Movies] SET [Title] = N'Gatto', [Summary] = N'Chú mèo Nero tìm kiếm tình bạn và lối đi riêng giữa những con kênh của Venice.', [ReleaseDate] = '2027-03-05', [GenreId] = 1, [Price] = 129000, [Rated] = 4.7, [AgeRating] = N'', [PicturePath] = N'/images/posters/gatto.jpg' WHERE [Id] = 4;
+    UPDATE [Movies] SET [Title] = N'Ice Age: Boiling Point', [Summary] = N'Manny, Sid và Diego bước vào cuộc phiêu lưu mới giữa khủng long và dung nham của Lost World.', [ReleaseDate] = '2027-02-05', [GenreId] = 1, [Price] = 119000, [Rated] = 4.5, [AgeRating] = N'', [PicturePath] = N'/images/posters/ice-age-boiling-point.jpg' WHERE [Id] = 5;
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20261128010000_UseOfficialFilmCatalog', N'10.0.15');
+END;
+GO

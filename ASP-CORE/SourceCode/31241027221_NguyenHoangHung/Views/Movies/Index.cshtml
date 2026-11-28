@@ -67,9 +67,9 @@
             <article class="movie-card">
                 <a class="poster-wrap" asp-action="Details" asp-route-id="@movie.Id" aria-label="Xem thông tin phim @movie.Title">
                     <img class="movie-poster" src="@movie.PicturePath" alt="@imageAlt" loading="lazy" />
-                    <span class="rating-badge" aria-label="Xếp hạng @movie.Rated trên 5">@movie.Rated.ToString("0.#") / 5</span>
                 </a>
                 <div class="movie-card-body">
+                    <span class="rating-badge" aria-label="Điểm mẫu của bài LAB: @movie.Rated trên 5">Điểm mẫu @movie.Rated.ToString("0.#") / 5</span>
                     <div class="movie-meta"><span>@movie.GenreObj?.Name</span><span>@movie.ReleaseDate.ToString("dd/MM/yyyy")</span></div>
                     <h3><a asp-action="Details" asp-route-id="@movie.Id">@movie.Title</a></h3>
                     <p class="movie-summary">@movie.Summary</p>

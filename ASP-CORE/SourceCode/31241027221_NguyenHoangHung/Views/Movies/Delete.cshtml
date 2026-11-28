@@ -18,7 +18,7 @@
                 <span>Thể loại: <strong>@Model.GenreObj?.Name</strong></span>
                 <span>Ngày phát hành: <strong>@Model.ReleaseDate.ToString("dd/MM/yyyy")</strong></span>
                 <span>Giá: <strong>@Model.Price.ToString("N0") ₫</strong></span>
-                <span>Xếp hạng: <strong>@Model.Rated.ToString("0.#") / 5</strong></span>
+                <span>Điểm mẫu: <strong>@Model.Rated.ToString("0.#") / 5</strong></span>
             </div>
         </div>
         <form asp-action="Delete" method="post" class="form-actions">

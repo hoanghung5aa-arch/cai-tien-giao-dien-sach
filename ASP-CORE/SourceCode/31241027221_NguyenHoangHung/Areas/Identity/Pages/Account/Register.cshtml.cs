@@ -105,10 +105,10 @@ public sealed class RegisterModel : PageModel
             await _emailSender.SendEmailAsync(email, "Xác nhận email - Góc Phim Hưng", message);
             TempData["EmailDeliveryStatus"] = "sent";
         }
-        catch (Exception exception)
+        catch (Exception)
         {
             // The account already exists. Keep the user on a recovery path without exposing SMTP details.
-            _logger.LogError(exception, "The confirmation email could not be sent for a newly created account.");
+            _logger.LogError("Confirmation email preparation or submission failed for a newly created account.");
         }
 
         return RedirectToPage("RegisterConfirmation", new { email, returnUrl = ReturnUrl });

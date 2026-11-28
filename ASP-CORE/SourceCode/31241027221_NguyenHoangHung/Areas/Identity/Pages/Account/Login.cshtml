@@ -1,0 +1,56 @@
+@page
+@model _31241027221_NguyenHoangHung.Areas.Identity.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<section class="account-page">
+    <div class="account-card">
+        <span class="eyebrow">Tài khoản Góc Phim Hưng</span>
+        <h1>Đăng nhập</h1>
+        <p class="account-intro">Đăng nhập để tiếp tục đặt mua những bộ phim bạn yêu thích.</p>
+
+        <form method="post" asp-route-returnUrl="@Model.ReturnUrl">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+            <div class="mb-3">
+                <label asp-for="Input.Email" class="form-label"></label>
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" inputmode="email" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Input.Password" class="form-label"></label>
+                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-check mb-4">
+                <input asp-for="Input.RememberMe" class="form-check-input" />
+                <label asp-for="Input.RememberMe" class="form-check-label"></label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+        </form>
+
+        @if (!string.IsNullOrWhiteSpace(Model.EmailToConfirm))
+        {
+            <p class="account-confirm-link">Chưa xác nhận email? <a asp-page="./RegisterConfirmation" asp-route-email="@Model.EmailToConfirm">Gửi lại email xác nhận</a>.</p>
+        }
+
+        @if (Model.ExternalLogins.Count > 0)
+        {
+            <div class="account-external">
+                <p class="account-external-heading">Hoặc đăng nhập bằng dịch vụ khác</p>
+                @foreach (var provider in Model.ExternalLogins)
+                {
+                    <form method="post" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                        <button type="submit" class="btn btn-outline-forest w-100" name="provider" value="@provider.Name">@provider.DisplayName</button>
+                    </form>
+                }
+            </div>
+        }
+
+        <p class="account-link">Chưa có tài khoản? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Đăng ký</a></p>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

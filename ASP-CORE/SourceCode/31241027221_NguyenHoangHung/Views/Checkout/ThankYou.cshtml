@@ -9,6 +9,6 @@
     @if (TempData["EmailSent"] is bool sent && sent)
     { <p class="email-status">Email xác nhận đã được gửi đến hộp thư của bạn.</p> }
     else
-    { <p class="email-status">Đơn hàng đã lưu. Chưa gửi được email xác nhận vì SMTP chưa được cấu hình.</p> }
+    { <p class="email-status">Đơn hàng đã lưu nhưng email xác nhận chưa được gửi. Vui lòng kiểm tra lại hộp thư sau hoặc liên hệ cửa hàng để xác nhận.</p> }
     <div class="form-actions"><a asp-controller="Movies" asp-action="Index" class="btn btn-forest">Tiếp tục xem phim</a><a asp-controller="Cart" asp-action="Index" class="btn btn-outline-forest">Giỏ hàng</a></div>
 </section>

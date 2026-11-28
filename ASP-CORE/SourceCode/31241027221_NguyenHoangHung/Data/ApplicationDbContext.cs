@@ -28,14 +28,14 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         builder.Entity<ShippingDetail>().HasOne(shipping => shipping.HoaDon).WithOne(order => order.ShippingDetail)
             .HasForeignKey<ShippingDetail>(shipping => shipping.HoaDonId).OnDelete(DeleteBehavior.Cascade);
         builder.Entity<Genre>().HasData(
-            new Genre { Id = 1, Name = "Tâm lý" },
+            new Genre { Id = 1, Name = "Hoạt hình" },
             new Genre { Id = 2, Name = "Khoa học viễn tưởng" },
             new Genre { Id = 3, Name = "Phiêu lưu" });
         builder.Entity<Movie>().HasData(
-            new Movie { Id = 1, Title = "Mùa Gió Cuối", Summary = "Một họa sĩ trở về miền biển cũ để tìm lại những bức thư chưa từng gửi.", ReleaseDate = new DateTime(2027, 2, 14), GenreId = 1, Price = 129000m, Rated = 4.8, AgeRating = "T13", PicturePath = "/images/mua-gio.svg" },
-            new Movie { Id = 2, Title = "Hành Tinh Thứ Chín", Summary = "Phi hành đoàn nhận được tín hiệu bí ẩn từ rìa ngoài của hệ Mặt Trời.", ReleaseDate = new DateTime(2027, 3, 21), GenreId = 2, Price = 159000m, Rated = 4.6, AgeRating = "T13", PicturePath = "/images/hanh-tinh.svg" },
-            new Movie { Id = 3, Title = "Chuyến Tàu Đêm", Summary = "Hành khách trên chuyến tàu cuối ngày cùng khám phá một bí mật bị chôn giấu.", ReleaseDate = new DateTime(2027, 4, 18), GenreId = 3, Price = 139000m, Rated = 4.9, AgeRating = "T16", PicturePath = "/images/chuyen-tau.svg" },
-            new Movie { Id = 4, Title = "Tín Hiệu Biển", Summary = "Một người gác hải đăng lần theo tín hiệu phát ra giữa những đêm bão.", ReleaseDate = new DateTime(2027, 5, 9), GenreId = 3, Price = 149000m, Rated = 4.7, AgeRating = "T13", PicturePath = "/images/tin-hieu-bien.svg" },
-            new Movie { Id = 5, Title = "Hẻm 36", Summary = "Những người hàng xóm xa lạ tìm cách giữ lại con hẻm thân quen của mình.", ReleaseDate = new DateTime(2027, 6, 1), GenreId = 1, Price = 119000m, Rated = 4.5, AgeRating = "T13", PicturePath = "/images/hem-36.svg" });
+            new Movie { Id = 1, Title = "Avengers: Doomsday", Summary = "Các anh hùng từ nhiều vũ trụ đối mặt với một mối đe dọa có thể thay đổi tất cả.", ReleaseDate = new DateTime(2026, 12, 18), GenreId = 2, Price = 159000m, Rated = 4.8, AgeRating = "", PicturePath = "/images/posters/avengers-doomsday.jpg" },
+            new Movie { Id = 2, Title = "Dune: Part Three", Summary = "Paul Atreides đối diện hậu quả của quyền lực và một âm mưu đang siết chặt đế chế.", ReleaseDate = new DateTime(2026, 12, 18), GenreId = 2, Price = 159000m, Rated = 4.6, AgeRating = "", PicturePath = "/images/posters/dune-part-three.jpg" },
+            new Movie { Id = 3, Title = "Jumanji: Open World", Summary = "Thế giới của trò chơi tràn vào đời thực, mở ra một cuộc phiêu lưu mới cho nhóm bạn.", ReleaseDate = new DateTime(2026, 12, 25), GenreId = 3, Price = 139000m, Rated = 4.9, AgeRating = "", PicturePath = "/images/posters/jumanji-open-world.jpg" },
+            new Movie { Id = 4, Title = "Gatto", Summary = "Chú mèo Nero tìm kiếm tình bạn và lối đi riêng giữa những con kênh của Venice.", ReleaseDate = new DateTime(2027, 3, 5), GenreId = 1, Price = 129000m, Rated = 4.7, AgeRating = "", PicturePath = "/images/posters/gatto.jpg" },
+            new Movie { Id = 5, Title = "Ice Age: Boiling Point", Summary = "Manny, Sid và Diego bước vào cuộc phiêu lưu mới giữa khủng long và dung nham của Lost World.", ReleaseDate = new DateTime(2027, 2, 5), GenreId = 1, Price = 119000m, Rated = 4.5, AgeRating = "", PicturePath = "/images/posters/ice-age-boiling-point.jpg" });
     }
 }

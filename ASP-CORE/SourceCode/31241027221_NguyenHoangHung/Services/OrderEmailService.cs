@@ -39,7 +39,13 @@ public sealed class OrderEmailService : IOrderEmailService
 
         if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(appPassword))
         {
-            _logger.LogInformation("Không gửi email xác nhận vì chưa cấu hình Gmail SMTP.");
+            _logger.LogInformation("Order email submission skipped (smtp-credentials-not-configured); the order remains saved.");
+            return false;
+        }
+
+        if (string.IsNullOrWhiteSpace(_settings.Host) || _settings.Port is < 1 or > 65535)
+        {
+            _logger.LogWarning("Order email submission skipped (smtp-host-or-port-invalid); the order remains saved.");
             return false;
         }
 
@@ -78,15 +84,34 @@ public sealed class OrderEmailService : IOrderEmailService
             using var client = new SmtpClient(_settings.Host, _settings.Port)
             {
                 EnableSsl = true,
-                Credentials = new NetworkCredential(userName, appPassword)
+                Credentials = new NetworkCredential(userName, appPassword),
+                Timeout = 15000
             };
-            cancellationToken.ThrowIfCancellationRequested();
-            await client.SendMailAsync(message, cancellationToken);
+            using var timeout = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            timeout.CancelAfter(TimeSpan.FromSeconds(15));
+            try
+            {
+                await client.SendMailAsync(message, timeout.Token);
+            }
+            catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested && timeout.IsCancellationRequested)
+            {
+                throw new TimeoutException("SMTP submission exceeded its time limit.");
+            }
+
             return true;
+        }
+        catch (OperationCanceledException)
+        {
+            _logger.LogInformation("Order email submission was canceled (order {OrderId}); the order remains saved.", order.Id);
+            return false;
         }
         catch (Exception exception)
         {
-            _logger.LogWarning(exception, "Đơn #{OrderId} đã lưu nhưng email xác nhận chưa gửi được.", order.Id);
+            var failureCategory = EmailFailureDiagnostics.Classify(exception);
+            _logger.LogWarning(
+                "Order email submission failed for order {OrderId} ({FailureCategory}); the order remains saved.",
+                order.Id,
+                failureCategory);
             return false;
         }
     }

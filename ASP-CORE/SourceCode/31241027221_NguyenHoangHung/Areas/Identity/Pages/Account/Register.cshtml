@@ -4,11 +4,11 @@
     ViewData["Title"] = "Đăng ký";
 }
 
-<section class="container py-5">
-    <div class="mx-auto" style="max-width: 34rem;">
-        <p class="text-uppercase small fw-semibold text-primary mb-2">Góc Phim Hưng</p>
-        <h1 class="display-6 mb-2">Tạo tài khoản</h1>
-        <p class="text-secondary mb-4">Nhập email và tạo mật khẩu. Bạn cần xác nhận email trước khi đăng nhập.</p>
+<section class="account-page">
+    <div class="account-card">
+        <span class="eyebrow">Tài khoản Góc Phim Hưng</span>
+        <h1>Tạo tài khoản</h1>
+        <p class="account-intro">Nhập email và tạo mật khẩu. Bạn cần xác nhận email trước khi đăng nhập.</p>
 
         <form method="post" asp-route-returnUrl="@Model.ReturnUrl">
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
@@ -31,7 +31,7 @@
             <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
         </form>
 
-        <p class="text-secondary mt-4 mb-0">Đã có tài khoản? <a asp-page="/Account/Login" asp-route-returnUrl="@Model.ReturnUrl">Đăng nhập</a></p>
+        <p class="account-link">Đã có tài khoản? <a asp-page="/Account/Login" asp-route-returnUrl="@Model.ReturnUrl">Đăng nhập</a></p>
     </div>
 </section>
 
