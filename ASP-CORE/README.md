@@ -9,7 +9,9 @@ Bài tập cá nhân xây dựng website cửa hàng phim bằng ASP.NET Core MV
 **Giảng viên:** TS. Nguyễn Mạnh Tuấn
 
 **Repository hiện có:** [hoanghung5aa-arch/cai-tien-giao-dien-sach](https://github.com/hoanghung5aa-arch/cai-tien-giao-dien-sach)  
-**Website Somee:** [http://gocphimhung31241027221.somee.com](http://gocphimhung31241027221.somee.com) đã nhận gói cập nhật ngày 26/11/2026 gồm DLL ứng dụng mới và năm poster SVG. File Manager xác nhận giải nén sáu tệp (461,61 KB); website đã khởi động lại. Sau triển khai, `/`, `/Movies/Details/16` đến `/Movies/Details/20` và `/Identity/Account/Register` trả HTTP 200; năm trang phim dùng đúng poster tương ứng.
+**Website Somee:** [Góc Phim Hưng](http://gocphimhung31241027221.somee.com). Bản ngày 28/11/2026 đã triển khai lại DLL, CSS và JavaScript; File Manager xác nhận ba tệp (523,77 KB). Trang chủ HTTP 200; CSS/JavaScript live khớp source. Danh mục hiện có mười phim dùng poster quảng bá chính thức; nguồn ảnh ghi trong [poster-sources.md](Report/poster-sources.md).
+
+**Kiểm tra cuối:** 20 kiểm tra HTTP đạt trên bản local dùng SQL Server Somee, gồm chuẩn hóa chuỗi trước validation, biên giá/điểm/ngày/thể loại, chữ ký upload, giữ poster khi sửa, antiforgery và giỏ hàng. Dòng phim QA đã được xóa sau kiểm tra; dữ liệu chính còn 10 phim, 6 thể loại. Email đơn #4 (159.000 VNĐ) đã nhận trong Gmail Inbox/Sent sau deploy; tài khoản đã xác nhận email và đăng nhập thành công. Xem [kết quả QA](../docs/lab-backend/QA_FINAL_20261128.json).
 
 ## Công nghệ
 
@@ -25,7 +27,7 @@ Bài tập cá nhân xây dựng website cửa hàng phim bằng ASP.NET Core MV
 - Duyệt danh mục phim, tìm theo tiêu đề, lọc theo thể loại, xem chi tiết, tạo/sửa/xóa phim và thể loại.
 - Mỗi phim tham chiếu đúng một `Genre` bằng `GenreId`; thể loại không thể xóa khi còn phim tham chiếu.
 - Kiểm tra dữ liệu phía máy chủ: tiêu đề 3–200 ký tự; giới thiệu 3–1.200 ký tự; giá từ 5.000 VNĐ; xếp hạng `double` từ 1 đến 5; ngày phát hành phải ở tương lai; tên thể loại tối đa 200 ký tự và không trùng.
-- Tải poster JPG, JPEG, PNG, GIF hoặc WEBP tối đa 5 MB. Máy chủ kiểm tra chữ ký tệp, đặt tên ngẫu nhiên và lưu ảnh dưới `wwwroot/images/uploads`. Năm phim mới trên Somee (ID 16–20) hiện tham chiếu đúng năm poster SVG trong `wwwroot/images`: `poster-ky-uc-chieu-mua.svg`, `poster-dai-ngan-ha.svg`, `poster-dem-ben-cang.svg`, `poster-vu-dieu-vi-sao.svg` và `poster-hanh-trinh-thung-lung.svg`.
+- Tải poster JPG, JPEG, PNG, GIF hoặc WEBP tối đa 5 MB. Máy chủ kiểm tra chữ ký tệp, đặt tên ngẫu nhiên và lưu ảnh dưới `wwwroot/images/uploads`. Danh mục live đã chuyển sang poster thật trong `wwwroot/images/posters`; ảnh SVG minh họa cũ không còn dùng trong bộ ảnh báo cáo mới.
 - Cột `PicturePath` trong SQL Server chỉ lưu đường dẫn tương đối của ảnh. Tệp ảnh vẫn nằm trên hệ thống tệp trong `wwwroot`; database không tự sao chép hoặc đồng bộ tệp ảnh. Khi triển khai, cần đưa ảnh tĩnh vào gói publish và giữ thư mục ảnh người dùng tải lên bền vững.
 - Giỏ hàng lưu trong session; có thể thêm sản phẩm, cập nhật số lượng (1–50), xóa dòng và xem tổng tiền.
 - Checkout kiểm tra thông tin nhận hàng, tải lại giá và thông tin phim từ SQL Server, rồi lưu hóa đơn, chi tiết hóa đơn và địa chỉ giao hàng trong cùng một transaction. `ShippingDetail` có quan hệ một-một với `HoaDon`; một hóa đơn có nhiều `ChiTietHoaDon`.
@@ -34,9 +36,7 @@ Bài tập cá nhân xây dựng website cửa hàng phim bằng ASP.NET Core MV
 
 Migration khởi tạo năm phim và ba thể loại mẫu. Trên site Somee, đã nhập thêm năm phim và ba thể loại qua các form quản trị; kiểm tra danh mục sau khi lưu thấy đủ năm tên phim mới và sáu thể loại tổng cộng.
 
-**Tình trạng kiểm tra:** build Release đã thành công với SDK 10.0.404. Ngày 26/11/2026, Somee File Manager xác nhận đã giải nén gói gồm DLL ứng dụng và năm poster SVG (sáu tệp, 461,61 KB); website được khởi động lại thành công. Kiểm tra công khai sau triển khai xác nhận `/`, `/Movies/Details/16` đến `/Movies/Details/20` và `/Identity/Account/Register` trả HTTP 200, với từng trang phim tham chiếu đúng poster. SQL Server đã cập nhật và xác minh `PicturePath` của năm phim mới (ID 16–20). Browser QA trước deploy xác nhận CRUD, tải poster và giữ ảnh sau sửa phim, giá 5.000 được chấp nhận còn 4.999 bị từ chối, cart Add/Update/Remove, antiforgery khi thiếu token (HTTP 400), và validation checkout. Rating-boundary QA xác nhận 0.9 và 5.1 bị từ chối, còn 1, 4.5 và 5 được chấp nhận. Source mới cũng chuẩn hóa Title/Summary trước khi kiểm tra độ dài tối thiểu; bản sửa này đã build Release, chưa có kiểm thử runtime riêng cho giá trị có khoảng trắng.
-
-Windows Smart App Control hiện chặn chạy local binary bằng policy VerifiedAndReputableDesktop (Code Integrity event 3077). Bản source cũ từng chạy để QA; bản hiện tại được kiểm tra trên Somee. Không tắt Smart App Control hoặc thêm ngoại lệ ứng dụng để vượt qua chính sách máy.
+**Tình trạng kiểm tra:** Release build/publish thành công với SDK 10.0.404, 0 lỗi và 0 cảnh báo. Bản local chạy tại `http://127.0.0.1:5080`; không thay đổi Smart App Control. Kiểm tra SQL chỉ đọc ghi nhận 10 Movies, 6 Genres, 4 HoaDons, 4 ChiTietHoaDons, 4 ShippingDetails và 1 AspNetUser đã xác nhận. Hai đơn #3 và #4 đều 159.000 VNĐ; email thực nhận được xác minh trong Gmail.
 
 ## Cấu trúc
 
@@ -122,12 +122,12 @@ Mỗi lần sửa mã nguồn, publish ra thư mục đầu ra mới. Khi nén �
 
 Somee Free ASP.NET Hosting quảng bá hỗ trợ ASP.NET Core 3–10, nhưng FAQ trên cùng trang còn ghi runtime đến .NET 9. Ứng dụng hiện đã deploy và chạy trên gói Somee này, dù thông tin FAQ chưa đồng nhất. Trang này cũng nêu gói miễn phí có quảng cáo, 150 MB lưu trữ web, 5 GB truyền dữ liệu mỗi tháng, một SQL Server database 30 MB data/30 MB log. Database miễn phí có thể bị xóa nếu 30 ngày không có truy vấn; website và database cần được giữ hoạt động theo quy định hiện hành của Somee. Xem [thông tin gói và FAQ chính thức](https://somee.com/FreeAspNetHosting.aspx).
 
-Website đã chạy tại URL nêu trên và trả HTTP 200. Trong vòng QA trước đây có một đơn giả lập orderId 1, tổng 258.000 VNĐ, dùng dữ liệu không phải địa chỉ thật. Ngày 26/11/2026, checkout SMTP giả lập lưu thêm đơn #2 với dữ liệu thử nghiệm tối thiểu; trang cảm ơn hiển thị nhánh gửi thất bại (`EmailSent=false`). Thông báo trên trang dùng chung nên chưa xác định được nguyên nhân là thông tin đăng nhập SMTP hay kết nối máy chủ; email chưa được xác nhận đã gửi thành công. Không lưu mật khẩu hoặc ảnh chụp lộ connection string vào repository.
+Website đã chạy tại URL nêu trên. Đơn #1 và #2 là các thử nghiệm cũ; #2 từng có `EmailSent=false`. Sau khi cấu hình SMTP đúng tài khoản, đơn #3 và #4 được gửi thành công; email #4 đã nhận sau lần triển khai ngày 28/11/2026. Các địa chỉ giao hàng là dữ liệu LAB. Mật khẩu SQL/Gmail App Password không được đưa vào repository hoặc báo cáo.
 
 ## Báo cáo và minh chứng
 
-Báo cáo theo mục 14–15 của đề được lưu tại `Report/BaiTap_CaNhan_ASP_CORE_LMS.docx`. Ma trận có đủ 50 mã `[Hình x.y]` lấy từ đề .NET 10. Ảnh phải là ảnh toàn màn hình do sinh viên tự chụp; file tương ứng có tên `Report/images/Hinh_x_y.png`. Nếu ảnh chưa có, báo cáo ghi “chưa có minh chứng”. Không thay bằng ảnh mẫu từ tài liệu hướng dẫn.
+Báo cáo theo mục 14–15 nằm tại [BaiTap_CaNhan_ASP_CORE_LMS.docx](Report/BaiTap_CaNhan_ASP_CORE_LMS.docx). Ảnh được **nhúng trực tiếp** vào Word, chú thích bên dưới; giữ khung bìa và logo UEH của mẫu. Ảnh hiện tại đã cắt thanh Chrome/titlebar và không có taskbar/con trỏ trong nội dung. Bộ ảnh dùng poster thật.
 
-Các ảnh minh chứng thật được lưu theo tên `Hinh_x_y.png`; builder đếm tệp đang có và đánh dấu rõ những vị trí chưa có ảnh thay vì tạo ảnh giả.
+Ma trận giữ đủ 50 mã theo PDF .NET 10; hiện **14 mã có ảnh được duyệt và 12 ảnh bổ sung**, gồm source VS Code, local, chỉnh sửa, SQL, tài khoản, đăng nhập, cart, checkout và thư thực nhận. **Còn 36 cảnh lịch sử theo đề chưa có ảnh đúng yêu cầu**, được đánh dấu trong ma trận; không coi báo cáo là đủ 50/50. Không thay ảnh thiếu bằng ảnh mẫu hoặc ảnh dựng. [Ma trận minh chứng](../docs/lab-backend/MA_TRAN_MINH_CHUNG_20261128.csv).
 
 Bản hướng dẫn cũ dùng .NET 5 và transcript video dùng ASP.NET MVC 5/.NET Framework trong Visual Studio. Chỉ lấy quy trình chung khi phù hợp; thao tác cũ như `Startup.cs`, cổng cố định, publish profile hay cách lưu ảnh của framework cũ không thay thế hướng dẫn hiện hành .NET 10 và mã nguồn này.

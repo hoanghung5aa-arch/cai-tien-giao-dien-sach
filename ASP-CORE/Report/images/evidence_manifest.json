@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "figures": [
+    {
+      "number": "7.6",
+      "file": "Hinh_7_6.png",
+      "validated": true
+    },
+    {
+      "number": "8.4",
+      "file": "Hinh_8_4.png",
+      "validated": true
+    },
+    {
+      "number": "9.2",
+      "file": "Hinh_9_2.png",
+      "validated": true
+    },
+    {
+      "number": "9.3",
+      "file": "Hinh_9_3.png",
+      "validated": true
+    },
+    {
+      "number": "1.1",
+      "file": "Hinh_1_1.png",
+      "validated": true
+    },
+    {
+      "number": "2.4",
+      "file": "Hinh_2_4.png",
+      "validated": true
+    },
+    {
+      "number": "5.1",
+      "file": "Hinh_5_1.png",
+      "validated": true
+    },
+    {
+      "number": "5.2",
+      "file": "Hinh_5_2.png",
+      "validated": true
+    },
+    {
+      "number": "8.3",
+      "file": "Hinh_8_3.png",
+      "validated": true
+    },
+    {
+      "number": "7.2",
+      "file": "Hinh_7_2.png",
+      "validated": true
+    },
+    {
+      "number": "8.5",
+      "file": "Hinh_8_5.png",
+      "validated": true
+    },
+    {
+      "number": "9.5",
+      "file": "Hinh_9_5.png",
+      "validated": true
+    },
+    {
+      "number": "10.6",
+      "file": "Hinh_10_6.png",
+      "validated": true
+    },
+    {
+      "number": "10.5",
+      "file": "Hinh_10_5.png",
+      "validated": true
+    }
+  ]
+}
