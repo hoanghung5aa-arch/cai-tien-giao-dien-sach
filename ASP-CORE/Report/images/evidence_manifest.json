@@ -34,7 +34,8 @@
     {
       "number": "5.1",
       "file": "Hinh_5_1.png",
-      "validated": true
+      "validated": true,
+      "caption": "File Models/Movie.cs thật trong source hiện hành: class Movie, Title, Summary, ReleaseDate và GenreId cùng các ràng buộc. Ảnh mở model đã tồn tại; không phải ảnh thao tác tạo file mới."
     },
     {
       "number": "5.2",
@@ -70,6 +71,243 @@
       "number": "10.5",
       "file": "Hinh_10_5.png",
       "validated": true
+    },
+    {
+      "number": "2.1",
+      "file": "Hinh_2_1.png",
+      "validated": true,
+      "note": "Tái hiện thật trên project riêng LabEvidenceMvc ngày 28/11; template và restore thành công."
+    },
+    {
+      "number": "2.2",
+      "file": "Hinh_2_2.png",
+      "validated": true,
+      "note": "Cảnh báo chứng chỉ thật; đã chọn No sau khi chụp, không cài chứng chỉ."
+    },
+    {
+      "number": "2.3",
+      "file": "Hinh_2_3.png",
+      "validated": true,
+      "note": "Welcome thực tại 127.0.0.1:5083; ảnh terminal Now listening on đi kèm.",
+      "companions": [
+        {
+          "file": "Hinh_2_3_Terminal.png",
+          "caption": "Terminal chạy project tái hiện ở Development, Now listening on http://127.0.0.1:5083."
+        }
+      ]
+    },
+    {
+      "number": "3.1",
+      "file": "Hinh_3_1.png",
+      "validated": true,
+      "note": "Trang Free ASP.NET Hosting hiện hành; homepage/nút Learn More đã thay đổi so với đề."
+    },
+    {
+      "number": "3.2",
+      "file": "Hinh_3_2.png",
+      "validated": true,
+      "note": "Database list hiện hành, liên kết Create database ở menu trái."
+    },
+    {
+      "number": "3.3",
+      "file": "Hinh_3_3.png",
+      "validated": true,
+      "note": "Ảnh lịch sử thật 23/11; cắt vùng giá trị form và nút tạo để loại con trỏ. Quota hiện tại không mở lại form tạo database.",
+      "coverage": "partial"
+    },
+    {
+      "number": "3.4",
+      "file": "Hinh_3_4.png",
+      "validated": true,
+      "note": "Connection details hiện hành; Somee ẩn password và connection string sau Copy to Clipboard."
+    },
+    {
+      "number": "10.4",
+      "file": "Hinh_10_4.png",
+      "validated": true,
+      "note": "Ảnh lịch sử thật 23/11; cắt khung form đầy đủ để bỏ thanh trình duyệt/taskbar/con trỏ."
+    },
+    {
+      "number": "4.1",
+      "file": "Hinh_4_1.png",
+      "validated": true,
+      "note": "Tái hiện cục bộ: appsettings.json dùng Windows Authentication, không có password; bản Somee dùng secrets ngoài source."
+    },
+    {
+      "number": "4.2",
+      "file": "Hinh_4_2.png",
+      "validated": true,
+      "note": "Cây Data/Migrations thật của template trước khi tạo lại InitialIdentity trên bản sao."
+    },
+    {
+      "number": "4.3",
+      "file": "Hinh_4_3.png",
+      "validated": true,
+      "note": "Migration InitialIdentity thật trên SQL Server cục bộ; terminal hiển thị Build succeeded và Done."
+    },
+    {
+      "number": "4.6",
+      "file": "Hinh_4_6.png",
+      "validated": true,
+      "note": "SSMS 22 kết nối SQL Express cục bộ bằng Windows Authentication, không nhập hoặc lưu mật khẩu SQL."
+    },
+    {
+      "number": "4.4",
+      "file": "Hinh_4_4.png",
+      "validated": true,
+      "caption": "Tái hiện local ngày 28/11/2026 trên project LabEvidenceMvc tại 127.0.0.1:5083: form Register đã điền email kiểm thử lab.evidence@example.invalid; hai trường mật khẩu được che. Đây không phải tài khoản Somee và không chứng minh email thật đã được gửi."
+    },
+    {
+      "number": "4.5",
+      "file": "Hinh_4_5.png",
+      "validated": true,
+      "caption": "Tái hiện local ngày 28/11/2026 trên project LabEvidenceMvc tại 127.0.0.1:5083: trang Register confirmation sau thao tác đăng ký bằng địa chỉ .invalid. Kết quả local không chứng minh email đã được gửi hoặc tài khoản Somee đã xác nhận."
+    },
+    {
+      "number": "4.7",
+      "file": "Hinh_4_7.png",
+      "validated": true,
+      "caption": "SSMS trên SQL Express cục bộ, database LabEvidence20261128: kết quả liệt kê các bảng AspNet* và tài khoản lab.evidence@example.invalid trong AspNetUsers với EmailConfirmed = 0. Đây là dữ liệu replay local, không phải database Somee."
+    },
+    {
+      "number": "6.2",
+      "file": "Hinh_6_2.png",
+      "validated": true,
+      "caption": "Tái hiện local trên CurrentApp: form Genres/Create đã nhập tên thể loại Viễn Tưởng trước khi lưu. Ảnh đi kèm ghi nhận thông báo tạo thành công và danh sách có thể loại mới với 0 phim; dữ liệu thuộc database replay cục bộ. ",
+      "companions": [
+        {
+          "file": "Hinh_6_2_result.png",
+          "caption": "Kết quả sau khi lưu Viễn Tưởng trên CurrentApp local: thông báo tạo thành công và danh sách thể loại hiện mục mới với 0 phim."
+        }
+      ]
+    },
+    {
+      "number": "7.3",
+      "file": "Hinh_7_3.png",
+      "validated": true,
+      "caption": "Tái hiện local trên CurrentApp: form Movies/Create đã điền phim Avengers: Doomsday LAB Upload, giá 159.000 VNĐ, điểm 4,5 và đã chọn avengers-doomsday.jpg; ảnh preview cho thấy poster trước khi lưu."
+    },
+    {
+      "number": "7.5",
+      "file": "Hinh_7_5.png",
+      "validated": true,
+      "caption": "Tái hiện local trên CurrentApp sau khi lưu: danh sách lọc LAB Upload hiển thị Avengers: Doomsday LAB Upload cùng poster, thể loại Hoạt hình và giá 159.000 VNĐ. Đây là dữ liệu replay cục bộ."
+    },
+    {
+      "number": "8.1",
+      "file": "Hinh_8_1.png",
+      "validated": true,
+      "caption": "Tái hiện local ngày 28/11/2026: terminal của CurrentApp hiển thị Build started, Build succeeded và Done sau cập nhật database. Explorer bên trái vẫn là project Welcome scratch, không phải cây CurrentApp; ảnh SQL đi kèm xác nhận ba bảng đơn hàng trong database local. ",
+      "companions": [
+        {
+          "file": "Hinh_8_1_SQL.png",
+          "caption": "SSMS trên database replay LabEvidenceFinal20261128 xác nhận HoaDons, ChiTietHoaDons và ShippingDetails; có hóa đơn local #1 tổng 159.000 VNĐ cùng chi tiết và địa chỉ giao hàng. Không có email SMTP local được khẳng định."
+        }
+      ]
+    },
+    {
+      "number": "8.2",
+      "file": "Hinh_8_2.png",
+      "validated": true,
+      "caption": "Program.cs của CurrentApp local hiển thị đăng ký AddSession trong cấu hình dịch vụ. Ảnh đi kèm cho thấy UseSession trong HTTP pipeline trước Authentication và Authorization. Đây là source của project replay cục bộ. ",
+      "companions": [
+        {
+          "file": "Hinh_8_2_middleware.png",
+          "caption": "Program.cs của CurrentApp local: UseSession được đặt trước UseAuthentication và UseAuthorization trong HTTP pipeline."
+        }
+      ]
+    },
+    {
+      "number": "8.6",
+      "file": "Hinh_8_6.png",
+      "validated": true,
+      "caption": "Tái hiện local trên CurrentApp: giỏ hàng có Avengers: Doomsday LAB Upload, số lượng 1 và tổng 159.000 VNĐ; thông báo xác nhận sản phẩm vừa được thêm. Không có SMTP local được khẳng định."
+    },
+    {
+      "number": "9.4",
+      "file": "Hinh_9_4.png",
+      "validated": true,
+      "caption": "SSMS trên database replay local LabEvidenceFinal20261128: truy vấn cho thấy ba bảng HoaDons, ChiTietHoaDons và ShippingDetails; hóa đơn #1 và chi tiết có tổng 159.000 VNĐ, địa chỉ dùng email kiểm thử .invalid. Ảnh này không chứng minh email được gửi; minh chứng email Somee nằm riêng ở ảnh bổ sung live."
+    },
+    {
+      "number": "5.3",
+      "file": "Hinh_5_3.png",
+      "validated": true,
+      "caption": "Tái hiện local trên bản sao CurrentApp: scaffold MoviesEvidenceController và năm view Create, Edit, Details, Delete, Index; dùng tên controller mới để giữ nguyên MoviesController của ứng dụng. Terminal xác nhận các tệp đã được tạo."
+    },
+    {
+      "number": "5.5",
+      "file": "Hinh_5_5.png",
+      "validated": true,
+      "coverage": "partial",
+      "caption": "Ảnh lịch sử VS Code của mã migration AddMoviesAndGenres; phần hiển thị có CreateTable cho Genres và Movies. Ảnh đã được crop để bỏ titlebar và con trỏ, nhưng không cho thấy cây thư mục Migrations hoặc đủ hai file theo chú thích của đề; chỉ là minh chứng một phần, không thay cho trạng thái đầy đủ."
+    },
+    {
+      "number": "5.8",
+      "file": "Hinh_5_8.png",
+      "validated": true,
+      "caption": "Tái hiện local trên CurrentApp: Program.cs hiển thị route mặc định Movies/Index. Ảnh đi kèm cho thấy trang chủ/danh mục sau khi ứng dụng chạy tại địa chỉ local; dữ liệu là của bản replay cục bộ. ",
+      "companions": [
+        {
+          "file": "Hinh_5_8_home.png",
+          "caption": "Trang danh mục sau khi chạy CurrentApp local; hiển thị các poster và dữ liệu phim trên database replay."
+        }
+      ]
+    },
+    {
+      "number": "5.6",
+      "file": "Hinh_5_6.png",
+      "validated": true,
+      "caption": "SSMS trên database replay local LabEvidenceFinal20261128: kết quả liệt kê dbo.Genres và dbo.Movies, các thể loại gồm Viễn Tưởng vừa tạo, cùng PicturePath của các phim và poster đã tải lên. Không phải database Somee."
+    },
+    {
+      "number": "7.1",
+      "file": "Hinh_7_1.png",
+      "validated": true,
+      "coverage": "partial",
+      "caption": "Explorer chụp thư mục ảnh trong project replay. Ứng dụng dùng no-poster.svg làm ảnh dự phòng, tương đương vai trò với no-image.jpg trong ví dụ của đề, nhưng tên và phần mở rộng khác; capture không chứng minh có đúng tệp no-image.jpg. Đây là placeholder, không phải poster phim."
+    },
+    {
+      "number": "9.1",
+      "file": "Hinh_9_1.png",
+      "validated": true,
+      "caption": "Trang Mật khẩu ứng dụng của Google hiển thị mục đã có tên GocPhim SMTP và ô tạo mới đang để trống. Ảnh không chứa mật khẩu ứng dụng; không tạo hoặc tiết lộ credential mới trong lần chụp này."
+    },
+    {
+      "number": "10.1",
+      "file": "Hinh_10_1.png",
+      "validated": true,
+      "caption": "Terminal trong lượt publish local cho CurrentApp: log cho thấy restore hoàn tất, Build succeeded và output trỏ tới lab-report-publish-20261128. Ảnh Explorer đi kèm cho thấy nội dung thư mục publish; đây là gói local được chuẩn bị để kiểm tra. ",
+      "companions": [
+        {
+          "file": "Hinh_10_1_Explorer.png",
+          "caption": "Explorer hiển thị các tệp và thư mục trong output publish local của CurrentApp."
+        }
+      ]
+    },
+    {
+      "number": "10.2",
+      "file": "Hinh_10_2.png",
+      "validated": true,
+      "caption": "Explorer hiển thị nội dung thư mục publish local đã được chọn. Ảnh archive đi kèm mở gói ZIP được tạo bằng CLI và cho thấy các mục bên trong; screenshot không khẳng định ZIP được tạo từ thao tác nén trong Explorer. ",
+      "companions": [
+        {
+          "file": "Hinh_10_2_Zip.png",
+          "caption": "Nội dung archive publish.zip do CLI tạo, mở trong Explorer để kiểm tra các mục đã đóng gói."
+        }
+      ]
+    },
+    {
+      "number": "10.3",
+      "file": "Hinh_10_3.png",
+      "validated": true,
+      "caption": "Trang Websites trong giao diện Somee hiện hành, hiển thị website đã có; liên kết Create website nằm ở menu trái. Giao diện hiện tại khác nút CREATE trong ảnh ví dụ của đề."
+    },
+    {
+      "number": "10.7",
+      "file": "Hinh_10_7.png",
+      "validated": true,
+      "caption": "Website live tại https://gocphimhung31241027221.somee.com/Movies hiển thị trang danh mục và các poster phim. Crop bỏ thanh trình duyệt để loại giao diện Chrome; URL được ghi rõ trong chú thích và liên kết website của báo cáo."
     }
   ]
 }

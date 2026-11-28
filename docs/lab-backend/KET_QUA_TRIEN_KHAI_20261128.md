@@ -21,3 +21,8 @@
 - Chốt sau rà soát: tránh vòng MutationObserver tự kích hoạt bằng cách chỉ đổi CSS variable khi chiều cao thật thay đổi. Deploy lại ba tệp thành công (523,77 KB); HTTP 200 và JS live khớp source. Hiện có 14 mã hình và 11 ảnh bổ sung, còn 36 cảnh lịch sử theo đề.
 
 - GitHub đã nhận source d9012ff. Bộ Word cuối có 14 mã hình và 12 ảnh bổ sung (26 ảnh nhúng); giữ bìa UEH và mục lục. Còn 36 cảnh lịch sử trong ma trận, không tuyên bố đủ 50/50.
+
+
+## Cập nhật báo cáo sau bổ sung ảnh
+
+Word 75 trang đã nhúng trực tiếp 65 ảnh minh chứng, cập nhật mục lục và kiểm tra render. Có ảnh cho 46/50 mã theo đề; 3.3, 5.5, 7.1 chỉ một phần. Bốn cảnh chưa chụp được: 5.4, 5.7, 6.1, 7.4 do Windows Application Control chặn DLL bản tái hiện. Chi tiết trong TIEN_DO_ANH_TAI_HIEN_20261128.md và ma trận CSV. Không thay đổi source/deploy production trong lượt bổ sung báo cáo này.

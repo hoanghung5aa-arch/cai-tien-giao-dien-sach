@@ -2,6 +2,7 @@ import argparse
 import json
 from datetime import date
 from pathlib import Path
+from PIL import Image
 
 from docx import Document
 from docx.enum.section import WD_ORIENT, WD_SECTION
@@ -101,7 +102,7 @@ SUPPLEMENTAL = [
     ("Muc14_TaiKhoanXacNhan.png", "Trang xác nhận đăng ký live cho biết email tài khoản đã được xác nhận."),
     ("Muc14_EmailDonHang.png", "Email trong Gmail Inbox xác nhận đơn thử nghiệm #4 cho Avengers: Doomsday với tổng tiền 159.000 VNĐ."),
     ("Muc14_DangNhapThanhCong.png", "Đăng nhập thành công trên website; menu hiện Tài khoản và Đăng xuất."),
-    ("Muc14_LocalHome.png", "Trang danh mục local tại 127.0.0.1:5080 hiển thị mười phim."),
+    ("Muc14_LocalHome.png", "Trang danh mục local tại 127.0.0.1:5080, hiển thị phần giới thiệu và đầu danh sách poster."),
     ("Muc14_ChinhSuaPhim.png", "Form chỉnh sửa phim local có poster chính thức hiển thị đầy đủ."),
 ]
 
@@ -289,7 +290,12 @@ def add_embedded_images(doc, image_entries):
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p.paragraph_format.space_after = Pt(2)
         p.paragraph_format.keep_with_next = True
-        shape = p.add_run().add_picture(str(path), width=Inches(9.9))
+        with Image.open(path) as figure_image:
+            aspect = figure_image.width / figure_image.height
+            raster_width = figure_image.width / 100
+        maximum_height = 5.6 if index == 0 else 6.1
+        figure_width = min(9.9, maximum_height * aspect, raster_width)
+        shape = p.add_run().add_picture(str(path), width=Inches(figure_width))
         shape._inline.docPr.set("descr", f"[{label}]. {desc}")
         paragraph(doc, f"{label}. {desc}", 9.5, True, INK,
                   WD_ALIGN_PARAGRAPH.CENTER, after=4, keep=False)
@@ -448,12 +454,27 @@ field(footer, "PAGE")
 
 args = parse_args()
 figure_evidence = load_figure_evidence(args.evidence_manifest)
-available = [
-    (f"Hình {number}", desc, figure_evidence[number])
-    for number, desc in FIGURES
-    if number in figure_evidence
-]
+manifest_details = {}
+if args.evidence_manifest.is_file():
+    manifest_details = {
+        str(item["number"]): item
+        for item in json.loads(args.evidence_manifest.read_text(encoding="utf-8"))["figures"]
+        if item.get("validated") is True
+    }
+available = []
+for number, desc in FIGURES:
+    if number not in figure_evidence:
+        continue
+    details = manifest_details.get(number, {})
+    caption = details.get("caption") or details.get("note") or desc
+    available.append((f"Hình {number}", caption, figure_evidence[number]))
+    for companion in details.get("companions", []):
+        companion_path = (IMAGES / companion["file"]).resolve()
+        if not companion_path.is_relative_to(IMAGES.resolve()) or not companion_path.is_file():
+            raise ValueError(f"Invalid companion figure path for {number}")
+        available.append((f"Hình {number} tiếp", companion["caption"], companion_path))
 available_supplemental = [(f"Mục 14", desc, IMAGES / name) for name, desc in SUPPLEMENTAL if (IMAGES / name).is_file()]
+partial_figures = [number for number, item in manifest_details.items() if item.get("coverage") == "partial"]
 
 # Cover
 add_cover_frame(doc)
@@ -516,17 +537,18 @@ paragraph(doc, "Bản mới đã được triển khai lên Somee ngày 28/11/20
 table(doc, ["Hạng mục", "Tình trạng"], [
     ("Project .NET 10", "Target net10.0; build Release đã được kiểm tra xác nhận thành công."),
     ("Phim và thể loại", "Migration khởi tạo năm phim và ba thể loại mẫu. Website live hiện hiển thị mười phim và sáu thể loại; truy vấn SQL hiện thời xác nhận đúng mười Movies và sáu Genres."),
-    ("Upload poster", "Source kiểm tra loại tệp, dung lượng và chữ ký; ảnh là file trên đĩa. HTTP QA đã xác nhận upload PNG hợp lệ và từ chối chữ ký JPG giả; ảnh bước chọn tệp còn thiếu."),
+    ("Upload poster", "Source kiểm tra loại tệp, dung lượng và chữ ký; ảnh là file trên đĩa. HTTP QA xác nhận upload PNG hợp lệ và từ chối chữ ký JPG giả. Đã chụp form chọn poster thật và kết quả lưu trên bản kiểm thử cục bộ."),
     ("Cart và checkout", "Ảnh giỏ hàng hiển thị Avengers: Doomsday với tổng 159.000 VNĐ; ảnh checkout và ThankYou ghi nhận đơn #4 trị giá 159.000 VNĐ."),
     ("SQL Server Somee", "Source có schema và migration EF Core. Truy vấn chỉ đọc xác nhận bảng Identity, Movies, Genres, HoaDons, ChiTietHoaDons, ShippingDetails; có ảnh kết quả hiện thời."),
     ("Website public", "Bản mới đã deploy ngày 28/11/2026; danh mục, thể loại, chi tiết phim, đăng nhập và đăng ký đã hiển thị khi kiểm tra trực tiếp."),
-    ("Ảnh theo đề", f"{len(available)} / {len(FIGURES)} ảnh đã được chèn; còn {len(FIGURES) - len(available)} vị trí chưa có ảnh. {len(available_supplemental)} ảnh bổ sung mục 14 được chèn trực tiếp."),
+    ("Ảnh theo đề", f"{len(figure_evidence)} / {len(FIGURES)} ảnh đã được chèn; còn {len(FIGURES) - len(figure_evidence)} vị trí chưa có ảnh. {len(available_supplemental)} ảnh bổ sung mục 14 được chèn trực tiếp."),
 ], [1.55, 4.65], size=8.6, status_col=1)
 
 # Scope and section 14/15.
 heading(doc, "Phạm vi và tài liệu đối chiếu")
 paragraph(doc, "PDF bài tập ASP.NET Core MVC .NET 10 dài 41 trang là căn cứ chính cho yêu cầu source, các bước, 50 vị trí [Hình x.y], mục 14–15 và rubric 100 điểm. Hướng dẫn cũ dùng .NET 5; transcript video thao tác ASP.NET MVC 5/.NET Framework trong Visual Studio. Hai tài liệu cũ chỉ giúp đối chiếu quy trình, không thay cho phiên bản package, Program.cs, route, session, lưu ảnh và publish trong source .NET 10 này.")
 paragraph(doc, "Ma trận dưới đây giữ đủ 50 vị trí theo PDF mới. Các ảnh đã đối chiếu và còn khớp nội dung hiện tại được nhúng trực tiếp ở phụ lục; các vị trí chưa có ảnh được ghi rõ. Ảnh cũ có con trỏ hoặc không còn khớp bản deploy được loại khỏi báo cáo.")
+paragraph(doc, "Các bước khởi tạo và Identity được tái hiện thật trong project riêng, dùng database SQL Express LabEvidence20261128. Các thao tác phim, thể loại và đơn hàng cục bộ dùng LabEvidenceFinal20261128, tách khỏi dữ liệu Somee. Chú thích phân biệt ảnh tái hiện, ảnh lịch sử và ảnh website live. Ảnh lịch sử form Somee được giữ khi quota không cho mở lại form tạo mới. Chỉ cắt khung ảnh để loại thanh ứng dụng và con trỏ, không dựng kết quả. Windows Application Control chặn DLL của bản tái hiện scaffold; các cảnh chưa tái hiện thành công vẫn được ghi là thiếu.")
 heading(doc, "Đối chiếu yêu cầu báo cáo và nộp bài")
 table(doc, ["Yêu cầu mục 14–15", "Nội dung và trạng thái"], [
     ("Trang đầu", "Có họ tên, MSSV, lớp, học phần, tên bài, ngày báo cáo và URL repository."),
@@ -573,7 +595,7 @@ table(doc, ["Model/bảng", "Vai trò và quan hệ"], [
     ("ChiTietHoaDon", "MovieId, số lượng và đơn giá tại thời điểm đặt; tham chiếu hóa đơn và phim."),
     ("ShippingDetail", "Người nhận và ngày giao; HoaDonId duy nhất tạo quan hệ một-một."),
 ], [1.6, 4.6], size=8.5)
-paragraph(doc, "Migration có năm phim và ba thể loại hư cấu làm dữ liệu khởi đầu. Đề yêu cầu tối thiểu năm sản phẩm và ba thể loại do sinh viên tự nhập; dữ liệu seed không tự chứng minh yêu cầu đó. Giao diện hiện có mười phim và sáu thể loại hiển thị, nhưng truy vấn SQL hiện thời xác nhận số lượng mười phim và sáu thể loại; dữ liệu đơn #4 có tổng 159.000 VNĐ.", 9.2, True, RED)
+paragraph(doc, "Migration có năm phim và ba thể loại mẫu làm dữ liệu khởi đầu; poster quảng bá thật có nguồn ghi bên dưới. Đề yêu cầu tối thiểu năm sản phẩm và ba thể loại do sinh viên tự nhập; dữ liệu seed không tự chứng minh yêu cầu đó. SQL Somee hiện xác nhận mười phim và sáu thể loại; dữ liệu đơn #4 có tổng 159.000 VNĐ. Ảnh thao tác thêm phim và thể loại mới được chụp riêng trên database cục bộ.", 9.2)
 
 heading(doc, "Quá trình thực hiện")
 bullet(doc, "Chốt target. ", "Dùng đề .NET 10, global.json và tool manifest ghim dotnet-ef 10.0.15; không áp dụng nguyên lệnh .NET 5/MVC5.")
@@ -589,7 +611,7 @@ table(doc, ["Kiểm tra", "Kết quả ghi nhận", "Việc còn lại"], [
     ("Create/Edit phim", "Cloud QA bản trước đã pass CRUD; Price 5.000 được chấp nhận và 4.999 bị từ chối. Kiểm thử HTTP ngày 28/11 xác nhận Title/Summary sau Trim không đủ ba ký tự bị từ chối; Release build pass.", "Đã kiểm thử runtime chuỗi có khoảng trắng."),
     ("Database Somee", "Bản triển khai hiện chạy; truy vấn SQL chỉ đọc xác nhận mười phim, sáu thể loại, bốn hóa đơn và một tài khoản đã xác nhận.", "Đã chèn ảnh kết quả truy vấn SQL; ảnh thao tác SSMS lịch sử chưa có."),
     ("Dữ liệu phim/thể loại", "Source seed năm phim và ba thể loại; website hiển thị mười phim và sáu thể loại.", "Chưa xác minh năm phim/ba thể loại nào do sinh viên nhập."),
-    ("Upload poster", "Cloud QA pass upload poster và giữ ảnh sau khi sửa thông tin phim.", "Ảnh thao tác cụ thể còn chờ chụp."),
+    ("Upload poster", "Cloud QA pass upload poster và giữ ảnh sau khi sửa thông tin phim.", "Đã chèn form chọn tệp và kết quả lưu poster cục bộ."),
     ("Cart và checkout", "Cloud QA pass Add/Update/Remove; thiếu ngày giao bị từ chối; đơn hợp lệ lưu và cart được xóa. Ảnh mới ghi nhận cart, checkout và ThankYou cho đơn #4 trị giá 159.000 VNĐ.", "Đã có ảnh form chỉnh sửa và truy vấn SQL; ảnh các bước lịch sử xem ma trận."),
     ("SMTP và Identity", "Email đơn #3 và #4 có trong Inbox và Sent; #4 trị giá 159.000 VNĐ. Trang xác nhận cho biết email tài khoản đã xác nhận; ảnh menu xác nhận đăng nhập thành công.", "Đã xác minh tài khoản và gửi email thực tế."),
     ("Somee .NET 10", "Bản mới đã deploy ngày 28/11/2026; danh mục, thể loại, phim, đăng nhập và đăng ký đã hiển thị.", "Ảnh truy vấn SQL và form chỉnh sửa đã bổ sung; ảnh lịch sử xem ma trận."),
@@ -598,7 +620,7 @@ table(doc, ["Kiểm tra", "Kết quả ghi nhận", "Việc còn lại"], [
 
 # Extra evidence required by section 14.
 heading(doc, "Ảnh bổ sung theo mục 14")
-paragraph(doc, f"Có {len(available_supplemental)} ảnh live bổ sung không có con trỏ, thanh Chrome hay taskbar. Ảnh cũ có con trỏ hoặc poster cũ đã được loại khỏi báo cáo; các ảnh này không thay thế 50 mã [Hình x.y] của đề.")
+paragraph(doc, f"Có {len(available_supplemental)} ảnh bổ sung từ website live và môi trường cục bộ, không có con trỏ, thanh Chrome hay taskbar. Chú thích từng ảnh nêu môi trường tương ứng; các ảnh này không thay thế 50 mã [Hình x.y] của đề.")
 supplement_rows = []
 for filename, description in SUPPLEMENTAL:
     if (IMAGES / filename).is_file():
@@ -609,8 +631,9 @@ for filename, description in SUPPLEMENTAL:
 table(doc, ["Ảnh bổ sung", "Tệp"], supplement_rows, [4.8, 1.4], 8.3, status_col=1)
 # Keep the assignment image gap separate from supplementary evidence counts.
 heading(doc, "Checklist số lượng ảnh minh chứng", 2)
+paragraph(doc, "Số lượng đã chèn là số mã hình có ảnh minh họa, không tự xác nhận đáp ứng trọn vẹn từng chi tiết của đề. " + ("Các mã chỉ có ảnh một phần: " + ", ".join(partial_figures) + ". Xem giới hạn tại chú thích." if partial_figures else "Môi trường và khác biệt giao diện được ghi ở chú thích từng ảnh."))
 table(doc, ["Nhóm ảnh", "Đã chèn", "Chưa có"], [
-    ("Mã hình theo PDF", f"{len(available)} / {len(FIGURES)}", str(len(FIGURES) - len(available))),
+    ("Mã hình theo PDF", f"{len(figure_evidence)} / {len(FIGURES)}", str(len(FIGURES) - len(figure_evidence))),
     ("Ảnh bổ sung mục 14", f"{len(available_supplemental)} / {len(SUPPLEMENTAL)}", str(len(SUPPLEMENTAL) - len(available_supplemental))),
 ], [3.7, 1.2, 1.3], 8.3)
 # Exactly fifty figure evidence rows.
@@ -625,7 +648,7 @@ for chapter, chapter_title in CHAPTERS.items():
     heading(doc, f"Hình {chapter}  {chapter_title}", 2)
     rows = []
     for number, desc in grouped[chapter]:
-        status = "Đã chèn" if number in figure_evidence else "Chưa có ảnh"
+        status = ("Ảnh một phần" if manifest_details.get(number, {}).get("coverage") == "partial" else "Đã chèn") if number in figure_evidence else "Chưa có ảnh"
         rows.append((f"[Hình {number}]", desc, status))
     table(doc, ["Hình", "Nội dung cần chụp theo PDF", "Ảnh"], rows, [.78, 4.55, .92], 7.9, 2)
 
@@ -637,7 +660,7 @@ paragraph(doc, "Publish cần dùng thư mục đầu ra mới. Khi nén, lấy 
 paragraph(doc, "SMTP có hai luồng riêng. Email xác nhận cho đơn thử nghiệm #3 và #4 đều có trong Inbox và Sent của Gmail; #4 trị giá 159.000 VNĐ, được lưu sau triển khai ngày 28/11/2026. Trang xác nhận tài khoản cho biết email đã được xác nhận; đã đăng nhập thành công và menu hiển thị Tài khoản/Đăng xuất. Checkout lưu đơn trong transaction trước khi thử gửi mail.")
 
 heading(doc, "Kết luận và việc còn lại")
-paragraph(doc, f"Source ASP.NET Core MVC .NET 10 đã build Release, deploy lại trên Somee và được kiểm tra trực tiếp ở các trang chính. Giao diện dùng font Noto Sans, poster chính thức có nguồn tham khảo, đăng ký và đăng nhập hiển thị đúng tiếng Việt. Email xác nhận đơn #4 trị giá 159.000 VNĐ có trong Inbox và Sent; trang xác nhận cho biết email tài khoản đã xác nhận, đăng nhập thành công đã được xác minh. Ảnh theo đề: {len(available)} / {len(FIGURES)} đã chèn, còn {len(FIGURES) - len(available)} vị trí chưa có ảnh. Các ảnh lịch sử còn thiếu được liệt kê trong ma trận, không thay bằng ảnh dựng. Sinh viên vẫn cần nộp URL website và repository trên LMS.")
+paragraph(doc, f"Source ASP.NET Core MVC .NET 10 đã build Release, deploy lại trên Somee và được kiểm tra trực tiếp ở các trang chính. Giao diện dùng font Noto Sans, poster chính thức có nguồn tham khảo, đăng ký và đăng nhập hiển thị đúng tiếng Việt. Email xác nhận đơn #4 trị giá 159.000 VNĐ có trong Inbox và Sent; trang xác nhận cho biết email tài khoản đã xác nhận, đăng nhập thành công đã được xác minh. Ảnh theo đề: {len(figure_evidence)} / {len(FIGURES)} đã chèn, còn {len(FIGURES) - len(figure_evidence)} vị trí chưa có ảnh. Các ảnh lịch sử còn thiếu được liệt kê trong ma trận, không thay bằng ảnh dựng. Sinh viên vẫn cần nộp URL website và repository trên LMS.")
 
 heading(doc, "Nguồn đối chiếu")
 paragraph(doc, "Đề mới BaiTap_CaNhan_ASP_CORE_LMS.pdf: ASP.NET Core MVC .NET 10, mục 12–16 và 50 hình minh chứng.")
@@ -661,4 +684,4 @@ if update_fields is None:
 update_fields.set(qn("w:val"), "true")
 doc.save(OUT)
 print(str(OUT).encode("ascii", "backslashreplace").decode("ascii"))
-print("Embedded numbered figures:", ", ".join(item[0] for item in available) or "none")
+print("Embedded numbered figures:", ", ".join(figure_evidence) or "none")

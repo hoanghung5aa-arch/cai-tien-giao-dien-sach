@@ -128,6 +128,6 @@ Website đã chạy tại URL nêu trên. Đơn #1 và #2 là các thử nghiệ
 
 Báo cáo theo mục 14–15 nằm tại [BaiTap_CaNhan_ASP_CORE_LMS.docx](Report/BaiTap_CaNhan_ASP_CORE_LMS.docx). Ảnh được **nhúng trực tiếp** vào Word, chú thích bên dưới; giữ khung bìa và logo UEH của mẫu. Ảnh hiện tại đã cắt thanh Chrome/titlebar và không có taskbar/con trỏ trong nội dung. Bộ ảnh dùng poster thật.
 
-Ma trận giữ đủ 50 mã theo PDF .NET 10; hiện **14 mã có ảnh được duyệt và 12 ảnh bổ sung**, gồm source VS Code, local, chỉnh sửa, SQL, tài khoản, đăng nhập, cart, checkout và thư thực nhận. **Còn 36 cảnh lịch sử theo đề chưa có ảnh đúng yêu cầu**, được đánh dấu trong ma trận; không coi báo cáo là đủ 50/50. Không thay ảnh thiếu bằng ảnh mẫu hoặc ảnh dựng. [Ma trận minh chứng](../docs/lab-backend/MA_TRAN_MINH_CHUNG_20261128.csv).
+Ma trận giữ đủ 50 mã theo PDF .NET 10; hiện **46/50 mã có ảnh nhúng và 12 ảnh bổ sung**. Mã minh họa một phần: 3.3, 5.5, 7.1. **Còn 4 cảnh chưa có ảnh: 5.4, 5.7, 6.1, 7.4**. Windows Application Control chặn DLL của bản tái hiện sau build (0x800711C7); không thay đổi bảo mật máy để lấy ảnh. Các chú thích phân biệt ảnh live, tái hiện local và ảnh lịch sử; không coi báo cáo là đủ 50/50. [Ma trận minh chứng](../docs/lab-backend/MA_TRAN_MINH_CHUNG_20261128.csv).
 
 Bản hướng dẫn cũ dùng .NET 5 và transcript video dùng ASP.NET MVC 5/.NET Framework trong Visual Studio. Chỉ lấy quy trình chung khi phù hợp; thao tác cũ như `Startup.cs`, cổng cố định, publish profile hay cách lưu ảnh của framework cũ không thay thế hướng dẫn hiện hành .NET 10 và mã nguồn này.
