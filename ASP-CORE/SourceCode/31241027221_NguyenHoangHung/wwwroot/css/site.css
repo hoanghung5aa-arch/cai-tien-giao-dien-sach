@@ -45,8 +45,8 @@
 html { scroll-behavior: smooth; }
 body {
     margin: 0;
-    /* Leave a scrollable 16px buffer above Somee's fixed 64px bottom banner. */
-    padding-bottom: 80px;
+    /* Keep the page end clear of Somee's fixed banner, including when it wraps on mobile. */
+    padding-bottom: calc(var(--fixed-bottom-banner-height, 64px) + 16px);
     background: var(--page);
     color: var(--ink);
     font-family: var(--font-interface);
@@ -332,7 +332,7 @@ button, input, select, textarea { font: inherit; }
     .hero-copy { max-width: none; }
     .hero-feature { grid-template-columns: minmax(160px, 200px) minmax(0, 1fr); width: 100%; max-width: none; margin: 0; align-items: center; }
 }
-@media (max-width: 900px) {
+@media (max-width: 991.98px) {
     .site-header .navbar-collapse { padding-top: 12px; }
     .site-header .navbar-nav { align-items: stretch; }
     .site-header .navbar-nav .nav-link { display: block; }

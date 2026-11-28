@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
 using _31241027221_NguyenHoangHung.Models;
@@ -42,7 +43,9 @@ public sealed class IdentityEmailSender : IEmailSender
             {
                 From = new MailAddress(userName, _settings.FromName),
                 Subject = subject,
+                SubjectEncoding = Encoding.UTF8,
                 Body = htmlMessage,
+                BodyEncoding = Encoding.UTF8,
                 IsBodyHtml = true
             };
             message.To.Add(email);

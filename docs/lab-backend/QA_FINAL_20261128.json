@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-28",
+  "target": "http://127.0.0.1:5080",
+  "results": [
+    {
+      "check": "reject invalid Title= a ",
+      "passed": true
+    },
+    {
+      "check": "reject invalid Summary= a ",
+      "passed": true
+    },
+    {
+      "check": "reject invalid Price=4999",
+      "passed": true
+    },
+    {
+      "check": "reject invalid Rated=0.9",
+      "passed": true
+    },
+    {
+      "check": "reject invalid Rated=5.1",
+      "passed": true
+    },
+    {
+      "check": "reject invalid GenreId=2147483647",
+      "passed": true
+    },
+    {
+      "check": "reject invalid ReleaseDate=2020-01-01",
+      "passed": true
+    },
+    {
+      "check": "reject forged JPG signature",
+      "passed": true
+    },
+    {
+      "check": "create at minimum price with valid PNG",
+      "passed": true
+    },
+    {
+      "check": "accept rating 1",
+      "passed": true
+    },
+    {
+      "check": "accept rating 4.5",
+      "passed": true
+    },
+    {
+      "check": "accept rating 5",
+      "passed": true
+    },
+    {
+      "check": "retain uploaded poster after edit",
+      "passed": true
+    },
+    {
+      "check": "uploaded PNG served",
+      "passed": true
+    },
+    {
+      "check": "antiforgery missing token rejected",
+      "passed": true
+    },
+    {
+      "check": "cart add",
+      "passed": true
+    },
+    {
+      "check": "cart quantity and total",
+      "passed": true
+    },
+    {
+      "check": "cart quantity clamped at 50",
+      "passed": true
+    },
+    {
+      "check": "cart remove",
+      "passed": true
+    },
+    {
+      "check": "QA movie cleaned up",
+      "passed": true
+    }
+  ]
+}

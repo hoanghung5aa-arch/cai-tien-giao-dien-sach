@@ -76,7 +76,9 @@ public sealed class OrderEmailService : IOrderEmailService
             {
                 From = new MailAddress(userName, _settings.FromName),
                 Subject = $"Xác nhận đơn hàng #{order.Id} - Góc Phim Hưng",
+                SubjectEncoding = Encoding.UTF8,
                 Body = body.ToString(),
+                BodyEncoding = Encoding.UTF8,
                 IsBodyHtml = false
             };
             message.To.Add(shipping.Email);
