@@ -88,7 +88,7 @@
       "number": "2.3",
       "file": "Hinh_2_3.png",
       "validated": true,
-      "note": "Welcome thực tại 127.0.0.1:5083; ảnh terminal Now listening on đi kèm.",
+      "note": "Ảnh trình duyệt do người dùng cung cấp: trang Welcome tại 127.0.0.1:5083, URL hiện rõ; không có tab Chrome, taskbar hoặc con trỏ. Ảnh terminal Now listening on đi kèm.",
       "companions": [
         {
           "file": "Hinh_2_3_Terminal.png",
@@ -196,7 +196,7 @@
       "number": "7.5",
       "file": "Hinh_7_5.png",
       "validated": true,
-      "caption": "Tái hiện local trên CurrentApp sau khi lưu: danh sách lọc LAB Upload hiển thị Avengers: Doomsday LAB Upload cùng poster, thể loại Hoạt hình và giá 159.000 VNĐ. Đây là dữ liệu replay cục bộ."
+      "caption": "Trang /Movies live hiển thị poster phim thật trong các thẻ thay cho đường dẫn ảnh. Ảnh có URL trên thanh địa chỉ, không có tab Chrome, taskbar hay con trỏ; dùng chung ảnh chụp live với Hình 10.7 để thay minh chứng local có phân loại sai thể loại Avengers."
     },
     {
       "number": "8.1",
@@ -316,7 +316,7 @@
       "number": "10.7",
       "file": "Hinh_10_7.png",
       "validated": true,
-      "caption": "Website live tại https://gocphimhung31241027221.somee.com/Movies hiển thị trang danh mục và các poster phim. Crop bỏ thanh trình duyệt để loại giao diện Chrome; URL được ghi rõ trong chú thích và liên kết website của báo cáo."
+      "caption": "Website live tại http://gocphimhung31241027221.somee.com/Movies hiển thị trang danh mục và poster phim thật. Thanh địa chỉ giữ nguyên để chứng minh URL theo đề; ảnh không có tab Chrome, taskbar hay con trỏ. Quảng cáo hosting Somee che một phần sát mép dưới ảnh."
     },
     {
       "number": "5.4",

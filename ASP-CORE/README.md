@@ -83,7 +83,13 @@ dotnet user-secrets set "Email:AppPassword" "YOUR_GMAIL_APP_PASSWORD" --project 
 
 Có thể đặt các khóa email khác nếu cần: `Email:Host` (`smtp.gmail.com`), `Email:Port` (`587`) và `Email:FromName` (`Góc Phim Hưng`). Trên hosting, dùng `ConnectionStrings__DefaultConnection`, `Email__UserName`, `Email__AppPassword`, `Email__Host`, `Email__Port` và `Email__FromName` trong phần quản lý biến môi trường bí mật của host. Hai luồng email bỏ khoảng trắng trong App Password trước khi xác thực SMTP. Gmail App Password cần được tạo theo quy trình bảo mật hiện hành của Google; không dùng mật khẩu đăng nhập Gmail thông thường.
 
-> **Cài database:** `Database/InstallDatabase.sql` hiện gồm đủ schema đến migration `AlignAssignmentModel` và đã được áp dụng thành công trên database Somee rỗng. Chỉ chạy script này một lần trên database SQL Server mới, rỗng. Với database đã có migration history, dùng `dotnet ef database update` để áp dụng các migration còn thiếu; không chạy lại script cài mới.
+> **Cài database:** `Database/InstallDatabase.sql` gồm schema và dữ liệu khởi tạo, chỉ chạy một lần trên database SQL Server mới, rỗng. Với database đã có migration history, dùng `dotnet ef database update` để áp dụng migration còn thiếu; không chạy lại script cài mới.
+
+### Migration bảo vệ dữ liệu
+
+`UseOfficialFilmCatalog` chỉ cập nhật các dòng seed 1–5 nếu mỗi dòng khớp hoàn toàn với giá trị khởi tạo hoặc đã là giá trị danh mục đích. Nếu dòng seed đã được sửa khác dự kiến, migration dừng để tránh ghi đè. Migration giữ nguyên Genre ID 1, chỉ thêm `Hoạt hình` ở ID 7 khi ID này còn trống, không thay đổi phim người dùng tạo, đơn hàng hay tài khoản. `Down` không khôi phục dữ liệu seed và không xóa Genre 7 để bảo vệ các chỉnh sửa phát sinh sau này.
+
+Lần cập nhật báo cáo này đã build source và kiểm tra không còn thay đổi model chưa được migration ghi nhận. Migration mới chưa được áp dụng vào production; trước khi chạy trên hosting cần sao lưu database và xác nhận trạng thái `__EFMigrationsHistory`.
 
 ## Khôi phục và chạy local
 
@@ -126,7 +132,7 @@ Website đã chạy tại URL nêu trên. Đơn #1 và #2 là các thử nghiệ
 
 ## Báo cáo và minh chứng
 
-Báo cáo theo mục 14–15 nằm tại [BaiTap_CaNhan_ASP_CORE_LMS.docx](Report/BaiTap_CaNhan_ASP_CORE_LMS.docx). Ảnh được **nhúng trực tiếp** vào Word, chú thích bên dưới; giữ khung bìa và logo UEH của mẫu. Ảnh hiện tại đã cắt thanh Chrome/titlebar và không có taskbar/con trỏ trong nội dung. Bộ ảnh dùng poster thật.
+Báo cáo theo mục 14–15 nằm tại [BaiTap_CaNhan_ASP_CORE_LMS.docx](Report/BaiTap_CaNhan_ASP_CORE_LMS.docx). Ảnh được **nhúng trực tiếp** vào Word, chú thích bên dưới; giữ khung bìa và logo UEH của mẫu. Ảnh website giữ thanh địa chỉ nơi đề yêu cầu URL; tab Chrome, taskbar và con trỏ không xuất hiện. Bộ ảnh dùng poster thật.
 
 Ma trận giữ đủ 50 mã theo PDF .NET 10; hiện **50/50 mã có ảnh nhúng và 12 ảnh bổ sung**. Đã bổ sung lỗi Movies trước migration, Index rỗng, hai migration, tệp no-image.jpg và cột PicturePath. Hình 3.3 gồm hai phần cắt của cùng ảnh lịch sử để giữ đủ trường form và loại con trỏ. **Hình 6.1 đã thay bằng ảnh PowerShell thật, hiển thị scaffold Genre thành công cùng controller và đủ năm View.** Không còn mã đánh dấu ảnh một phần trong manifest. Chú thích phân biệt ảnh live, tái hiện local và ảnh lịch sử. [Ma trận minh chứng](../docs/lab-backend/MA_TRAN_MINH_CHUNG_20261128.csv).
 

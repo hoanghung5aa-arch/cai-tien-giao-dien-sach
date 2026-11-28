@@ -20,6 +20,7 @@ OUT = REPORT / "BaiTap_CaNhan_ASP_CORE_LMS.docx"
 REPORT_DATE = date(2026, 11, 28)
 REPO_URL = "https://github.com/hoanghung5aa-arch/cai-tien-giao-dien-sach"
 SOMEE_URL = "https://somee.com/FreeAspNetHosting.aspx"
+LIVE_URL = "http://gocphimhung31241027221.somee.com"
 
 INK, BODY, GREEN, NAVY = "151515", "26302C", "236B57", "17372F"
 PALE, MINT, GRAY, RED, WHITE, BORDER = "F3F6F3", "EAF3ED", "63716B", "A84438", "FFFFFF", "D9D9D9"
@@ -29,7 +30,7 @@ FIGURES = [
     ("1.1", "Terminal chạy dotnet --version và dotnet --list-sdks, thấy dòng 10.0.xxx."),
     ("2.1", "Terminal sau dotnet new mvc, thấy template MVC tạo thành công và restore hoàn tất."),
     ("2.2", "Hộp thoại Windows HTTPS Security Warning với nút Yes."),
-    ("2.3", "Terminal có Now listening on và trình duyệt hiện trang Welcome, thấy thanh địa chỉ."),
+    ("2.3", "Trình duyệt hiện trang Welcome tại localhost:5083, URL nhìn thấy; không có tab Chrome, taskbar hoặc con trỏ. Terminal Now listening on được đính kèm."),
     ("2.4", "Program.cs với dòng options.UseSqlServer(connectionString) được đánh dấu tìm kiếm trong editor."),
     ("3.1", "Trang chủ Somee, khoanh Learn More của gói Free .NET Hosting."),
     ("3.2", "Trang MS SQL Databases có nút CREATE được khoanh."),
@@ -92,11 +93,11 @@ CHAPTERS = {
 }
 
 SUPPLEMENTAL = [
-    ("Muc14_GitHub.png", "Thư mục ASP-CORE trên GitHub sau khi đẩy commit d9012ff gồm bản sửa banner, email UTF-8 và kiểm tra hồi quy."),
+    ("Muc14_GitHub.png", "Repository GitHub và cấu trúc thư mục ASP-CORE; ảnh chụp trước commit cập nhật báo cáo này."),
     ("Muc14_Hosting.png", "Somee Summary hiển thị website đang chạy, URL public và môi trường ASP.NET Core."),
     ("Muc14_FileManager.png", "File Manager xác nhận giải nén ba tệp, 523,77 KB; DLL ứng dụng và wwwroot ở gốc website."),
     ("Muc14_Database.png", "Truy vấn chỉ đọc trên SQL Server: mười phim, sáu thể loại, bốn hóa đơn, bốn chi tiết, bốn địa chỉ và một tài khoản đã xác nhận. Đơn #4 có tổng 159.000 VNĐ."),
-    ("Hinh_Audit_DanhMuc_20261128.png", "Danh mục website live với poster phim thật; ảnh trang không có con trỏ, thanh Chrome hay taskbar."),
+    ("Hinh_Audit_DanhMuc_20261128.png", "Danh mục website live với poster phim thật; ảnh giữ URL theo đề, không có tab Chrome, taskbar hay con trỏ."),
     ("Hinh_Audit_PosterThat_20261128.png", "Chi tiết phim Avengers: Doomsday với poster thật đang hiển thị trên bản deploy."),
     ("Hinh_Audit_TheLoai_20261128.png", "Danh sách thể loại trên website live sau bản deploy mới."),
     ("Muc14_TaiKhoanXacNhan.png", "Trang xác nhận đăng ký live cho biết email tài khoản đã được xác nhận."),
@@ -533,7 +534,7 @@ doc.add_page_break()
 # Summary
 heading(doc, "Tóm tắt kết quả")
 paragraph(doc, "Bài tập xây dựng cửa hàng phim Góc Phim Hưng bằng ASP.NET Core MVC .NET 10, Entity Framework Core và SQL Server. Source hiện có Identity, quản lý phim/thể loại, tải poster, giỏ hàng trong session, checkout, lưu đơn hàng và dịch vụ email. Kiểm tra build Release thành công với SDK 10.0.404; Microsoft.NETCore.App và Microsoft.AspNetCore.App runtime là 10.0.15.")
-paragraph(doc, "Bản mới đã được triển khai lên Somee ngày 28/11/2026. Kiểm tra trực tiếp trên website xác nhận trang danh mục, thể loại, chi tiết phim, đăng nhập thành công và đăng ký đều hiển thị; footer còn đúng MSSV. Giao diện dùng font Noto Sans nhúng cho tiếng Việt và poster quảng bá chính thức được liệt kê nguồn trong báo cáo. Đơn thử nghiệm #4 trị giá 159.000 VNĐ đã được lưu sau triển khai; email xác nhận có trong Inbox và Sent của Gmail ngày 28/11/2026. Trang xác nhận cũng cho biết email tài khoản đã được xác nhận. Build Release của source hiện tại đã thành công với SDK 10.0.404.")
+paragraph(doc, "Bản mới đã được triển khai lên Somee ngày 28/11/2026 tại " + LIVE_URL + ". Kiểm tra trực tiếp trên website xác nhận trang danh mục, thể loại, chi tiết phim, đăng nhập thành công và đăng ký đều hiển thị; footer còn đúng MSSV. Giao diện dùng font Noto Sans nhúng cho tiếng Việt và poster quảng bá chính thức được liệt kê nguồn trong báo cáo. Đơn thử nghiệm #4 trị giá 159.000 VNĐ đã được lưu sau triển khai; email xác nhận có trong Inbox và Sent của Gmail ngày 28/11/2026. Trang xác nhận cũng cho biết email tài khoản đã được xác nhận. Build Release của source hiện tại đã thành công với SDK 10.0.404.")
 table(doc, ["Hạng mục", "Tình trạng"], [
     ("Project .NET 10", "Target net10.0; build Release đã được kiểm tra xác nhận thành công."),
     ("Phim và thể loại", "Migration khởi tạo năm phim và ba thể loại mẫu. Website live hiện hiển thị mười phim và sáu thể loại; truy vấn SQL hiện thời xác nhận đúng mười Movies và sáu Genres."),
@@ -541,14 +542,13 @@ table(doc, ["Hạng mục", "Tình trạng"], [
     ("Cart và checkout", "Ảnh giỏ hàng hiển thị Avengers: Doomsday với tổng 159.000 VNĐ; ảnh checkout và ThankYou ghi nhận đơn #4 trị giá 159.000 VNĐ."),
     ("SQL Server Somee", "Source có schema và migration EF Core. Truy vấn chỉ đọc xác nhận bảng Identity, Movies, Genres, HoaDons, ChiTietHoaDons, ShippingDetails; có ảnh kết quả hiện thời."),
     ("Website public", "Bản mới đã deploy ngày 28/11/2026; danh mục, thể loại, chi tiết phim, đăng nhập và đăng ký đã hiển thị khi kiểm tra trực tiếp."),
-    ("Ảnh theo đề", f"{len(figure_evidence)} / {len(FIGURES)} ảnh đã được chèn; còn {len(FIGURES) - len(figure_evidence)} vị trí chưa có ảnh. {len(available_supplemental)} ảnh bổ sung mục 14 được chèn trực tiếp."),
+    ("Ảnh theo đề", f"{len(figure_evidence)} / {len(FIGURES)} vị trí có ảnh nhúng; {len(available_supplemental)} ảnh bổ sung mục 14 được chèn trực tiếp. Một số ảnh là ảnh lịch sử hoặc tái hiện cục bộ, ghi rõ trong chú thích."),
 ], [1.55, 4.65], size=8.6, status_col=1)
 
 # Scope and section 14/15.
 heading(doc, "Phạm vi và tài liệu đối chiếu")
 paragraph(doc, "PDF bài tập ASP.NET Core MVC .NET 10 dài 41 trang là căn cứ chính cho yêu cầu source, các bước, 50 vị trí [Hình x.y], mục 14–15 và rubric 100 điểm. Hướng dẫn cũ dùng .NET 5; transcript video thao tác ASP.NET MVC 5/.NET Framework trong Visual Studio. Hai tài liệu cũ chỉ giúp đối chiếu quy trình, không thay cho phiên bản package, Program.cs, route, session, lưu ảnh và publish trong source .NET 10 này.")
-paragraph(doc, "Ma trận dưới đây giữ đủ 50 vị trí theo PDF mới. Các ảnh đã đối chiếu và còn khớp nội dung hiện tại được nhúng trực tiếp ở phụ lục; các vị trí chưa có ảnh được ghi rõ. Ảnh cũ có con trỏ hoặc không còn khớp bản deploy được loại khỏi báo cáo.")
-paragraph(doc, "Các bước khởi tạo và Identity được tái hiện thật trong project riêng, dùng database SQL Express LabEvidence20261128. Các thao tác phim, thể loại và đơn hàng cục bộ dùng LabEvidenceFinal20261128, tách khỏi dữ liệu Somee. Chú thích phân biệt ảnh tái hiện, ảnh lịch sử và ảnh website live. Ảnh lịch sử form Somee được giữ khi quota không cho mở lại form tạo mới. Chỉ cắt khung ảnh để loại thanh ứng dụng và con trỏ, không dựng kết quả. Sau khi người dùng xử lý Smart App Control, bản tái hiện đã chạy được và scaffold Genre thành công. Hình 6.1 đã thay bằng ảnh PowerShell thật sau scaffold Genre thành công, có controller và đủ năm View.")
+paragraph(doc, "Ma trận dưới đây có ảnh nhúng cho đủ 50 vị trí theo PDF. Chú thích phân biệt ảnh tái hiện, ảnh lịch sử và website live; hiện không có mục nào bị đánh dấu thiếu ảnh. Các ảnh website giữ thanh địa chỉ khi đề yêu cầu URL; không có tab Chrome, taskbar hoặc con trỏ. Hình 2.3 dùng ảnh Welcome local có URL 127.0.0.1:5083 và ảnh terminal Now listening on đi kèm. Hình 6.1 dùng ảnh PowerShell thật sau scaffold Genre, có controller và đủ năm View.")
 heading(doc, "Đối chiếu yêu cầu báo cáo và nộp bài")
 table(doc, ["Yêu cầu mục 14–15", "Nội dung và trạng thái"], [
     ("Trang đầu", "Có họ tên, MSSV, lớp, học phần, tên bài, ngày báo cáo và URL repository."),
@@ -556,9 +556,9 @@ table(doc, ["Yêu cầu mục 14–15", "Nội dung và trạng thái"], [
     ("Thiết kế dữ liệu", "Mô tả các model và quan hệ; ảnh truy vấn database được chèn ở mục minh chứng."),
     ("Chức năng", "Cloud QA bản trước xác nhận CRUD, upload/giữ poster, giá 5.000/4.999, cart, antiforgery và checkout. Kiểm thử mới có 20 kiểm tra HTTP đạt: chuẩn hóa Title/Summary, các biên giá/điểm/ngày/thể loại, upload, cart và antiforgery."),
     ("Triển khai", "Bản mới đã deploy ngày 28/11/2026; trang danh mục, thể loại, phim, đăng nhập và đăng ký hiển thị."),
-    ("Khó khăn và kết luận", "Nêu khác biệt tài liệu .NET 5/MVC5, giới hạn runtime hosting, SMTP best-effort và các ảnh theo đề còn thiếu."),
+    ("Khó khăn và kết luận", "Nêu khác biệt tài liệu .NET 5/MVC5, giới hạn runtime hosting, quy trình SMTP và các hướng cải tiến tiếp theo."),
     ("Ảnh mục 14", "Bảng ảnh bổ sung riêng cho cấu trúc VS Code, local, CRUD, upload, database, cart, checkout, hosting và GitHub."),
-    ("GitHub, README, LMS", "Source, poster/font và ảnh thể loại đã được đẩy lên repository; Word có ảnh nhúng trực tiếp; source và báo cáo được đồng bộ cùng repository. URL LMS sinh viên tự nộp."),
+    ("GitHub, README, LMS", "Source, poster/font, tài liệu nguồn và ảnh minh chứng được đồng bộ trong repository; Word nhúng ảnh trực tiếp. URL LMS sinh viên tự nộp."),
 ], [1.55, 4.65], size=8.3)
 
 # Environment.
@@ -569,11 +569,11 @@ table(doc, ["Thành phần", "Thông tin ghi nhận"], [
     ("SDK", ".NET SDK 10.0.404; global.json yêu cầu 10.0.100 và rollForward latestFeature."),
     ("Runtime", "Microsoft.NETCore.App 10.0.15 và Microsoft.AspNetCore.App 10.0.15."),
     ("ORM/database", "Entity Framework Core 10.0.15 và SQL Server."),
-    ("Somee", "SQL Server 2025 Express database PTUDW31241027221; đã áp dụng bốn migration. Migration khởi tạo seed năm Movies và ba Genres; website live hiển thị mười phim và sáu thể loại."),
+    ("Somee", "SQL Server 2025 Express database PTUDW31241027221; lần kiểm tra trước ghi nhận bốn migration đã áp dụng. Migration UseOfficialFilmCatalog được sửa với điều kiện bảo vệ dữ liệu và chưa được chạy trên production trong lượt cập nhật này. Website live: " + LIVE_URL + "; hiển thị mười phim và sáu thể loại."),
     ("Tooling", "dotnet-ef 10.0.15; dotnet-aspnet-codegenerator 10.0.3."),
     ("PATH", "SDK nằm trong %USERPROFILE%\\.dotnet; terminal mặc định không tìm thấy dotnet. Dùng đường dẫn đầy đủ hoặc thêm SDK folder vào PATH của phiên PowerShell."),
 ], [1.5, 4.7], size=8.6)
-paragraph(doc, "Build Release được kiểm tra xác nhận bằng C:\\Users\\Admin\\.dotnet\\dotnet.exe. Ứng dụng đã publish và được kiểm tra trên Somee. Bản local hiện chạy tại http://127.0.0.1:5080 bằng dotnet và đã truy cập database thành công; môi trường production không bị thay đổi trong lượt bổ sung minh chứng.", 9.1, color=GRAY)
+paragraph(doc, "Build Release được kiểm tra xác nhận bằng C:\\Users\\Admin\\.dotnet\\dotnet.exe. Ứng dụng đã publish và được kiểm tra trên Somee. Bản local dùng để tái hiện và chụp Hình 2.3 chạy tại http://127.0.0.1:5083; môi trường production không bị thay đổi trong lượt cập nhật tài liệu này.", 9.1, color=GRAY)
 
 # Project design and personal work.
 heading(doc, "Thiết kế và phần điều chỉnh cá nhân")
@@ -595,7 +595,7 @@ table(doc, ["Model/bảng", "Vai trò và quan hệ"], [
     ("ChiTietHoaDon", "MovieId, số lượng và đơn giá tại thời điểm đặt; tham chiếu hóa đơn và phim."),
     ("ShippingDetail", "Người nhận và ngày giao; HoaDonId duy nhất tạo quan hệ một-một."),
 ], [1.6, 4.6], size=8.5)
-paragraph(doc, "Migration có năm phim và ba thể loại mẫu làm dữ liệu khởi đầu; poster quảng bá thật có nguồn ghi bên dưới. Đề yêu cầu tối thiểu năm sản phẩm và ba thể loại do sinh viên tự nhập; dữ liệu seed không tự chứng minh yêu cầu đó. SQL Somee hiện xác nhận mười phim và sáu thể loại; dữ liệu đơn #4 có tổng 159.000 VNĐ. Ảnh thao tác thêm phim và thể loại mới được chụp riêng trên database cục bộ.", 9.2)
+paragraph(doc, "Migration có năm phim và ba thể loại mẫu làm dữ liệu khởi đầu; poster quảng bá thật có nguồn ghi bên dưới. SQL Somee xác nhận mười phim và sáu thể loại, trong đó có năm phim bổ sung The Bluey Movie, Frozen 3, Shrek 5, Incredibles 3 và Violent Night 2. Ảnh thao tác thêm phim và thể loại được chụp riêng trên database cục bộ để minh họa nhập liệu; số lượng live được đối chiếu bằng truy vấn SQL.", 9.2)
 
 heading(doc, "Quá trình thực hiện")
 bullet(doc, "Chốt target. ", "Dùng đề .NET 10, global.json và tool manifest ghim dotnet-ef 10.0.15; không áp dụng nguyên lệnh .NET 5/MVC5.")
@@ -610,17 +610,17 @@ table(doc, ["Kiểm tra", "Kết quả ghi nhận", "Việc còn lại"], [
     ("Build Release", "Kiểm tra pass với SDK 10.0.404.", "Ảnh SDK 10.0.404 đã chèn ở Hình 1.1."),
     ("Create/Edit phim", "Cloud QA bản trước đã pass CRUD; Price 5.000 được chấp nhận và 4.999 bị từ chối. Kiểm thử HTTP ngày 28/11 xác nhận Title/Summary sau Trim không đủ ba ký tự bị từ chối; Release build pass.", "Đã kiểm thử runtime chuỗi có khoảng trắng."),
     ("Database Somee", "Bản triển khai hiện chạy; truy vấn SQL chỉ đọc xác nhận mười phim, sáu thể loại, bốn hóa đơn và một tài khoản đã xác nhận.", "Đã chèn ảnh kết quả truy vấn SQL; ảnh thao tác SSMS lịch sử chưa có."),
-    ("Dữ liệu phim/thể loại", "Source seed năm phim và ba thể loại; website hiển thị mười phim và sáu thể loại.", "Chưa xác minh năm phim/ba thể loại nào do sinh viên nhập."),
+    ("Dữ liệu phim/thể loại", "Website live có mười phim và sáu thể loại; truy vấn SQL xác nhận năm phim bổ sung: The Bluey Movie, Frozen 3, Shrek 5, Incredibles 3 và Violent Night 2. Ảnh local ghi nhận thao tác nhập phim và thể loại.", "Đã đối chiếu số lượng, tên và ảnh thao tác; nguồn dữ liệu live không lưu lịch sử người nhập."),
     ("Upload poster", "Cloud QA pass upload poster và giữ ảnh sau khi sửa thông tin phim.", "Đã chèn form chọn tệp và kết quả lưu poster cục bộ."),
     ("Cart và checkout", "Cloud QA pass Add/Update/Remove; thiếu ngày giao bị từ chối; đơn hợp lệ lưu và cart được xóa. Ảnh mới ghi nhận cart, checkout và ThankYou cho đơn #4 trị giá 159.000 VNĐ.", "Đã có ảnh form chỉnh sửa và truy vấn SQL; ảnh các bước lịch sử xem ma trận."),
     ("SMTP và Identity", "Email đơn #3 và #4 có trong Inbox và Sent; #4 trị giá 159.000 VNĐ. Trang xác nhận cho biết email tài khoản đã xác nhận; ảnh menu xác nhận đăng nhập thành công.", "Đã xác minh tài khoản và gửi email thực tế."),
     ("Somee .NET 10", "Bản mới đã deploy ngày 28/11/2026; danh mục, thể loại, phim, đăng nhập và đăng ký đã hiển thị.", "Ảnh truy vấn SQL và form chỉnh sửa đã bổ sung; ảnh lịch sử xem ma trận."),
-    ("GitHub", "Source, poster/font, nguồn poster và ảnh thể loại đã được đẩy lên nhánh main.", "Word được cập nhật riêng sau khi hoàn tất QA; LMS cần sinh viên nộp URL."),
+    ("GitHub", "Source, poster/font, nguồn poster và ảnh thể loại đã có trên nhánh main; bản cập nhật này đồng bộ thêm migration an toàn, minh chứng và Word.", "LMS cần sinh viên nộp URL."),
 ], [1.18, 2.65, 2.37], size=7.8)
 
 # Extra evidence required by section 14.
 heading(doc, "Ảnh bổ sung theo mục 14")
-paragraph(doc, f"Có {len(available_supplemental)} ảnh bổ sung từ website live và môi trường cục bộ, không có con trỏ, thanh Chrome hay taskbar. Chú thích từng ảnh nêu môi trường tương ứng; các ảnh này không thay thế 50 mã [Hình x.y] của đề.")
+paragraph(doc, f"Có {len(available_supplemental)} ảnh bổ sung từ website live và môi trường cục bộ; ảnh không có tab Chrome, taskbar hay con trỏ. Thanh địa chỉ được giữ trong ảnh website theo yêu cầu của đề. Chú thích từng ảnh nêu môi trường tương ứng; các ảnh này không thay thế 50 mã [Hình x.y] của đề.")
 supplement_rows = []
 for filename, description in SUPPLEMENTAL:
     if (IMAGES / filename).is_file():
@@ -631,14 +631,14 @@ for filename, description in SUPPLEMENTAL:
 table(doc, ["Ảnh bổ sung", "Tệp"], supplement_rows, [4.8, 1.4], 8.3, status_col=1)
 # Keep the assignment image gap separate from supplementary evidence counts.
 heading(doc, "Checklist số lượng ảnh minh chứng", 2)
-paragraph(doc, "Số lượng đã chèn là số mã hình có ảnh minh họa, không tự xác nhận đáp ứng trọn vẹn từng chi tiết của đề. " + ("Các mã chỉ có ảnh một phần: " + ", ".join(partial_figures) + ". Xem giới hạn tại chú thích." if partial_figures else "Môi trường và khác biệt giao diện được ghi ở chú thích từng ảnh."))
+paragraph(doc, "Số lượng đã chèn là số mã hình có ảnh minh họa; mã nào dùng ảnh lịch sử hoặc tái hiện cục bộ được ghi rõ ở chú thích. " + ("Các mã chỉ có ảnh một phần: " + ", ".join(partial_figures) + ". Xem giới hạn tại chú thích." if partial_figures else "Đủ ảnh cho 50/50 mã hình; môi trường và khác biệt giao diện được ghi ở chú thích từng ảnh."))
 table(doc, ["Nhóm ảnh", "Đã chèn", "Chưa có"], [
     ("Mã hình theo PDF", f"{len(figure_evidence)} / {len(FIGURES)}", str(len(FIGURES) - len(figure_evidence))),
     ("Ảnh bổ sung mục 14", f"{len(available_supplemental)} / {len(SUPPLEMENTAL)}", str(len(SUPPLEMENTAL) - len(available_supplemental))),
 ], [3.7, 1.2, 1.3], 8.3)
 # Exactly fifty figure evidence rows.
 heading(doc, "Ma trận 50 hình theo đề")
-paragraph(doc, "Mã và nội dung theo 50 vị trí [Hình x.y] trong PDF .NET 10. Ảnh đã đối chiếu được nhúng trực tiếp ở phần minh chứng; các vị trí chưa có ảnh được ghi rõ trong ma trận.")
+paragraph(doc, "Mã và nội dung theo 50 vị trí [Hình x.y] trong PDF .NET 10. Ảnh được nhúng trực tiếp ở phần minh chứng; chú thích phân biệt ảnh live, ảnh local và ảnh lịch sử.")
 grouped = {}
 for number, desc in FIGURES:
     grouped.setdefault(number.split(".")[0], []).append((number, desc))
@@ -654,13 +654,13 @@ for chapter, chapter_title in CHAPTERS.items():
 
 # Hosting and submission status.
 heading(doc, "Triển khai lên Somee")
-paragraph(doc, "Bản publish mới được đưa lên Somee ngày 28/11/2026; File Manager xác nhận đã giải nén ba tệp gồm DLL, CSS và JavaScript, tổng 523,77 KB; `appsettings.Production.json` được giữ nguyên. Website đã khởi động và các trang công khai chính hiển thị khi mở trực tiếp. CSS và JavaScript live đã được tải lại và đối chiếu khớp source. Ảnh truy vấn SQL và form chỉnh sửa local đã được chèn trực tiếp.")
+paragraph(doc, "Bản publish mới được đưa lên Somee ngày 28/11/2026 tại " + LIVE_URL + "; File Manager xác nhận đã giải nén ba tệp gồm DLL, CSS và JavaScript, tổng 523,77 KB; `appsettings.Production.json` được giữ nguyên. Website đã khởi động và các trang công khai chính hiển thị khi mở trực tiếp. CSS và JavaScript live đã được tải lại và đối chiếu khớp source. Hình 10.7 giữ URL HTTP thật trên thanh địa chỉ; quảng cáo hosting của Somee che một phần nội dung ở mép dưới ảnh.")
 paragraph(doc, "Somee hiện quảng bá ASP.NET Core 3–10 ở phần đặc điểm gói, nhưng FAQ trên cùng trang ghi runtime đến .NET 9. Website .NET 10 hiện chạy thực tế trên gói này, dù nội dung FAQ chưa đồng nhất. Gói free nêu quảng cáo, 150 MB lưu trữ web, 5 GB truyền dữ liệu/tháng, một SQL Server database 30 MB data/30 MB log; database có thể bị xóa nếu không có query 30 ngày. Xem nguồn Somee và FAQ ở phần Nguồn đối chiếu.")
 paragraph(doc, "Publish cần dùng thư mục đầu ra mới. Khi nén, lấy nội dung bên trong publish để web.config và wwwroot nằm ở gốc archive; lỗi ZIP chứa thêm một tầng thư mục được nhắc trong transcript video tại 1:01:25. Transcript tại 53:33 cũng nhắc thay footer thôi chưa đủ cá nhân hóa; cần thể hiện thương hiệu, poster, nội dung và bố cục riêng.")
 paragraph(doc, "SMTP có hai luồng riêng. Email xác nhận cho đơn thử nghiệm #3 và #4 đều có trong Inbox và Sent của Gmail; #4 trị giá 159.000 VNĐ, được lưu sau triển khai ngày 28/11/2026. Trang xác nhận tài khoản cho biết email đã được xác nhận; đã đăng nhập thành công và menu hiển thị Tài khoản/Đăng xuất. Checkout lưu đơn trong transaction trước khi thử gửi mail.")
 
 heading(doc, "Kết luận và việc còn lại")
-paragraph(doc, f"Source ASP.NET Core MVC .NET 10 đã build Release, deploy lại trên Somee và được kiểm tra trực tiếp ở các trang chính. Giao diện dùng font Noto Sans, poster chính thức có nguồn tham khảo, đăng ký và đăng nhập hiển thị đúng tiếng Việt. Email xác nhận đơn #4 trị giá 159.000 VNĐ có trong Inbox và Sent; trang xác nhận cho biết email tài khoản đã xác nhận, đăng nhập thành công đã được xác minh. Ảnh theo đề: {len(figure_evidence)} / {len(FIGURES)} đã chèn, còn {len(FIGURES) - len(figure_evidence)} vị trí chưa có ảnh. Hình 6.1 đã có kết quả scaffold trong PowerShell đúng khung Terminal; ảnh lịch sử Somee được ghi rõ nguồn và thời điểm. Sinh viên vẫn cần nộp URL website và repository trên LMS.")
+paragraph(doc, f"Source ASP.NET Core MVC .NET 10 đã build Release, deploy lại trên Somee và được kiểm tra trực tiếp ở các trang chính tại {LIVE_URL}. Giao diện dùng font Noto Sans, poster chính thức có nguồn tham khảo, đăng ký và đăng nhập hiển thị đúng tiếng Việt. Email xác nhận đơn #4 trị giá 159.000 VNĐ có trong Inbox và Sent; trang xác nhận cho biết email tài khoản đã xác nhận, đăng nhập thành công đã được xác minh. Đã nhúng ảnh cho {len(figure_evidence)} / {len(FIGURES)} mã hình và {len(available_supplemental)} ảnh bổ sung. Migration UseOfficialFilmCatalog hiện có điều kiện bảo vệ dữ liệu, nhưng chưa áp dụng vào production; cần chạy sau khi sao lưu và kiểm tra trạng thái DB. Hình 6.1 có kết quả scaffold trong PowerShell đúng khung Terminal; ảnh lịch sử Somee được ghi rõ nguồn và thời điểm. Sinh viên vẫn cần nộp URL website và repository trên LMS.")
 
 heading(doc, "Nguồn đối chiếu")
 paragraph(doc, "Đề mới BaiTap_CaNhan_ASP_CORE_LMS.pdf: ASP.NET Core MVC .NET 10, mục 12–16 và 50 hình minh chứng.")
@@ -669,6 +669,8 @@ p = paragraph(doc, "Hosting: ")
 hyperlink(p, "Somee Free ASP.NET Hosting và FAQ", SOMEE_URL)
 p = paragraph(doc, "Repository hiện có: ")
 hyperlink(p, REPO_URL, REPO_URL)
+p = paragraph(doc, "Website Somee (HTTP): ")
+hyperlink(p, LIVE_URL, LIVE_URL)
 
 # Embed only reviewed numbered screenshots and available supplemental evidence.
 add_embedded_images(doc, available + available_supplemental)

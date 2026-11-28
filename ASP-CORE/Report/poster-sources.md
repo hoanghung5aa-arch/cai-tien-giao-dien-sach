@@ -4,7 +4,7 @@ Ngày đối chiếu: 28/11/2026. Ngày phát hành dùng lịch rạp quốc t�
 
 ## Quyền đối với ảnh
 
-Các ảnh là poster quảng bá chính thức có bản quyền của hãng ghi bên dưới, dùng để nhận diện phim trong bài LAB phi thương mại. Không tìm thấy giấy phép mở hoặc quyền tái sử dụng chung; danh sách nguồn không phải giấy phép. Không tuyên bố liên kết với hãng hoặc sở hữu tác phẩm. Không dùng ảnh AI tạo lại, không thêm chữ, crop hay ghép lại poster. Tệp phục vụ web của Dune và Jumanji được thu nhỏ và nén JPEG quality 88 để tải nhanh hơn; bản nguồn giữ nguyên bytes trong `poster-originals/`. Các poster còn lại giữ nguyên bytes nguồn trong thư mục phục vụ web.
+Các ảnh là poster quảng bá chính thức có bản quyền của hãng ghi bên dưới, dùng để nhận diện phim trong bài LAB phi thương mại. Không tìm thấy giấy phép mở hoặc quyền tái sử dụng chung; danh sách nguồn không phải giấy phép. Không tuyên bố liên kết với hãng hoặc sở hữu tác phẩm. Không dùng ảnh AI tạo lại, không thêm chữ, crop hay ghép lại poster. Tệp phục vụ web của Dune và Jumanji được thu nhỏ và nén JPEG quality 88 để tải nhanh hơn; bản nguồn được lưu tại URL của hãng và không được nhân đôi trong repository. Các poster còn lại giữ nguyên bytes nguồn trong thư mục phục vụ web.
 
 Shrek 5, Frozen 3 và Incredibles 3 hiện dùng poster teaser/logo chính thức, không phải key art nhân vật. Giá bán và điểm xếp hạng trong ứng dụng là dữ liệu thực hành, không phải giá vé, đánh giá khán giả hay điểm do hãng cung cấp. Các phim chưa được gán phân loại tuổi chưa công bố.
 
@@ -26,7 +26,7 @@ Shrek 5, Frozen 3 và Incredibles 3 hiện dùng poster teaser/logo chính thứ
 - Trang hãng: [https://www.dunemovie.com/toolkit/](https://www.dunemovie.com/toolkit/).
 - Tệp web: `/images/posters/dune-part-three.jpg` (JPEG 691×1024, 98.484 bytes; thu nhỏ đúng tỉ lệ và nén quality 88, không crop).
 - URL ảnh: [https://www.dunemovie.com/toolkit/media/official_art/DUNE3_VERT_STANDOFF_2764x4096_DOM.jpg](https://www.dunemovie.com/toolkit/media/official_art/DUNE3_VERT_STANDOFF_2764x4096_DOM.jpg).
-- Bản nguồn lưu tại `poster-originals/dune-part-three.jpg` (2764×4096, 1.989.303 bytes); SHA-256 nguồn: `c502a1c42bd1994e2ad94856751c2c7af34cb7b5c25cf167114c265efd0baed8`.
+- SHA-256 bản nguồn tại URL hãng: `c502a1c42bd1994e2ad94856751c2c7af34cb7b5c25cf167114c265efd0baed8`.
 - SHA-256 tệp web: `5d2d52f38a6c8f098f2e073c9e835c6e22c844b6ee529501ec8c63f27077c537`.
 
 ### Jumanji: Open World
@@ -36,7 +36,7 @@ Shrek 5, Frozen 3 và Incredibles 3 hiện dùng poster teaser/logo chính thứ
 - Trang hãng: [https://jumanji.movie/](https://jumanji.movie/).
 - Tệp web: `/images/posters/jumanji-open-world.jpg` (JPEG 720×1080, 271.357 bytes; thu nhỏ đúng tỉ lệ và nén quality 88, không crop).
 - URL ảnh: [https://jumanji.movie/images/synopsis_poster.jpg](https://jumanji.movie/images/synopsis_poster.jpg).
-- Bản nguồn lưu tại `poster-originals/jumanji-open-world.jpg` (1400×2100, 1.307.006 bytes); SHA-256 nguồn: `fb43f27c2bb21b050496ba9128c7c80c6abcd5d552965629dfab588eca2f2caa`.
+- SHA-256 bản nguồn tại URL hãng: `fb43f27c2bb21b050496ba9128c7c80c6abcd5d552965629dfab588eca2f2caa`.
 - SHA-256 tệp web: `cd9ef908962b74789aa8ed6efab41065c7c554e801d2a627b68a2283dd54bdf3`.
 
 ### Gatto

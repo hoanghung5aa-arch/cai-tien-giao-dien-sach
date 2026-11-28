@@ -28,14 +28,15 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         builder.Entity<ShippingDetail>().HasOne(shipping => shipping.HoaDon).WithOne(order => order.ShippingDetail)
             .HasForeignKey<ShippingDetail>(shipping => shipping.HoaDonId).OnDelete(DeleteBehavior.Cascade);
         builder.Entity<Genre>().HasData(
-            new Genre { Id = 1, Name = "Hoạt hình" },
+            new Genre { Id = 1, Name = "Tâm lý" },
             new Genre { Id = 2, Name = "Khoa học viễn tưởng" },
-            new Genre { Id = 3, Name = "Phiêu lưu" });
+            new Genre { Id = 3, Name = "Phiêu lưu" },
+            new Genre { Id = 7, Name = "Hoạt hình" });
         builder.Entity<Movie>().HasData(
             new Movie { Id = 1, Title = "Avengers: Doomsday", Summary = "Các anh hùng từ nhiều vũ trụ đối mặt với một mối đe dọa có thể thay đổi tất cả.", ReleaseDate = new DateTime(2026, 12, 18), GenreId = 2, Price = 159000m, Rated = 4.8, AgeRating = "", PicturePath = "/images/posters/avengers-doomsday.jpg" },
             new Movie { Id = 2, Title = "Dune: Part Three", Summary = "Paul Atreides đối diện hậu quả của quyền lực và một âm mưu đang siết chặt đế chế.", ReleaseDate = new DateTime(2026, 12, 18), GenreId = 2, Price = 159000m, Rated = 4.6, AgeRating = "", PicturePath = "/images/posters/dune-part-three.jpg" },
             new Movie { Id = 3, Title = "Jumanji: Open World", Summary = "Thế giới của trò chơi tràn vào đời thực, mở ra một cuộc phiêu lưu mới cho nhóm bạn.", ReleaseDate = new DateTime(2026, 12, 25), GenreId = 3, Price = 139000m, Rated = 4.9, AgeRating = "", PicturePath = "/images/posters/jumanji-open-world.jpg" },
-            new Movie { Id = 4, Title = "Gatto", Summary = "Chú mèo Nero tìm kiếm tình bạn và lối đi riêng giữa những con kênh của Venice.", ReleaseDate = new DateTime(2027, 3, 5), GenreId = 1, Price = 129000m, Rated = 4.7, AgeRating = "", PicturePath = "/images/posters/gatto.jpg" },
-            new Movie { Id = 5, Title = "Ice Age: Boiling Point", Summary = "Manny, Sid và Diego bước vào cuộc phiêu lưu mới giữa khủng long và dung nham của Lost World.", ReleaseDate = new DateTime(2027, 2, 5), GenreId = 1, Price = 119000m, Rated = 4.5, AgeRating = "", PicturePath = "/images/posters/ice-age-boiling-point.jpg" });
+            new Movie { Id = 4, Title = "Gatto", Summary = "Chú mèo Nero tìm kiếm tình bạn và lối đi riêng giữa những con kênh của Venice.", ReleaseDate = new DateTime(2027, 3, 5), GenreId = 7, Price = 129000m, Rated = 4.7, AgeRating = "", PicturePath = "/images/posters/gatto.jpg" },
+            new Movie { Id = 5, Title = "Ice Age: Boiling Point", Summary = "Manny, Sid và Diego bước vào cuộc phiêu lưu mới giữa khủng long và dung nham của Lost World.", ReleaseDate = new DateTime(2027, 2, 5), GenreId = 7, Price = 119000m, Rated = 4.5, AgeRating = "", PicturePath = "/images/posters/ice-age-boiling-point.jpg" });
     }
 }

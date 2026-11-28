@@ -278,7 +278,7 @@ namespace _31241027221_NguyenHoangHung.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Hoạt hình"
+                            Name = "Tâm lý"
                         },
                         new
                         {
@@ -289,6 +289,11 @@ namespace _31241027221_NguyenHoangHung.Migrations
                         {
                             Id = 3,
                             Name = "Phiêu lưu"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Hoạt hình"
                         });
                 });
 
@@ -402,7 +407,7 @@ namespace _31241027221_NguyenHoangHung.Migrations
                         {
                             Id = 4,
                             AgeRating = "",
-                            GenreId = 1,
+                            GenreId = 7,
                             PicturePath = "/images/posters/gatto.jpg",
                             Price = 129000m,
                             Rated = 4.7,
@@ -414,7 +419,7 @@ namespace _31241027221_NguyenHoangHung.Migrations
                         {
                             Id = 5,
                             AgeRating = "",
-                            GenreId = 1,
+                            GenreId = 7,
                             PicturePath = "/images/posters/ice-age-boiling-point.jpg",
                             Price = 119000m,
                             Rated = 4.5,
