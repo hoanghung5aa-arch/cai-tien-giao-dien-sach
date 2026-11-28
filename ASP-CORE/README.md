@@ -89,7 +89,7 @@ Có thể đặt các khóa email khác nếu cần: `Email:Host` (`smtp.gmail.c
 
 `UseOfficialFilmCatalog` chỉ cập nhật các dòng seed 1–5 nếu mỗi dòng khớp hoàn toàn với giá trị khởi tạo hoặc đã là giá trị danh mục đích. Nếu dòng seed đã được sửa khác dự kiến, migration dừng để tránh ghi đè. Migration giữ nguyên Genre ID 1, chỉ thêm `Hoạt hình` ở ID 7 khi ID này còn trống, không thay đổi phim người dùng tạo, đơn hàng hay tài khoản. `Down` không khôi phục dữ liệu seed và không xóa Genre 7 để bảo vệ các chỉnh sửa phát sinh sau này.
 
-Lần cập nhật báo cáo này đã build source và kiểm tra không còn thay đổi model chưa được migration ghi nhận. Migration mới chưa được áp dụng vào production; trước khi chạy trên hosting cần sao lưu database và xác nhận trạng thái `__EFMigrationsHistory`.
+Production Somee ngày 28/11/2026: đã tạo bản sao lưu `before-film-catalog-20261128.bak` trước khi đồng bộ. Đã xác nhận migration trước tồn tại, thể loại ID 7 và cả năm dòng phim đích đã đúng giá trị. Giao dịch SQL có điều kiện bảo vệ chỉ thêm `20261128010000_UseOfficialFilmCatalog` (ProductVersion `10.0.15`) vào `__EFMigrationsHistory`; không sửa hàng nào trong `Movies` hoặc `Genres`. Truy vấn sau đó xác nhận migration mới đã được ghi nhận. Không chạy lại thao tác này trên hosting; database mới/local áp dụng các migration bằng `dotnet ef database update`.
 
 ## Khôi phục và chạy local
 
