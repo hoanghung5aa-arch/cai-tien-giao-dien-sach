@@ -334,8 +334,7 @@
       "number": "6.1",
       "file": "Hinh_6_1.png",
       "validated": true,
-      "caption": "Nhật ký nguyên gốc của lệnh scaffold Genre chạy thành công ngày 28/11/2026, được mở trong VS Code: Added Controller GenresController.cs và năm View Create, Edit, Details, Delete, Index. Có đầy đủ kết quả lệnh nhưng đây là ảnh trình soạn thảo log, chưa đúng yêu cầu khung Terminal của đề.",
-      "coverage": "partial"
+      "caption": "PowerShell sau khi chạy scaffold Genre trong project tái hiện MovieStages: dùng Microsoft.EntityFrameworkCore.SqlServer, tạo GenresController.cs và đủ năm View Create, Edit, Details, Delete, Index; RunTime 00:00:13.19. Ảnh Terminal thật do người dùng cung cấp ngày 28/11/2026, chỉ cắt viền cửa sổ; không sửa nội dung kết quả."
     },
     {
       "number": "7.4",

@@ -31,3 +31,8 @@ Word 75 trang đã nhúng trực tiếp 65 ảnh minh chứng, cập nhật mụ
 ## Bổ sung cuối ngày 28/11: bốn mã ảnh và ba vị trí cần làm rõ
 
 Đã hoàn tất chụp và nhúng thêm cho 5.4, 5.7, 6.1, 7.4; thay/bổ sung 3.3, 5.5, 7.1. Báo cáo hiện 80 trang, 50/50 mã có ảnh, 9 ảnh đi kèm và 12 ảnh mục 14, tổng 71 ảnh minh chứng (73 hình nhúng tính cả bìa). Các ảnh mới không có thanh Chrome, taskbar hay con trỏ. Hình 6.1 là nhật ký scaffold thành công mở trong editor, chưa đúng khung Terminal; được đánh dấu ảnh một phần, không tuyên bố đáp ứng đủ mọi chi tiết của đề. Các trạng thái lỗi/Index rỗng được tái hiện trên SQL Express local, không phải lỗi production. Đã render và kiểm tra lại Word, cập nhật mục lục và sao chép vào file người dùng.
+
+
+## Hoàn tất khung Terminal cho hình 6.1
+
+Người dùng chạy lại scaffold Genre trong PowerShell và cung cấp ảnh kết quả thật: GenresController.cs cùng năm View được tạo, RunTime 00:00:13.19. Đã thay ảnh editor log bằng ảnh PowerShell, bỏ trạng thái một phần ở manifest/ma trận, đồng bộ Word và README. Bộ minh chứng hiện có ảnh cho 50/50 mã, không còn mã đánh dấu một phần; chú thích tiếp tục phân biệt replay local, live và ảnh lịch sử.

@@ -4,7 +4,7 @@ Word hiện có 80 trang, nhúng trực tiếp 71 ảnh minh chứng: 50 mã hì
 
 Đã bổ sung bốn mã trước đây chưa có ảnh: 5.4 lỗi database trước migration, 5.7 Movies Index rỗng, 6.1 kết quả scaffold Genre và 7.4 Index hiển thị chuỗi PicturePath. Đã thay hình 5.5 bằng cây Migrations có đúng hai migration và CreateTable; hình 7.1 bằng tệp JPEG no-image thật kèm model khai báo đường dẫn; hình 3.3 dùng hai phần cắt từ cùng ảnh lịch sử để giữ đủ các trường form, cùng nằm trên một trang.
 
-Giới hạn còn lại: 6.1 có kết quả scaffold nguyên gốc mở trong VS Code, chưa phải ảnh khung Terminal như chú thích của đề. Lệnh đã chạy thành công, sinh GenresController và năm View; nhật ký gốc lưu tại ASP-CORE/Report/evidence-logs/Scaffold-Genre-20261128.log. Manifest và ma trận đánh dấu 6.1 là ảnh một phần. Có ảnh cho 50/50 mã, không đồng nghĩa đáp ứng trọn vẹn từng chi tiết hình thức.
+Hình 6.1 đã thay bằng ảnh PowerShell thật do người dùng cung cấp sau khi tự chạy lại lệnh: tạo GenresController.cs và năm View, RunTime 00:00:13.19. Chỉ cắt viền cửa sổ để không dính phần desktop; không sửa nội dung kết quả. Có ảnh cho đủ 50/50 mã, không còn mã đánh dấu một phần trong manifest. Các khác biệt môi trường và ảnh lịch sử vẫn được ghi rõ trong chú thích.
 
 Các bước đầu và Identity được tái hiện thật trên Welcome, SQL Express LabEvidence20261128, Windows Authentication. MovieStages dùng cùng database local cho các trạng thái trước/sau migration. Bản sao CurrentApp dùng LabEvidenceFinal20261128 cho upload poster thật, giỏ hàng và SQL đơn #1 trị giá 159.000 VNĐ. Không ghi dữ liệu thử vào database Somee trong lượt bổ sung này. SMTP local không cấu hình; minh chứng SMTP live Somee là thư cho đơn #4 đã kiểm tra trước đó.
 
